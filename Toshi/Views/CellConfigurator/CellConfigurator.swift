@@ -41,6 +41,11 @@ class CellConfigurator {
         if cellData.components.contains(.doubleImage) {
             cell.doubleImageView.setImages(cellData.doubleImage)
         }
+
+        if cellData.components.contains(.doubleAction) {
+            cell.firstActionButton.setImage(cellData.doubleActionImages?.firstImage, for: .normal)
+            cell.secondActionButton.setImage(cellData.doubleActionImages?.secondImage, for: .normal)
+        }
     }
 
     func cellIdentifier(for components: TableCellDataComponents) -> String {
@@ -52,6 +57,8 @@ class CellConfigurator {
             reuseIdentifier = AvatarTitleSubtitleSwitchCell.reuseIdentifier
         } else if components.contains(.titleSubtitleDetailsLeftImage) {
             reuseIdentifier = AvatarTitleSubtitleDetailsCell.reuseIdentifier
+        } else if components.contains(.leftImageTitleSubtitleDoubleAction) {
+            reuseIdentifier = AvatarTitleSubtitleDoubleActionCell.reuseIdentifier
         } else if components.contains(.titleSubtitleLeftImage) {
             reuseIdentifier = AvatarTitleSubtitleCell.reuseIdentifier
         } else if components.contains(.titleSubtitleSwitchControl) {

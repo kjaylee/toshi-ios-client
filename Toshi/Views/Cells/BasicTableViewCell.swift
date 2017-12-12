@@ -41,6 +41,7 @@ class BasicTableViewCell: UITableViewCell {
     static let imageMargin: CGFloat = 10.0
     static let doubleImageMargin: CGFloat = 16.0
     static let largeVerticalMargin: CGFloat = 22.0
+    static let actionButtonSize: CGFloat = 44.0
 
     var actionDelegate: BasicCellActionDelegate?
 
@@ -107,6 +108,20 @@ class BasicTableViewCell: UITableViewCell {
         return switchControl
     }()
 
+    lazy var firstActionButton: UIButton = {
+        let button = UIButton()
+        button.size(CGSize(width: BasicTableViewCell.actionButtonSize, height: BasicTableViewCell.actionButtonSize))
+
+        return button
+    }()
+
+    lazy var secondActionButton: UIButton = {
+        let button = UIButton()
+        button.size(CGSize(width: BasicTableViewCell.actionButtonSize, height: BasicTableViewCell.actionButtonSize))
+
+        return button
+    }()
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -141,6 +156,7 @@ class BasicTableViewCell: UITableViewCell {
         tableView.register(AvatarTitleSubtitleDetailsCell.self)
         tableView.register(AvatarTitleSubtitleSwitchCell.self)
         tableView.register(DoubleAvatarTitleSubtitleCell.self)
+        tableView.register(AvatarTitleSubtitleDoubleActionCell.self)
     }
 }
 
