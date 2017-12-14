@@ -152,7 +152,14 @@ final class SelectProfilesViewController: UIViewController {
     }
     
     func rightBarButtonEnabled() -> Bool {
-        return selectedProfiles.count > 1
+        switch type {
+        case .newGroupChat:
+            // There must be at least two other people to form a new group
+            return selectedProfiles.count >= 2
+        case .updateGroupChat:
+            // You can only update the chat if you're actually adding at least one new person.
+            return selectedProfiles.count >= 1
+        }
     }
 }
 
