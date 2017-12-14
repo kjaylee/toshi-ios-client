@@ -44,6 +44,7 @@ class BasicTableViewCell: UITableViewCell {
     static let imageSize: CGFloat = 48.0
     static let doubleImageSize: CGFloat = 48.0
     static let imageMargin: CGFloat = 10.0
+    static let smallVerticalMargin: CGFloat = 5.0
     static let doubleImageMargin: CGFloat = 16.0
     static let largeVerticalMargin: CGFloat = 22.0
     static let actionButtonSize: CGFloat = 44.0
