@@ -105,7 +105,7 @@ final class ProfilesDataController {
     private lazy var filteredView = YapDatabaseFilteredView(parentViewName: customFilteredProfilesKey, filtering: filtering)
     
     private(set) lazy var mappings: YapDatabaseViewMappings = {
-        let mappings = YapDatabaseViewMappings(groups: [TokenUser.favoritesCollectionKey], view: self.filteredProfilesKey)
+        let mappings = YapDatabaseViewMappings(groups: [TokenUser.favoritesCollectionKey], view: filteredProfilesKey)
         mappings.setIsReversed(true, forGroup: TokenUser.favoritesCollectionKey)
         
         return mappings
@@ -222,7 +222,7 @@ final class ProfilesDataController {
         let notifications = uiDatabaseConnection.beginLongLivedReadTransaction()
         
         // swiftlint:disable:next force_cast
-        let threadViewConnection = uiDatabaseConnection.ext(self.filteredProfilesKey) as! YapDatabaseViewConnection
+        let threadViewConnection = uiDatabaseConnection.ext(filteredProfilesKey) as! YapDatabaseViewConnection
         
         if !threadViewConnection.hasChanges(for: notifications) {
             uiDatabaseConnection.read { [weak self] transaction in
