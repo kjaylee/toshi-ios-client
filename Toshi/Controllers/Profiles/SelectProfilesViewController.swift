@@ -79,6 +79,8 @@ final class SelectProfilesViewController: UIViewController {
 
     private lazy var doneButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone(_:)))
+        barButton.isEnabled = false
+        
         return barButton
     }()
     
