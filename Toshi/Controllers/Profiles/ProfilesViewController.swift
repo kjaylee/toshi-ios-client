@@ -124,6 +124,8 @@ final class ProfilesViewController: UITableViewController, Emptiable {
         
         preferLargeTitleIfPossible(true)
         showOrHideEmptyState()
+        
+        dataController.excludedProfilesIds = []
     }
     
     override func viewDidAppear(_ animated: Bool) {
