@@ -26,9 +26,9 @@ final class AvatarTitleSubtitleDoubleActionCell: BasicTableViewCell {
         contentView.addSubview(firstActionButton)
 
         setupLeftImageView()
+        setupActionsButtons()
         setupTitleTextField()
         setupSubtitleLabel()
-        setupActionsButtons()
     }
 
     private func setupLeftImageView() {
@@ -42,14 +42,14 @@ final class AvatarTitleSubtitleDoubleActionCell: BasicTableViewCell {
     private func setupTitleTextField() {
         titleTextField.top(to: contentView, offset: BasicTableViewCell.horizontalMargin)
         titleTextField.leftToRight(of: leftImageView, offset: BasicTableViewCell.interItemMargin)
-        titleTextField.rightToLeft(of: detailsLabel, offset: -BasicTableViewCell.interItemMargin)
+        titleTextField.rightToLeft(of: firstActionButton, offset: -BasicTableViewCell.interItemMargin)
         titleTextField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
 
     private func setupSubtitleLabel() {
         subtitleLabel.topToBottom(of: titleTextField)
-        subtitleLabel.leftToRight(of: leftImageView, offset: BasicTableViewCell.verticalMargin)
-        subtitleLabel.rightToLeft(of: detailsLabel, offset: -BasicTableViewCell.horizontalMargin)
+        subtitleLabel.leftToRight(of: leftImageView, offset: BasicTableViewCell.interItemMargin)
+        subtitleLabel.rightToLeft(of: firstActionButton, offset: -BasicTableViewCell.interItemMargin)
         subtitleLabel.bottom(to: contentView, offset: -BasicTableViewCell.verticalMargin)
         subtitleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
@@ -57,7 +57,18 @@ final class AvatarTitleSubtitleDoubleActionCell: BasicTableViewCell {
     private func setupActionsButtons() {
         secondActionButton.right(to: self, offset: -BasicTableViewCell.horizontalMargin)
         secondActionButton.centerY(to: self)
+        secondActionButton.addTarget(self, action: #selector(didTapSecondButton(_:)), for: .touchUpInside)
+
         firstActionButton.rightToLeft(of: secondActionButton)
         firstActionButton.centerY(to: self)
+        firstActionButton.addTarget(self, action: #selector(didTapFirstButton(_:)), for: .touchUpInside)
+    }
+
+    @objc private func didTapSecondButton(_ button: UIButton) {
+        actionDelegate?.didTapSecondActionButton(self)
+    }
+
+    @objc private func didTapFirstButton(_ button: UIButton) {
+        actionDelegate?.didTapFirstActionButton(self)
     }
 }

@@ -22,6 +22,8 @@ protocol BasicCellActionDelegate: class {
     func didTapLeftImage(_ cell: BasicTableViewCell)
     func didFinishTitleInput(_ cell: BasicTableViewCell, text: String?)
     func titleShouldChangeCharactersInRange(_ cell: BasicTableViewCell, text: String?, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    func didTapFirstActionButton(_ cell: BasicTableViewCell)
+    func didTapSecondActionButton(_ cell: BasicTableViewCell)
 }
 
 //extension with default implementation which is alternative for optional functions in protocols
@@ -29,6 +31,9 @@ extension BasicCellActionDelegate {
     func didTapLeftImage(_ cell: BasicTableViewCell) {}
     func didChangeSwitchState(_ cell: BasicTableViewCell, _ state: Bool) {}
     func didFinishTitleInput(_ cell: BasicTableViewCell, text: String?) {}
+    func titleShouldChangeCharactersInRange(_ cell: BasicTableViewCell, text: String?, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool { return true }
+    func didTapFirstActionButton(_ cell: BasicTableViewCell) {}
+    func didTapSecondActionButton(_ cell: BasicTableViewCell) {}
 }
 
 class BasicTableViewCell: UITableViewCell {
@@ -36,14 +41,14 @@ class BasicTableViewCell: UITableViewCell {
     static let horizontalMargin: CGFloat = 16.0
     static let verticalMargin: CGFloat = 15.0
     static let interItemMargin: CGFloat = 10.0
-    static let imageSize: CGFloat = 38.0
+    static let imageSize: CGFloat = 48.0
     static let doubleImageSize: CGFloat = 48.0
     static let imageMargin: CGFloat = 10.0
     static let doubleImageMargin: CGFloat = 16.0
     static let largeVerticalMargin: CGFloat = 22.0
     static let actionButtonSize: CGFloat = 44.0
 
-    var actionDelegate: BasicCellActionDelegate?
+    weak var actionDelegate: BasicCellActionDelegate?
 
     lazy var titleTextField: UITextField = {
         let titleTextField = UITextField()
@@ -80,7 +85,8 @@ class BasicTableViewCell: UITableViewCell {
         let leftImageView = UIImageView()
 
         leftImageView.contentMode = .scaleAspectFill
-        leftImageView.isUserInteractionEnabled = true
+        leftImageView.layer.cornerRadius = BasicTableViewCell.imageSize / 2
+        leftImageView.layer.masksToBounds = true
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLeftImage(_:)))
         leftImageView.addGestureRecognizer(tapGesture)
