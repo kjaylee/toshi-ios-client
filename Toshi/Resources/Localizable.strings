@@ -28,6 +28,9 @@
 "messages_sent_error_action_delete" = "Delete";
 "messages_sent_error_action_resend" = "Resend";
 
+"recent_messages_section_header_title" = "Messages";
+"messages_requests_title" = "Message Requests";
+
 /* Balance */
 "balance_navigation_title" = "Balance";
 "balance_action_send" = "Send";

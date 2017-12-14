@@ -37,7 +37,7 @@ final class GroupInfoViewModel {
         setup()
     }
 
-    private var completionDelegate: GroupViewModelCompleteActionDelegate?
+    private weak var completionDelegate: GroupViewModelCompleteActionDelegate?
 
     private var models: [TableSectionData] = []
 

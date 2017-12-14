@@ -36,7 +36,7 @@ final class NewGroupViewModel {
         setup()
     }
 
-    private var completionDelegate: GroupViewModelCompleteActionDelegate?
+    private weak var completionDelegate: GroupViewModelCompleteActionDelegate?
 
     private func setup() {
         let avatarTitleData = TableCellData(title: groupInfo.title, leftImage: groupInfo.avatar)
