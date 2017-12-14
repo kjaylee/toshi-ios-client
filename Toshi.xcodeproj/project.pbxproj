@@ -219,6 +219,7 @@
 		339959AE1FCEE75B00D69A01 /* EarlGrey.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 339959AC1FCEE74F00D69A01 /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		339EE3E51FE28070005769C0 /* ProfilesDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338088D91FE0314C0057052F /* ProfilesDataController.swift */; };
 		339EE3E61FE28071005769C0 /* ProfilesDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338088D91FE0314C0057052F /* ProfilesDataController.swift */; };
+		339EE3E81FE280F9005769C0 /* UITableView+EmptyRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EE3E71FE280F9005769C0 /* UITableView+EmptyRows.swift */; };
 		33CF51311FD181F700293FD1 /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339959AA1FCED3D700D69A01 /* DLog.swift */; };
 		33CF51321FD181FA00293FD1 /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339959AA1FCED3D700D69A01 /* DLog.swift */; };
 		33CF51331FD181FA00293FD1 /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339959AA1FCED3D700D69A01 /* DLog.swift */; };
@@ -1038,6 +1039,7 @@
 		338088D91FE0314C0057052F /* ProfilesDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesDataController.swift; sourceTree = "<group>"; };
 		339959AA1FCED3D700D69A01 /* DLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
 		339959AC1FCEE74F00D69A01 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = Carthage/Build/iOS/EarlGrey.framework; sourceTree = "<group>"; };
+		339EE3E71FE280F9005769C0 /* UITableView+EmptyRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyRows.swift"; sourceTree = "<group>"; };
 		33CF51341FD184AB00293FD1 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		33CF51381FD1952500293FD1 /* StringCaseListable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCaseListable.swift; sourceTree = "<group>"; };
 		33CF513E1FD56E8200293FD1 /* ProfilesAddGroupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesAddGroupHeader.swift; sourceTree = "<group>"; };
@@ -1898,8 +1900,9 @@
 				2B953AC31FAC9E19005A5BF3 /* NSString+OWS.h */,
 				2B953AC41FAC9E1A005A5BF3 /* NSString+OWS.m */,
 				9FAE4A6A1E4CBFC400126217 /* NSDecimalNumber+Additions.swift */,
-				84AED6FA1F42EBCB003C38E8 /* String+Regex.swift */,
 				9FD247821ED3037F00A38C40 /* String+isURL.swift */,
+				D197B695935159A20363BBF9 /* String+nsRange.swift */,
+				84AED6FA1F42EBCB003C38E8 /* String+Regex.swift */,
 				9F3FF7FE1EB36122002D0293 /* TSOutgoingMessage+Addtions.h */,
 				9F3FF7FF1EB36122002D0293 /* TSOutgoingMessage+Addtions.m */,
 				9FCF13261E52FB160078FF7F /* TSThread+Additions.h */,
@@ -1909,10 +1912,10 @@
 				2BE66A081EF9027B007A7130 /* UIScrollView+Keyboard.swift */,
 				2BC7CA291F7BA60600033E35 /* UIViewController+NavigationBar.swift */,
 				A9AC740A1E77E62900365029 /* UIView+Additions.swift */,
-				D197B494213B9F6EC5413D88 /* YapDatabaseViewConnection+Additions.swift */,
 				2BF634501F7D568C00235C67 /* UIImage+Utils.h */,
 				2BF634511F7D568C00235C67 /* UIImage+Utils.m */,
-				D197B695935159A20363BBF9 /* String+nsRange.swift */,
+				339EE3E71FE280F9005769C0 /* UITableView+EmptyRows.swift */,
+				D197B494213B9F6EC5413D88 /* YapDatabaseViewConnection+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3445,6 +3448,7 @@
 				2BE6FB0F1EFC0C1600B0B848 /* AvatarManager.swift in Sources */,
 				2B953AC51FAC9E1A005A5BF3 /* NSString+OWS.m in Sources */,
 				9F9238B61E24F1D2004BEEE0 /* main.m in Sources */,
+				339EE3E81FE280F9005769C0 /* UITableView+EmptyRows.swift in Sources */,
 				A91D72AB1F8785E10093420C /* ChatButtonsCollectionViewLayout.swift in Sources */,
 				A96823CB1FBC89F3000993FE /* ProfilesViewController.swift in Sources */,
 				A9191DD01F2220C100498A4F /* BalanceController.swift in Sources */,

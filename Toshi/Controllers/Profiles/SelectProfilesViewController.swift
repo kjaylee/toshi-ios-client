@@ -70,6 +70,7 @@ final class SelectProfilesViewController: UIViewController {
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.hideEmptyRows()
         
         return tableView
     }()
