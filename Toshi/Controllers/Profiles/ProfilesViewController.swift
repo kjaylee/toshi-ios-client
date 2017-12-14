@@ -32,7 +32,7 @@ enum ProfilesViewControllerType {
 }
 
 protocol ProfileListDelegate: class {
-    func viewController(_ viewController: ProfilesViewController, selected profile: TokenUser)
+    func viewController(_ viewController: ProfilesViewController, didSelect profile: TokenUser)
 }
 
 // MARK: - Profiles View Controller
@@ -175,7 +175,7 @@ final class ProfilesViewController: UITableViewController, Emptiable {
 
         switch type {
         case .newChat:
-            delegate?.viewController(self, selected: profile)
+            delegate?.viewController(self, didSelect: profile)
         case .favorites:
             navigationController?.pushViewController(ProfileViewController(profile: profile), animated: true)
             UserDefaultsWrapper.selectedContact = profile.address

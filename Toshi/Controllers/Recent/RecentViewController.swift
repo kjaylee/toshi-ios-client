@@ -303,7 +303,7 @@ class RecentViewController: SweetTableController, Emptiable {
 
 extension RecentViewController: ProfileListDelegate {
 
-    func viewController(_ viewController: ProfilesViewController, selected profile: TokenUser) {
+    func viewController(_ viewController: ProfilesViewController, didSelect profile: TokenUser) {
         viewController.dismiss(animated: true, completion: nil)
         
         let selectedProfileAddress = profile.address
