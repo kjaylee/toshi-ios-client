@@ -296,7 +296,7 @@ extension GroupViewController: UITableViewDelegate {
             let selectedUserId = viewModel.participantsIDs[indexPath.row - 1]
             showUserInfo(with: selectedUserId)
         case .addParticipant:
-            let selectProfilesController = SelectProfilesViewController()
+            let selectProfilesController = SelectProfilesViewController(type: .updateGroupChat, delegate: self)
             selectProfilesController.tableViewDataSource.dataController.excludedProfilesIds = viewModel.participantsIDs
             navigationController?.pushViewController(selectProfilesController, animated: true)
         case .exitGroup:

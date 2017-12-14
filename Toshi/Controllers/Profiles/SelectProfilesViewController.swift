@@ -84,6 +84,14 @@ final class SelectProfilesViewController: UIViewController {
         return barButton
     }()
     
+    // MARK: - Initialization
+    
+    convenience init(type: SelectionType, delegate: SelectProfilesViewControllerDelegate?) {
+        self.init()
+        self.type = type
+        self.delegate = delegate
+    }
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
