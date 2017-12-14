@@ -24,7 +24,7 @@ protocol SelectProfilesDelegate: class {
     func deselected(profile: TokenUser)
 }
 
-class SelectProfilesTableViewDataSource: NSObject {
+final class SelectProfilesTableViewDataSource: NSObject {
     
     private enum SelectProfilesSection: Int, CountableIntEnum {
         case

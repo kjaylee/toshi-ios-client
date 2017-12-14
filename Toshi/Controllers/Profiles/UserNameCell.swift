@@ -16,7 +16,7 @@
 import TinyConstraints
 import UIKit
 
-class UserNameCell: UICollectionViewCell {
+final class UserNameCell: UICollectionViewCell {
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()

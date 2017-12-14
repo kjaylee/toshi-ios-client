@@ -22,7 +22,7 @@ protocol SelectProfilesViewControllerDelegate: class {
 }
 
 // A view controller to allow selection of an arbitrary number of profiles.
-class SelectProfilesViewController: UIViewController {
+final class SelectProfilesViewController: UIViewController {
     
     var selectedProfiles = [TokenUser]() {
         didSet {

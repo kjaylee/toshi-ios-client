@@ -25,7 +25,7 @@ protocol ProfileSearchDelegate: class {
 // MARK: - Select Profiles Collection View Data Source
 
 /// Data source for type-ahead header allowing selection of users similar to iMessage
-class SelectProfilesCollectionViewDataSource: NSObject {
+final class SelectProfilesCollectionViewDataSource: NSObject {
     
     private enum SelectProfilesSection: Int, CountableIntEnum {
         case

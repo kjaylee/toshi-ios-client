@@ -20,7 +20,7 @@ protocol ProfilesDataControllerChangesOutput: class {
 }
 
 // Database access centralization for displaying lists of profiles.
-class ProfilesDataController {
+final class ProfilesDataController {
     
     private let filteredProfilesKey = "Filtered_Profiles_Key"
     private let customFilteredProfilesKey = "Custom_Filtered_Profiles_Key"

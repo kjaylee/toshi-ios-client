@@ -16,7 +16,7 @@
 import UIKit
 
 // A collection view cell to facilitate collecting text input
-class TextInputCell: UICollectionViewCell {
+final class TextInputCell: UICollectionViewCell {
     
     private(set) lazy var textField: UITextField = {
         let textField = UITextField()
