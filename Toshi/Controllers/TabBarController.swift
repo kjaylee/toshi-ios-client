@@ -89,7 +89,7 @@ class TabBarController: UITabBarController, OfflineAlertDisplaying {
         profilesController = ProfilesNavigationController(rootViewController: ProfilesViewController(datasource: datasource))
 
         messagingController = RecentNavigationController(nibName: nil, bundle: nil)
-        let recentViewController = RecentViewController()
+        let recentViewController = RecentViewController(style: .grouped)
 
         if let address = UserDefaultsWrapper.selectedThreadAddress, let thread = recentViewController.thread(withAddress: address) {
             messagingController.viewControllers = [recentViewController, ChatViewController(thread: thread)]
