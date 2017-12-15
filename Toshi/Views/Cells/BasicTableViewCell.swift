@@ -48,6 +48,7 @@ class BasicTableViewCell: UITableViewCell {
     static let doubleImageMargin: CGFloat = 16.0
     static let largeVerticalMargin: CGFloat = 22.0
     static let actionButtonSize: CGFloat = 44.0
+    static let badgeViewSize: CGFloat = 24.0
 
     weak var actionDelegate: BasicCellActionDelegate?
 
@@ -129,6 +130,31 @@ class BasicTableViewCell: UITableViewCell {
         return button
     }()
 
+    lazy var badgeView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Theme.tintColor
+        view.layer.cornerRadius = 12
+        view.clipsToBounds = true
+
+        self.badgeLabel.font = Theme.preferredRegularSmall()
+        self.badgeLabel.textColor = Theme.lightTextColor
+        self.badgeLabel.textAlignment = .center
+        view.addSubview(self.badgeLabel)
+
+        self.badgeLabel.edges(to: view, insets: UIEdgeInsets(top: 0, left: 5, bottom: 0, right: -5))
+
+        return view
+    }()
+
+    lazy var badgeLabel: UILabel = {
+        let view = UILabel()
+        view.font = Theme.semibold(size: 15)
+        view.textColor = Theme.lightTextColor
+        view.textAlignment = .center
+
+        return view
+    }()
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -164,6 +190,7 @@ class BasicTableViewCell: UITableViewCell {
         tableView.register(AvatarTitleSubtitleSwitchCell.self)
         tableView.register(DoubleAvatarTitleSubtitleCell.self)
         tableView.register(AvatarTitleSubtitleDoubleActionCell.self)
+        tableView.register(AvatarTitleSubtitleDetailsBadgeCell.self)
     }
 }
 

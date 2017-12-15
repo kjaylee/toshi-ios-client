@@ -26,18 +26,23 @@ class CellConfigurator {
                 cell.titleTextField.text = cellData.title
             }
         }
+
         if cellData.components.contains(.subtitle) {
             cell.subtitleLabel.text = cellData.subtitle
         }
+
         if cellData.components.contains(.switchControl) {
             cell.switchControl.isOn = (cellData.switchState == true)
         }
+
         if cellData.components.contains(.details) {
             cell.detailsLabel.text = cellData.details
         }
+
         if cellData.components.contains(.leftImage) {
             cell.leftImageView.image = cellData.leftImage
         }
+
         if cellData.components.contains(.doubleImage) {
             cell.doubleImageView.setImages(cellData.doubleImage)
         }
@@ -46,15 +51,25 @@ class CellConfigurator {
             cell.firstActionButton.setImage(cellData.doubleActionImages?.firstImage, for: .normal)
             cell.secondActionButton.setImage(cellData.doubleActionImages?.secondImage, for: .normal)
         }
+
+        if cellData.components.contains(.badge) {
+            cell.badgeView.isHidden = false
+            cell.badgeLabel.text = cellData.badgeText
+        } else {
+            cell.badgeLabel.text = nil
+            cell.badgeView.isHidden = true
+        }
     }
 
     func cellIdentifier(for components: TableCellDataComponents) -> String {
         var reuseIdentifier = TitleCell.reuseIdentifier
 
         if components.contains(.doubleImage) {
-          reuseIdentifier = DoubleAvatarTitleSubtitleCell.reuseIdentifier
+            reuseIdentifier = DoubleAvatarTitleSubtitleCell.reuseIdentifier
         } else if components.contains(.titleSubtitleSwitchControlLeftImage) {
             reuseIdentifier = AvatarTitleSubtitleSwitchCell.reuseIdentifier
+        } else if components.contains(.titleSubtitleDetailsLeftImageBadge) {
+            reuseIdentifier = AvatarTitleSubtitleDetailsBadgeCell.reuseIdentifier
         } else if components.contains(.titleSubtitleDetailsLeftImage) {
             reuseIdentifier = AvatarTitleSubtitleDetailsCell.reuseIdentifier
         } else if components.contains(.leftImageTitleSubtitleDoubleAction) {

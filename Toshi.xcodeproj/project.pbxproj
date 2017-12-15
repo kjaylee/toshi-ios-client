@@ -135,6 +135,12 @@
 		2B6C190B1FCDAA3F00DE432B /* GroupInfoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C190A1FCDAA3F00DE432B /* GroupInfoConfigurator.swift */; };
 		2B6C190C1FCDAA3F00DE432B /* GroupInfoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C190A1FCDAA3F00DE432B /* GroupInfoConfigurator.swift */; };
 		2B6C190D1FCDAA3F00DE432B /* GroupInfoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C190A1FCDAA3F00DE432B /* GroupInfoConfigurator.swift */; };
+		2B7088A61FE3EE7700D16C55 /* AvatarTitleSubtitleDetailsBadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7088A51FE3EE7700D16C55 /* AvatarTitleSubtitleDetailsBadgeCell.swift */; };
+		2B7088A71FE3EE7700D16C55 /* AvatarTitleSubtitleDetailsBadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7088A51FE3EE7700D16C55 /* AvatarTitleSubtitleDetailsBadgeCell.swift */; };
+		2B7088A81FE3EE7700D16C55 /* AvatarTitleSubtitleDetailsBadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7088A51FE3EE7700D16C55 /* AvatarTitleSubtitleDetailsBadgeCell.swift */; };
+		2B7088AA1FE3FEA900D16C55 /* ThreadCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7088A91FE3FEA900D16C55 /* ThreadCellConfigurator.swift */; };
+		2B7088AB1FE3FEA900D16C55 /* ThreadCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7088A91FE3FEA900D16C55 /* ThreadCellConfigurator.swift */; };
+		2B7088AC1FE3FEA900D16C55 /* ThreadCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7088A91FE3FEA900D16C55 /* ThreadCellConfigurator.swift */; };
 		2B953AC51FAC9E1A005A5BF3 /* NSString+OWS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B953AC41FAC9E1A005A5BF3 /* NSString+OWS.m */; };
 		2B953AC61FAC9E1A005A5BF3 /* NSString+OWS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B953AC41FAC9E1A005A5BF3 /* NSString+OWS.m */; };
 		2B953AC71FAC9E1A005A5BF3 /* NSString+OWS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B953AC41FAC9E1A005A5BF3 /* NSString+OWS.m */; };
@@ -977,6 +983,8 @@
 		2B6C19001FCDA4C600DE432B /* GroupInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoViewModel.swift; sourceTree = "<group>"; };
 		2B6C19041FCDA4D900DE432B /* GroupViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewModelProtocol.swift; sourceTree = "<group>"; };
 		2B6C190A1FCDAA3F00DE432B /* GroupInfoConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoConfigurator.swift; sourceTree = "<group>"; };
+		2B7088A51FE3EE7700D16C55 /* AvatarTitleSubtitleDetailsBadgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarTitleSubtitleDetailsBadgeCell.swift; sourceTree = "<group>"; };
+		2B7088A91FE3FEA900D16C55 /* ThreadCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCellConfigurator.swift; sourceTree = "<group>"; };
 		2B953AC31FAC9E19005A5BF3 /* NSString+OWS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OWS.h"; sourceTree = "<group>"; };
 		2B953AC41FAC9E1A005A5BF3 /* NSString+OWS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OWS.m"; sourceTree = "<group>"; };
 		2B953AC81FAC9EEF005A5BF3 /* ProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileManager.h; sourceTree = "<group>"; };
@@ -1534,6 +1542,7 @@
 			isa = PBXGroup;
 			children = (
 				2B1D66951FC2E00E00EB166C /* BasicTableViewCell.swift */,
+				2B7088A51FE3EE7700D16C55 /* AvatarTitleSubtitleDetailsBadgeCell.swift */,
 				2BD0A4DE1FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift */,
 				2B4E25E11FCCCD04004614D5 /* AvatarTitleSubtitleDetailsCell.swift */,
 				2B4E25E51FCCCD5D004614D5 /* TitleCell.swift */,
@@ -2024,6 +2033,7 @@
 			children = (
 				A91D72991F877FF90093420C /* RecentNavigationController.swift */,
 				A91D729A1F877FF90093420C /* RecentViewController.swift */,
+				2B7088A91FE3FEA900D16C55 /* ThreadCellConfigurator.swift */,
 				2B09B4081FE11F40008F7917 /* ThreadsDataSource.swift */,
 				2B09B40C1FE1230B008F7917 /* RecentViewModel.swift */,
 			);
@@ -3031,6 +3041,7 @@
 				9F4D817F1EEA8D0600FB5361 /* RoundIconButton.swift in Sources */,
 				33643DC71FD6DA6A00229BE2 /* ProfilesAddGroupHeader.swift in Sources */,
 				A91629121F3C660E008A7F36 /* PaymentNavigationController.swift in Sources */,
+				2B7088AC1FE3FEA900D16C55 /* ThreadCellConfigurator.swift in Sources */,
 				2B3DF3621F4721EB00A869A3 /* SettingsProfileCell.swift in Sources */,
 				A9E691CB1F7A49A700317DB1 /* SignInExplanation.swift in Sources */,
 				84FFE1EC1F3C8FAF008CEEF2 /* QRCodeIntent.swift in Sources */,
@@ -3172,6 +3183,7 @@
 				2BC85F801F0F946600BCB171 /* InputCell.swift in Sources */,
 				33643DCA1FD6DA6E00229BE2 /* ProfilesAddedToGroupHeader.swift in Sources */,
 				2B435CB21F135DBF00C91272 /* ProfileEditConfigurator.swift in Sources */,
+				2B7088A81FE3EE7700D16C55 /* AvatarTitleSubtitleDetailsBadgeCell.swift in Sources */,
 				2B4E25F01FCCCDA6004614D5 /* TitleSubtitleCell.swift in Sources */,
 				149F9A991E72E29A00FB74AA /* UserBootstrapParameters.swift in Sources */,
 				A9CADC2A1F94B1D00096D017 /* BrowseEntityCollectionViewCell.swift in Sources */,
@@ -3253,6 +3265,7 @@
 				9F78D9CF1EE93E68003A0B95 /* ModalPresentationController.swift in Sources */,
 				33CF513F1FD56E8200293FD1 /* ProfilesAddGroupHeader.swift in Sources */,
 				84C1952C1ECF057E00B9512F /* SOFAWebController.swift in Sources */,
+				2B7088AA1FE3FEA900D16C55 /* ThreadCellConfigurator.swift in Sources */,
 				A976002C1F8F711C00D1C79E /* ChatMenuTableViewController.swift in Sources */,
 				A91D72A21F877FFA0093420C /* ChatFloatingHeaderView.swift in Sources */,
 				A9181D221EDD8154005B63F6 /* RoundIconButton.swift in Sources */,
@@ -3394,6 +3407,7 @@
 				2B6C18FD1FCD531E00DE432B /* NewGroupConfigurator.swift in Sources */,
 				33643DC81FD6DA6E00229BE2 /* ProfilesAddedToGroupHeader.swift in Sources */,
 				2BE66A0C1EF910B6007A7130 /* KeyboardAdjustable.swift in Sources */,
+				2B7088A61FE3EE7700D16C55 /* AvatarTitleSubtitleDetailsBadgeCell.swift in Sources */,
 				A9180FB11F5452A000DC668E /* MessagesErrorView.swift in Sources */,
 				A9ED6CD01E83CD8400160637 /* Footnote.swift in Sources */,
 				2B4E25EE1FCCCDA6004614D5 /* TitleSubtitleCell.swift in Sources */,
@@ -3475,6 +3489,7 @@
 				A9603D401F4DABDC00BF57B1 /* SettingsProfileCell.swift in Sources */,
 				33643DC61FD6DA6A00229BE2 /* ProfilesAddGroupHeader.swift in Sources */,
 				A9E691CA1F7A49A700317DB1 /* SignInExplanation.swift in Sources */,
+				2B7088AB1FE3FEA900D16C55 /* ThreadCellConfigurator.swift in Sources */,
 				A9603D431F4DABDC00BF57B1 /* QRCodeIntent.swift in Sources */,
 				A976002D1F8F711C00D1C79E /* ChatMenuTableViewController.swift in Sources */,
 				A9603D461F4DABDC00BF57B1 /* PassphraseView.swift in Sources */,
@@ -3616,6 +3631,7 @@
 				A9603ED61F4DABDC00BF57B1 /* ProfileEditConfigurator.swift in Sources */,
 				33643DC91FD6DA6E00229BE2 /* ProfilesAddedToGroupHeader.swift in Sources */,
 				A9603EDA1F4DABDC00BF57B1 /* UserBootstrapParameters.swift in Sources */,
+				2B7088A71FE3EE7700D16C55 /* AvatarTitleSubtitleDetailsBadgeCell.swift in Sources */,
 				2B4E25EF1FCCCDA6004614D5 /* TitleSubtitleCell.swift in Sources */,
 				A9CADC291F94B1D00096D017 /* BrowseEntityCollectionViewCell.swift in Sources */,
 				A9CADC311F94B1DC0096D017 /* ReputationView.swift in Sources */,
