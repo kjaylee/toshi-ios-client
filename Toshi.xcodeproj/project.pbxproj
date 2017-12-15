@@ -48,6 +48,12 @@
 		29CB20EAEF7C09779E570D1B /* libPods-CocoaPods-Distribution.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446336EA68730ACD1CE100D /* libPods-CocoaPods-Distribution.a */; };
 		2B002D8F1F17BA1800D92240 /* NetworkSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B002D8E1F17BA1800D92240 /* NetworkSwitcher.swift */; };
 		2B002D901F17BA1800D92240 /* NetworkSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B002D8E1F17BA1800D92240 /* NetworkSwitcher.swift */; };
+		2B09B4091FE11F40008F7917 /* ThreadsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B09B4081FE11F40008F7917 /* ThreadsDataSource.swift */; };
+		2B09B40A1FE11F40008F7917 /* ThreadsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B09B4081FE11F40008F7917 /* ThreadsDataSource.swift */; };
+		2B09B40B1FE11F40008F7917 /* ThreadsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B09B4081FE11F40008F7917 /* ThreadsDataSource.swift */; };
+		2B09B40D1FE1230B008F7917 /* RecentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B09B40C1FE1230B008F7917 /* RecentViewModel.swift */; };
+		2B09B40E1FE1230B008F7917 /* RecentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B09B40C1FE1230B008F7917 /* RecentViewModel.swift */; };
+		2B09B40F1FE1230B008F7917 /* RecentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B09B40C1FE1230B008F7917 /* RecentViewModel.swift */; };
 		2B0EF8291F948931001A76CA /* CrashlyticsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0EF8281F948931001A76CA /* CrashlyticsClient.swift */; };
 		2B0EF82A1F948931001A76CA /* CrashlyticsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0EF8281F948931001A76CA /* CrashlyticsClient.swift */; };
 		2B0EF82B1F948931001A76CA /* CrashlyticsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0EF8281F948931001A76CA /* CrashlyticsClient.swift */; };
@@ -942,6 +948,8 @@
 		2446336EA68730ACD1CE100D /* libPods-CocoaPods-Distribution.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CocoaPods-Distribution.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24AC0CEAA51D7F8A19F246E9 /* libPods-CocoaPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CocoaPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B002D8E1F17BA1800D92240 /* NetworkSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkSwitcher.swift; sourceTree = "<group>"; };
+		2B09B4081FE11F40008F7917 /* ThreadsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsDataSource.swift; sourceTree = "<group>"; };
+		2B09B40C1FE1230B008F7917 /* RecentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentViewModel.swift; sourceTree = "<group>"; };
 		2B0EF8281F948931001A76CA /* CrashlyticsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsClient.swift; sourceTree = "<group>"; };
 		2B1D66951FC2E00E00EB166C /* BasicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTableViewCell.swift; sourceTree = "<group>"; };
 		2B1D669A1FC2F96500EB166C /* TableViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewData.swift; sourceTree = "<group>"; };
@@ -2016,6 +2024,8 @@
 			children = (
 				A91D72991F877FF90093420C /* RecentNavigationController.swift */,
 				A91D729A1F877FF90093420C /* RecentViewController.swift */,
+				2B09B4081FE11F40008F7917 /* ThreadsDataSource.swift */,
+				2B09B40C1FE1230B008F7917 /* RecentViewModel.swift */,
 			);
 			path = Recent;
 			sourceTree = "<group>";
@@ -3033,6 +3043,7 @@
 				2B4E25E41FCCCD04004614D5 /* AvatarTitleSubtitleDetailsCell.swift in Sources */,
 				9F78D9D01EE93E68003A0B95 /* ModalPresentationController.swift in Sources */,
 				2B20BBE11F7A595700844315 /* APIKeys.swift in Sources */,
+				2B09B40B1FE11F40008F7917 /* ThreadsDataSource.swift in Sources */,
 				149F9A631E72E29A00FB74AA /* SignalNotificationHandler.swift in Sources */,
 				9F78D9DD1EE93F61003A0B95 /* PaymentRequestInfoView.swift in Sources */,
 				33CF51331FD181FA00293FD1 /* DLog.swift in Sources */,
@@ -3218,6 +3229,7 @@
 				D197B9E9AE00E2DC8DDF09BD /* SofaMessage.swift in Sources */,
 				D197BFFC874FC46F485BE295 /* SofaPayment.swift in Sources */,
 				D197B42A7E9E693AC60C9299 /* SofaPaymentRequest.swift in Sources */,
+				2B09B40F1FE1230B008F7917 /* RecentViewModel.swift in Sources */,
 				D197BF264BEDC2A9EABFA2FA /* SofaInitialResponse.swift in Sources */,
 				D197BC3B60A96D12312C48B7 /* SofaInitialRequest.swift in Sources */,
 				D197B6174378B26EDA051439 /* SofaCommand.swift in Sources */,
@@ -3253,6 +3265,7 @@
 				2B4E25E21FCCCD04004614D5 /* AvatarTitleSubtitleDetailsCell.swift in Sources */,
 				A9CADC1C1F94AF2D0096D017 /* BrowseEntityCollectionViewCell.swift in Sources */,
 				9F54AB0D1ECC8D390008489F /* ScannerController.swift in Sources */,
+				2B09B4091FE11F40008F7917 /* ThreadsDataSource.swift in Sources */,
 				9F2162621E5EF76000292B14 /* BackgroundNotificationHandler.swift in Sources */,
 				A9CADC211F94AF2D0096D017 /* BrowseCollectionViewCell.swift in Sources */,
 				339959AB1FCED3D700D69A01 /* DLog.swift in Sources */,
@@ -3438,6 +3451,7 @@
 				D197B6EB6C3157476638ABE6 /* SofaMessage.swift in Sources */,
 				D197BD532AA776C66EDCCDEB /* SofaPayment.swift in Sources */,
 				D197BF84F829C3200A677BE0 /* SofaPaymentRequest.swift in Sources */,
+				2B09B40D1FE1230B008F7917 /* RecentViewModel.swift in Sources */,
 				D197B22FB4CEE1C4761BCEB7 /* SofaInitialResponse.swift in Sources */,
 				D197B9B70F913CC695358027 /* SofaInitialRequest.swift in Sources */,
 				D197B3CD97B238550A27A173 /* SofaCommand.swift in Sources */,
@@ -3473,6 +3487,7 @@
 				2B4E25E31FCCCD04004614D5 /* AvatarTitleSubtitleDetailsCell.swift in Sources */,
 				A9603D7E1F4DABDC00BF57B1 /* SignalNotificationHandler.swift in Sources */,
 				A9603D831F4DABDC00BF57B1 /* PaymentRequestInfoView.swift in Sources */,
+				2B09B40A1FE11F40008F7917 /* ThreadsDataSource.swift in Sources */,
 				A9A9F9A41F8B70840010F877 /* ChatFloatingHeaderView.swift in Sources */,
 				A9603D851F4DABDC00BF57B1 /* MessagesPaymentCell.swift in Sources */,
 				33CF51321FD181FA00293FD1 /* DLog.swift in Sources */,
@@ -3658,6 +3673,7 @@
 				D197BFEFB82271BBE1152E9E /* SofaMessage.swift in Sources */,
 				D197BA94CB5436F7605925FD /* SofaPayment.swift in Sources */,
 				D197B3F6858BB66E21F4D171 /* SofaPaymentRequest.swift in Sources */,
+				2B09B40E1FE1230B008F7917 /* RecentViewModel.swift in Sources */,
 				D197B06FE122DE9A80081DAC /* SofaInitialResponse.swift in Sources */,
 				D197B6B964C6C99549F7B078 /* SofaInitialRequest.swift in Sources */,
 				D197B3781644ABF575195A69 /* SofaCommand.swift in Sources */,
