@@ -83,6 +83,15 @@ class TokenUser: NSObject, NSCoding {
     var displayUsername: String {
         return "@\(username)"
     }
+
+    var nameOrDisplayUsername: String {
+        if name.length > 0 {
+            return name
+        }
+
+        return displayUsername
+    }
+
     @objc private(set) var username = ""
     private(set) var about = ""
     private(set) var location = ""
