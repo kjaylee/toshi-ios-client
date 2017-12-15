@@ -197,16 +197,12 @@ extension RecentViewController: UITableViewDataSource {
         let isMessagesRequestsRow = dataSource.unacceptedThreadsCount > 0 && indexPath.section == 0
         if isMessagesRequestsRow {
             cell = messagesRequestsCell(for: indexPath)
-        } else {
-            cell = tableView.dequeue(ChatCell.self, for: indexPath)
+        } else if let thread = dataSource.acceptedThread(at: indexPath) {
+            let threadCellConfigurator = ThreadCellConfigurator(thread: thread)
+            let cellData = threadCellConfigurator.cellData
+            cell = tableView.dequeueReusableCell(withIdentifier: AvatarTitleSubtitleDetailsBadgeCell.reuseIdentifier, for: indexPath)
 
-            var thread: TSThread?
-
-            thread = dataSource.acceptedThread(at: indexPath)
-            guard let chatCell = cell as? ChatCell else { return cell }
-
-            chatCell.thread = thread
-            cell = chatCell
+            threadCellConfigurator.configureCell(cell, with: cellData)
         }
 
         cell.accessoryType = .disclosureIndicator
