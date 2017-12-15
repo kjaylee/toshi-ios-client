@@ -17,6 +17,13 @@ import UIKit
 
 final class AvatarTitleCell: BasicTableViewCell {
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        leftImageView.image = nil
+        titleTextField.text = nil
+    }
+
     open override func addSubviewsAndConstraints() {
         contentView.addSubview(leftImageView)
         contentView.addSubview(titleTextField)

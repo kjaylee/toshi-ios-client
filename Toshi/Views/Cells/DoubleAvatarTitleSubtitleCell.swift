@@ -17,6 +17,14 @@ import UIKit
 
 final class DoubleAvatarTitleSubtitleCell: BasicTableViewCell {
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        doubleImageView.setImages(nil)
+        titleTextField.text = nil
+        subtitleLabel.text = nil
+    }
+
     override func addSubviewsAndConstraints() {
         accessoryType = .disclosureIndicator
 

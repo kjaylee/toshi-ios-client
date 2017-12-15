@@ -17,6 +17,13 @@ import UIKit
 
 final class TitleSwitchCell: BasicTableViewCell {
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        titleTextField.text = nil
+        switchControl.setOn(false, animated: false)
+    }
+
     override func addSubviewsAndConstraints() {
         contentView.addSubview(titleTextField)
         contentView.addSubview(switchControl)

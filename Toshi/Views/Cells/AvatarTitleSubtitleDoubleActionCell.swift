@@ -17,6 +17,17 @@ import UIKit
 
 final class AvatarTitleSubtitleDoubleActionCell: BasicTableViewCell {
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        leftImageView.image = nil
+        titleTextField.text = nil
+        subtitleLabel.text = nil
+        detailsLabel.text = nil
+        secondActionButton.setImage(nil, for: .normal)
+        firstActionButton.setImage(nil, for: .normal)
+    }
+
     override func addSubviewsAndConstraints() {
         contentView.addSubview(leftImageView)
         contentView.addSubview(titleTextField)
@@ -47,7 +58,7 @@ final class AvatarTitleSubtitleDoubleActionCell: BasicTableViewCell {
     }
 
     private func setupSubtitleLabel() {
-        subtitleLabel.topToBottom(of: titleTextField)
+        subtitleLabel.topToBottom(of: titleTextField, offset: BasicTableViewCell.smallVerticalMargin)
         subtitleLabel.leftToRight(of: leftImageView, offset: BasicTableViewCell.interItemMargin)
         subtitleLabel.rightToLeft(of: firstActionButton, offset: -BasicTableViewCell.interItemMargin)
         subtitleLabel.bottom(to: contentView, offset: -BasicTableViewCell.verticalMargin)

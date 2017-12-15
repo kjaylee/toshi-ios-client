@@ -18,6 +18,12 @@ import TinyConstraints
 
 final class TitleCell: BasicTableViewCell {
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        titleTextField.text = nil
+    }
+
     override open func addSubviewsAndConstraints() {
         contentView.addSubview(titleTextField)
 

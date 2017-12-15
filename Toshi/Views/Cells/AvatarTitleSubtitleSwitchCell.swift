@@ -17,6 +17,15 @@ import UIKit
 
 final class AvatarTitleSubtitleSwitchCell: BasicTableViewCell {
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        leftImageView.image = nil
+        titleTextField.text = nil
+        subtitleLabel.text = nil
+        switchControl.setOn(false, animated: false)
+    }
+
     override func addSubviewsAndConstraints() {
         contentView.addSubview(leftImageView)
         contentView.addSubview(titleTextField)
@@ -45,7 +54,7 @@ final class AvatarTitleSubtitleSwitchCell: BasicTableViewCell {
     }
 
     private func setupSubtitleLabel() {
-        subtitleLabel.topToBottom(of: titleTextField)
+        subtitleLabel.topToBottom(of: titleTextField, offset: BasicTableViewCell.smallVerticalMargin)
         subtitleLabel.leftToRight(of: leftImageView, offset: BasicTableViewCell.interItemMargin)
         subtitleLabel.rightToLeft(of: switchControl, offset: -BasicTableViewCell.horizontalMargin)
         subtitleLabel.bottom(to: contentView, offset: -BasicTableViewCell.verticalMargin)
