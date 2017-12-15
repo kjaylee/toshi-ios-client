@@ -157,11 +157,17 @@ final class RecentViewController: SweetTableController, Emptiable {
 extension RecentViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
+        var sectionCount = 0
+
         if dataSource.unacceptedThreadsCount > 0 {
-            return 2
+            sectionCount += 1
         }
 
-        return 1
+        if dataSource.acceptedThreadsCount > 0 {
+            sectionCount += 1
+        }
+
+        return sectionCount
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -169,7 +175,7 @@ extension RecentViewController: UITableViewDataSource {
             return nil
         }
 
-        return "Messages"
+        return Localized("recent_messages_section_header_title")
     }
 
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
