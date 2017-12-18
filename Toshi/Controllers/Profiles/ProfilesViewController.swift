@@ -140,12 +140,11 @@ final class ProfilesViewController: UITableViewController, Emptiable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        if dataSource.type == .favorites {
-            dataSource.excludedProfilesIds = []
-        }
         
         preferLargeTitleIfPossible(true)
+
+        guard dataSource.type != .updateGroupChat else { return }
+        dataSource.excludedProfilesIds = []
     }
     
     override func viewDidAppear(_ animated: Bool) {
