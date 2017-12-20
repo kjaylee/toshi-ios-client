@@ -156,8 +156,6 @@ final class ChatViewController: UIViewController, UINavigationControllerDelegate
 
         title = thread.name()
         updateChatAvatar()
-
-        previewState = thread.isPendingAccept
     }
     
     func updateContentInset() {
@@ -1004,6 +1002,7 @@ extension ChatViewController: ChatMenuTableViewControllerDelegate {
 extension ChatViewController: AcceptDeclineButtonsViewDelegate {
     func didSelectAccept() {
         ChatInteractor.acceptThread(thread)
+        previewState = false
     }
 
     func didSelectDecline() {
