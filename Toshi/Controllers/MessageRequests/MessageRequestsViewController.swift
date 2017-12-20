@@ -34,8 +34,6 @@ final class MessagesRequestsViewController: SweetTableController {
         super.init(style: style)
 
         title = dataSource.title
-
-        loadViewIfNeeded()
     }
 
     required init?(coder _: NSCoder) {
