@@ -420,3 +420,26 @@ class TokenUser: NSObject, NSCoding {
         }
     }
 }
+
+extension TokenUser: BrowseableItem {
+    
+    var nameForBrowseAndSearch: String {
+        guard !name.isEmpty else {
+            return (isApp ? category : username)
+        }
+        
+        return name
+    }
+    
+    var descriptionForSearch: String {
+        return (isApp ? about : username)
+    }
+    
+    var shouldShowRating: Bool {
+        return true
+    }
+    
+    var rating: Float? {
+        return averageRating
+    }
+}

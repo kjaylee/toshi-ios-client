@@ -15,7 +15,7 @@
 "browse-search-placeholder" = "Search Toshi";
 
 "browse-top-rated-apps" = "Top Rated";
-"browse-featured-apps" = "Featured";
+"browse-featured-dapps" = "Featured Dapps";
 "browse-top-rated-public-users" = "Top Rated Public Users";
 "browse-latest-public-users" = "Latest Public Users";
 
@@ -83,6 +83,10 @@
 
 "passphrase_signin_error_title" = "Invalid passphrase";
 "passphrase_signin_error_verification" = "Are you sure you typed your passphrase correctly?";
+
+"sign_up_with_passphrase_alert_title" = "Create new Toshi account?";
+"sign_up_with_passphrase_alert_message" = "There is no Toshi account associated with this passphrase.\nWould you like to create one?";
+"sign_up_with_passphrase_accept_action_title" = "Create new account";
 
 /* Settings */
 "settings_navigation_title" = "Me";
@@ -294,4 +298,5 @@
 /* Sharing */
 "sharing_action_item" = "Get Toshi, available for iOS and Android! (https://www.toshi.org)";
 
-
+/* Dapps */
+"dapp_button_enter" = "Enter";

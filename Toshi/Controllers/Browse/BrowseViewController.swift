@@ -17,9 +17,9 @@ import SweetFoundation
 import UIKit
 import SweetUIKit
 
-enum BrowseContentSection {
+enum BrowseContentSection: Int {
     case topRatedApps
-    case featuredApps
+    case featuredDapps
     case topRatedPublicUsers
     case latestPublicUsers
     
@@ -27,8 +27,8 @@ enum BrowseContentSection {
         switch self {
         case .topRatedApps:
             return Localized("browse-top-rated-apps")
-        case .featuredApps:
-            return Localized("browse-featured-apps")
+        case .featuredDapps:
+            return Localized("browse-featured-dapps")
         case .topRatedPublicUsers:
             return Localized("browse-top-rated-public-users")
         case .latestPublicUsers:
@@ -37,10 +37,19 @@ enum BrowseContentSection {
     }
 }
 
+protocol BrowseableItem {
+    
+    var nameForBrowseAndSearch: String { get }
+    var descriptionForSearch: String { get }
+    var avatarPath: String { get }
+    var shouldShowRating: Bool { get }
+    var rating: Float? { get }
+}
+
 class BrowseViewController: SearchableCollectionController {
     private var cacheQueue = DispatchQueue(label: "org.toshi.cacheQueue")
-    private var contentSections: [BrowseContentSection] = [.topRatedApps, .featuredApps, .topRatedPublicUsers, .latestPublicUsers]
-    private var items: [[TokenUser]] = [[], [], [], []]
+    private var contentSections: [BrowseContentSection] = [.topRatedApps, .featuredDapps, .topRatedPublicUsers, .latestPublicUsers]
+    private var items: [[BrowseableItem]] = [[], [], [], []]
     private var openURLButtonTopAnchor: NSLayoutConstraint?
     
     private lazy var searchResultView: BrowseSearchResultView = {
@@ -193,35 +202,35 @@ class BrowseViewController: SearchableCollectionController {
         searchController.dismiss(animated: false, completion: nil)
     }
     
-    private func showResults(_ apps: [TokenUser]?, at index: Int, _ error: Error? = nil) {
+    private func showResults(_ apps: [BrowseableItem]?, in section: BrowseContentSection, _ error: Error? = nil) {
         if let error = error {
             let alertController = UIAlertController.errorAlert(error as NSError)
             Navigator.presentModally(alertController)
         }
         
-        items[index] = apps ?? []
+        items[section.rawValue] = apps ?? []
         collectionView.collectionViewLayout.invalidateLayout()
         
         collectionView.performBatchUpdates({
-            self.collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+            self.collectionView.reloadItems(at: [IndexPath(item: section.rawValue, section: 0)])
         }, completion: nil)
     }
     
     private func loadItems() {
         AppsAPIClient.shared.getTopRatedApps { [weak self] apps, error in
-            self?.showResults(apps, at: 0, error)
+            self?.showResults(apps, in: .topRatedApps, error)
         }
         
-        AppsAPIClient.shared.getFeaturedApps { [weak self] apps, error in
-            self?.showResults(apps, at: 1, error)
+        IDAPIClient.shared.getDapps { [weak self] dapps, error in
+            self?.showResults(dapps, in: .featuredDapps, error)
         }
         
         IDAPIClient.shared.getTopRatedPublicUsers { [weak self] users, error in
-            self?.showResults(users, at: 2, error)
+            self?.showResults(users, in: .topRatedPublicUsers, error)
         }
         
         IDAPIClient.shared.getLatestPublicUsers { [weak self] users, error in
-            self?.showResults(users, at: 3, error)
+            self?.showResults(users, in: .latestPublicUsers, error)
         }
     }
     
@@ -322,15 +331,11 @@ extension BrowseViewController: UISearchBarDelegate {
             let cell = sectionedCollectionView.dequeue(BrowseEntityCollectionViewCell.self, for: indexPath)
             
             if let section = items.element(at: sectionedCollectionView.section), let item = section.element(at: indexPath.item) {
-                if !item.name.isEmpty {
-                    cell.nameLabel.text = item.name
-                } else {
-                    cell.nameLabel.text = item.isApp ? item.category : item.username
-                }
-
+                cell.nameLabel.text = item.nameForBrowseAndSearch
                 cell.imageViewPath = item.avatarPath
 
-                if let averageRating = item.averageRating {
+                cell.ratingView.isHidden = !item.shouldShowRating
+                if let averageRating = item.rating {
                     cell.ratingView.set(rating: averageRating)
                 }
             }
@@ -381,9 +386,12 @@ extension BrowseViewController: BrowseCollectionViewCellSelectionDelegate {
     }
     
     func didSelectItem(at indexPath: IndexPath, collectionView: SectionedCollectionView) {
-        
-        if let section = items.element(at: collectionView.section), let item = section.element(at: indexPath.item) {
-            Navigator.push(ProfileViewController(profile: item))
+        if let section = items.element(at: collectionView.section) {
+            if let user = section.element(at: indexPath.item) as? TokenUser {
+                Navigator.push(ProfileViewController(profile: user))
+            } else if let dapp = section.element(at: indexPath.item) as? Dapp {
+                Navigator.push(DappViewController(with: dapp))
+            }
         }
     }
 }

@@ -2,10 +2,16 @@ import Foundation
 import UIKit
 import TinyConstraints
 
+protocol SignInViewControllerDelegate: class {
+    func didRequireNewAccountCreation(_ controller: SignInViewController)
+}
+
 final class SignInViewController: UIViewController {
 
     private var signInView: SignInView? { return view as? SignInView }
     private lazy var activityView: UIActivityIndicatorView = self.defaultActivityIndicator()
+
+    weak var delegate: SignInViewControllerDelegate?
 
     private var enteredStrings: [String] = [""]
     private var itemCount: Int = 1
@@ -123,7 +129,14 @@ final class SignInViewController: UIViewController {
 
                 self?.navigationController?.dismiss(animated: true, completion: nil)
             } else {
-                let alertController = UIAlertController.dismissableAlert(title: Localized("passphrase_signin_error_title"), message: Localized("passphrase_signin_error_verification"))
+                let alertController = UIAlertController(title: Localized("sign_up_with_passphrase_alert_title"), message: Localized("sign_up_with_passphrase_alert_message"), preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: Localized("cancel_action_title"), style: .cancel, handler: nil))
+                alertController.addAction(UIAlertAction(title: Localized("sign_up_with_passphrase_accept_action_title"), style: .default, handler: { _ in
+                    guard let strongSelf = self else { return }
+                    Cereal.shared = validCereal
+                    strongSelf.delegate?.didRequireNewAccountCreation(strongSelf)
+                }))
+
                 self?.present(alertController, animated: true)
             }
         }

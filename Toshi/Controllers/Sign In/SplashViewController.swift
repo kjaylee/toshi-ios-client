@@ -141,6 +141,7 @@ final class SplashViewController: UIViewController {
 
     @objc private func signinPressed(_: UIButton) {
         let controller = SignInViewController()
+        controller.delegate = self
         Navigator.push(controller, from: self)
     }
 
@@ -174,6 +175,14 @@ final class SplashViewController: UIViewController {
         alert.addAction(agree)
         
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension SplashViewController: SignInViewControllerDelegate {
+
+    func didRequireNewAccountCreation(_ controller: SignInViewController) {
+        navigationController?.popToViewController(self, animated: true)
+            self.showAcceptTermsAlert()
     }
 }
 

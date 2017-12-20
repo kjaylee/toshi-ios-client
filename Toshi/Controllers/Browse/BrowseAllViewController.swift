@@ -18,7 +18,7 @@ import UIKit
 
 class BrowseAllViewController: UITableViewController {
 
-    private var searchResults: [TokenUser] = [] {
+    private var searchResults: [BrowseableItem] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -54,12 +54,12 @@ class BrowseAllViewController: UITableViewController {
         tableView.estimatedRowHeight = 50
     }
 
-    private func showResults(_ apps: [TokenUser]?, _ error: Error? = nil) {
+    private func showResults(_ apps: [BrowseableItem]?, _ error: Error? = nil) {
         if let error = error {
             let alertController = UIAlertController.errorAlert(error as NSError)
             Navigator.presentModally(alertController)
         }
-
+        
         self.searchResults = apps ?? []
     }
 
@@ -69,9 +69,9 @@ class BrowseAllViewController: UITableViewController {
             AppsAPIClient.shared.getTopRatedApps(limit: 100, completion: { [weak self] apps, error in
                 self?.showResults(apps, error)
             })
-        case .featuredApps:
-            AppsAPIClient.shared.getFeaturedApps(limit: 100, completion: { [weak self] apps, error in
-                self?.showResults(apps, error)
+        case .featuredDapps:
+            IDAPIClient.shared.getDapps(limit: 100, completion: { [weak self] dapps, error in
+                self?.showResults(dapps, error)
             })
         case .topRatedPublicUsers:
             IDAPIClient.shared.getTopRatedPublicUsers(limit: 100, completion: { [weak self] users, error in
@@ -85,8 +85,10 @@ class BrowseAllViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let contact = searchResults.element(at: indexPath.row) {
+        if let contact = searchResults.element(at: indexPath.row) as? TokenUser {
             Navigator.push(ProfileViewController(profile: contact))
+        } else if let dapp = searchResults.element(at: indexPath.row) as? Dapp {
+            Navigator.push(DappViewController(with: dapp))
         }
     }
 
@@ -98,8 +100,8 @@ class BrowseAllViewController: UITableViewController {
         let cell = tableView.dequeue(SearchResultCell.self, for: indexPath)
 
         if let item = searchResults.element(at: indexPath.row) {
-            cell.nameLabel.text = item.name
-            cell.usernameLabel.text = item.isApp ? item.about : item.username
+            cell.nameLabel.text = item.nameForBrowseAndSearch
+            cell.usernameLabel.text = item.descriptionForSearch
 
             AvatarManager.shared.avatar(for: item.avatarPath, completion: { image, path in
                 if item.avatarPath == path {

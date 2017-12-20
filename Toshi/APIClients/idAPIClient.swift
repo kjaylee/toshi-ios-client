@@ -22,6 +22,8 @@ import Teapot
     case existing = 0, registered, failed
 }
 
+typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
+
 @objc class IDAPIClient: NSObject, CacheExpiryDefault {
     @objc static let shared: IDAPIClient = IDAPIClient()
 
@@ -579,6 +581,52 @@ import Teapot
                 DispatchQueue.main.async {
                     completion(succeeded, toshiError)
                 }
+            }
+        }
+    }
+    
+    /// Gets a list of partner Dapps from the server. Does not cache.
+    ///
+    /// - Parameters:
+    ///   - limit: The limit of Dapps to fetch.
+    ///   - completion: The completion closure to execute when the request completes
+    ///                 - dapps: A list of dapps, or nil
+    ///                 - toshiError: A toshiError if any error was encountered, or nil
+    func getDapps(limit: Int = 10, completion: @escaping DappCompletion) {
+        let path = "/v1/dapps?limit=\(limit)"
+        teapot.get(path) { result in
+            var dapps: [Dapp] = []
+            var resultError: ToshiError?
+            
+            switch result {
+            case .success(let json, _):
+                guard let data = json?.data else {
+                    DispatchQueue.main.async {
+                        completion([], nil)
+                    }
+                    return
+                }
+    
+                let dappResults: DappResults
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    dappResults = try jsonDecoder.decode(DappResults.self, from: data)
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(nil, .invalidPayload)
+                    }
+                    return
+                }
+                
+                dappResults.results.forEach { AvatarManager.shared.downloadAvatar(for: $0.avatarUrlString) }
+                dapps = dappResults.results
+            case .failure(_, _, let error):
+                DLog(error.localizedDescription)
+                resultError = ToshiError(withTeapotError: error)
+            }
+            
+            DispatchQueue.main.async {
+                completion(dapps, resultError)
             }
         }
     }

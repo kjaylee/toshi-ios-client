@@ -21,17 +21,7 @@ class UserBootstrapParameter {
 
     // This change might require re-creating Signal users
     lazy var password: String = {
-        let deviceSpecificPasswordKey = "DeviceSpecificPassword"
-        let uuid: String
-
-        if let storedUUID = Yap.sharedInstance.retrieveObject(for: deviceSpecificPasswordKey) as? String {
-            uuid = storedUUID
-        } else {
-            uuid = UUID().uuidString
-            Yap.sharedInstance.insert(object: uuid, for: deviceSpecificPasswordKey)
-        }
-
-        return uuid
+        return UUID().uuidString
     }()
 
     let identityKey: String
