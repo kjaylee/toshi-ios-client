@@ -30,7 +30,7 @@ PODS:
     - Fabric (~> 1.7.2)
   - Fabric (1.7.2)
   - HKDFKit (0.0.3)
-  - libPhoneNumber-iOS (0.9.12)
+  - libPhoneNumber-iOS (0.9.13)
   - Mantle (2.1.0):
     - Mantle/extobjc (= 2.1.0)
   - Mantle/extobjc (2.1.0)
@@ -157,7 +157,7 @@ SPEC CHECKSUMS:
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   HKDFKit: c058305d6f64b84f28c50bd7aa89574625bcb62a
-  libPhoneNumber-iOS: b8a1038a101c78616c4df87815ac1556349faf98
+  libPhoneNumber-iOS: e444379ac18bbfbdefad571da735b2cd7e096caa
   Mantle: 2fa750afa478cd625a94230fbf1c13462f29395b
   OpenSSL: 246ffb948e9d56466727fd318134af35f5aa764e
   ProtocolBuffers: d509225eb2ea43d9582a59e94348fcf86e2abd65

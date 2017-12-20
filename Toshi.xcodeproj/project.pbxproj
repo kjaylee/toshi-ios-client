@@ -178,18 +178,18 @@
 		2BC85F7D1F0F939C00BCB171 /* InputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC85F7B1F0F939C00BCB171 /* InputCell.xib */; };
 		2BC85F7F1F0F946600BCB171 /* InputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC85F7E1F0F946600BCB171 /* InputCell.swift */; };
 		2BC85F801F0F946600BCB171 /* InputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC85F7E1F0F946600BCB171 /* InputCell.swift */; };
-		2BD0A4DB1FDFE3CD00D745BF /* MessageRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DA1FDFE3CD00D745BF /* MessageRequestsViewController.swift */; };
-		2BD0A4DC1FDFE3CD00D745BF /* MessageRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DA1FDFE3CD00D745BF /* MessageRequestsViewController.swift */; };
-		2BD0A4DD1FDFE3CD00D745BF /* MessageRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DA1FDFE3CD00D745BF /* MessageRequestsViewController.swift */; };
-		2BD0A4DF1FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DE1FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift */; };
-		2BD0A4E01FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DE1FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift */; };
-		2BD0A4E11FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DE1FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift */; };
 		2BD0A4D11FDEAAF900D745BF /* PrekeysRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4D01FDEAAF900D745BF /* PrekeysRequest.m */; };
 		2BD0A4D21FDEAAF900D745BF /* PrekeysRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4D01FDEAAF900D745BF /* PrekeysRequest.m */; };
 		2BD0A4D31FDEAAF900D745BF /* PrekeysRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4D01FDEAAF900D745BF /* PrekeysRequest.m */; };
 		2BD0A4D61FDEBDCB00D745BF /* PreKeyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4D51FDEBDCB00D745BF /* PreKeyHandler.m */; };
 		2BD0A4D71FDEBDCB00D745BF /* PreKeyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4D51FDEBDCB00D745BF /* PreKeyHandler.m */; };
 		2BD0A4D81FDEBDCB00D745BF /* PreKeyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4D51FDEBDCB00D745BF /* PreKeyHandler.m */; };
+		2BD0A4DB1FDFE3CD00D745BF /* MessageRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DA1FDFE3CD00D745BF /* MessageRequestsViewController.swift */; };
+		2BD0A4DC1FDFE3CD00D745BF /* MessageRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DA1FDFE3CD00D745BF /* MessageRequestsViewController.swift */; };
+		2BD0A4DD1FDFE3CD00D745BF /* MessageRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DA1FDFE3CD00D745BF /* MessageRequestsViewController.swift */; };
+		2BD0A4DF1FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DE1FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift */; };
+		2BD0A4E01FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DE1FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift */; };
+		2BD0A4E11FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0A4DE1FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift */; };
 		2BD0AC8C1F278677000D2A58 /* token.cer in Resources */ = {isa = PBXBuildFile; fileRef = 2BD0AC8B1F278677000D2A58 /* token.cer */; };
 		2BD135AE1EE1A1E000B9F454 /* SplashNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD135AD1EE1A1E000B9F454 /* SplashNavigationController.swift */; };
 		2BD135AF1EE1A1E000B9F454 /* SplashNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD135AD1EE1A1E000B9F454 /* SplashNavigationController.swift */; };
@@ -1041,12 +1041,12 @@
 		2BC7CA291F7BA60600033E35 /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
 		2BC85F7B1F0F939C00BCB171 /* InputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputCell.xib; sourceTree = "<group>"; };
 		2BC85F7E1F0F946600BCB171 /* InputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputCell.swift; sourceTree = "<group>"; };
-		2BD0A4DA1FDFE3CD00D745BF /* MessageRequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRequestsViewController.swift; sourceTree = "<group>"; };
-		2BD0A4DE1FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarTitleSubtitleDoubleActionCell.swift; sourceTree = "<group>"; };
 		2BD0A4CF1FDEAAF800D745BF /* PrekeysRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrekeysRequest.h; sourceTree = "<group>"; };
 		2BD0A4D01FDEAAF900D745BF /* PrekeysRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrekeysRequest.m; sourceTree = "<group>"; };
 		2BD0A4D41FDEBDCB00D745BF /* PreKeyHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreKeyHandler.h; sourceTree = "<group>"; };
 		2BD0A4D51FDEBDCB00D745BF /* PreKeyHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreKeyHandler.m; sourceTree = "<group>"; };
+		2BD0A4DA1FDFE3CD00D745BF /* MessageRequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRequestsViewController.swift; sourceTree = "<group>"; };
+		2BD0A4DE1FDFE5FF00D745BF /* AvatarTitleSubtitleDoubleActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarTitleSubtitleDoubleActionCell.swift; sourceTree = "<group>"; };
 		2BD0AC8B1F278677000D2A58 /* token.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = token.cer; sourceTree = "<group>"; };
 		2BD135AD1EE1A1E000B9F454 /* SplashNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashNavigationController.swift; sourceTree = "<group>"; };
 		2BD6FB3F1F02927F00F1E2BF /* IndexPath+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IndexPath+Additions.swift"; sourceTree = "<group>"; };
@@ -2416,7 +2416,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 149F9AEB1E72E29A00FB74AA /* Build configuration list for PBXNativeTarget "Distribution" */;
 			buildPhases = (
-				E147D8495A4C37821230EADE /* [CP] Check Pods Manifest.lock */,
+				356530BD106ADA923C2227C3 /* [CP] Check Pods Manifest.lock */,
 				149F9A5F1E72E29A00FB74AA /* Sources */,
 				149F9AB01E72E29A00FB74AA /* Frameworks */,
 				149F9AC31E72E29A00FB74AA /* Bump build number */,
@@ -2440,7 +2440,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F9238C81E24F1D2004BEEE0 /* Build configuration list for PBXNativeTarget "Debug" */;
 			buildPhases = (
-				A411A820DB838EA1AA408B87 /* [CP] Check Pods Manifest.lock */,
+				B6010FBB4BE06EE38991BDC7 /* [CP] Check Pods Manifest.lock */,
 				9F9238AD1E24F1D2004BEEE0 /* Sources */,
 				9F9238AE1E24F1D2004BEEE0 /* Frameworks */,
 				9F9238AF1E24F1D2004BEEE0 /* Resources */,
@@ -2463,7 +2463,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9603F911F4DABDC00BF57B1 /* Build configuration list for PBXNativeTarget "Development" */;
 			buildPhases = (
-				A9603D381F4DABDC00BF57B1 /* [CP] Check Pods Manifest.lock */,
+				BDA52DBC0F3D4D09170B7AA8 /* [CP] Check Pods Manifest.lock */,
 				A9603D391F4DABDC00BF57B1 /* Sources */,
 				A9603F381F4DABDC00BF57B1 /* Frameworks */,
 				A9603F631F4DABDC00BF57B1 /* Bump build number */,
@@ -2838,6 +2838,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
+		356530BD106ADA923C2227C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CocoaPods-Distribution-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4380A44F194F905C73188527 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2868,24 +2886,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CocoaPods-Distribution/Pods-CocoaPods-Distribution-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A411A820DB838EA1AA408B87 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CocoaPods-Debug-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A94C4EAB1F261C8E00E424EB /* SwiftLint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2899,24 +2899,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
-		};
-		A9603D381F4DABDC00BF57B1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CocoaPods-Development-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 		A9603F631F4DABDC00BF57B1 /* Bump build number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3025,7 +3007,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CocoaPods-Tests/Pods-CocoaPods-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E147D8495A4C37821230EADE /* [CP] Check Pods Manifest.lock */ = {
+		B6010FBB4BE06EE38991BDC7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3036,7 +3018,25 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CocoaPods-Distribution-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CocoaPods-Debug-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDA52DBC0F3D4D09170B7AA8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CocoaPods-Development-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
