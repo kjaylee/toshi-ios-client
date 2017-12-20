@@ -69,21 +69,6 @@ final class MessagesRequestsViewController: SweetTableController {
             navigationController?.popViewController(animated: animated)
         }
     }
-
-    private func recipient(for thread: TSThread) -> TokenUser? {
-        guard let recipientAddress = thread.contactIdentifier() else { return nil }
-
-        var recipient: TokenUser?
-
-        if let userData = (Yap.sharedInstance.retrieveObject(for: recipientAddress, in: ThreadsDataSource.nonContactsCollectionKey) as? Data),
-            let deserialised = (try? JSONSerialization.jsonObject(with: userData, options: [])),
-            let json = deserialised as? [String: Any] {
-
-            recipient = TokenUser(json: json, shouldSave: false)
-        }
-
-        return recipient
-    }
 }
 
 extension MessagesRequestsViewController: UITableViewDataSource {
@@ -105,7 +90,7 @@ extension MessagesRequestsViewController: UITableViewDataSource {
         if thread.isGroupThread() {
             avatar = (thread as? TSGroupThread)?.groupModel.groupImage ?? UIImage(named: "avatar-placeholder")
             title = thread.name()
-        } else if let recipient = recipient(for: thread) {
+        } else if let recipient = thread.recipient() {
             avatar = AvatarManager.shared.cachedAvatar(for: recipient.avatarPath) ?? UIImage(named: "avatar-placeholder")
             title = recipient.nameOrDisplayName
         }

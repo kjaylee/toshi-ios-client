@@ -189,6 +189,9 @@
 		2BD135AF1EE1A1E000B9F454 /* SplashNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD135AD1EE1A1E000B9F454 /* SplashNavigationController.swift */; };
 		2BD6FB401F02927F00F1E2BF /* IndexPath+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD6FB3F1F02927F00F1E2BF /* IndexPath+Additions.swift */; };
 		2BD6FB411F02927F00F1E2BF /* IndexPath+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD6FB3F1F02927F00F1E2BF /* IndexPath+Additions.swift */; };
+		2BDAA5971FEAAE6200D06645 /* TSThread+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAA5961FEAAE6100D06645 /* TSThread+Addition.swift */; };
+		2BDAA5981FEAAE6200D06645 /* TSThread+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAA5961FEAAE6100D06645 /* TSThread+Addition.swift */; };
+		2BDAA5991FEAAE6200D06645 /* TSThread+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAA5961FEAAE6100D06645 /* TSThread+Addition.swift */; };
 		2BDBB5791F7B832700A0ECA0 /* APIKeys in Resources */ = {isa = PBXBuildFile; fileRef = 2BDBB5781F7B832300A0ECA0 /* APIKeys */; };
 		2BDBB57A1F7B832A00A0ECA0 /* APIKeys in Resources */ = {isa = PBXBuildFile; fileRef = 2BDBB5781F7B832300A0ECA0 /* APIKeys */; };
 		2BDBB57B1F7B832A00A0ECA0 /* APIKeys in Resources */ = {isa = PBXBuildFile; fileRef = 2BDBB5781F7B832300A0ECA0 /* APIKeys */; };
@@ -1027,6 +1030,7 @@
 		2BD0AC8B1F278677000D2A58 /* token.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = token.cer; sourceTree = "<group>"; };
 		2BD135AD1EE1A1E000B9F454 /* SplashNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashNavigationController.swift; sourceTree = "<group>"; };
 		2BD6FB3F1F02927F00F1E2BF /* IndexPath+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IndexPath+Additions.swift"; sourceTree = "<group>"; };
+		2BDAA5961FEAAE6100D06645 /* TSThread+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TSThread+Addition.swift"; sourceTree = "<group>"; };
 		2BDBB5781F7B832300A0ECA0 /* APIKeys */ = {isa = PBXFileReference; lastKnownFileType = folder; path = APIKeys; sourceTree = "<group>"; };
 		2BDBB5801F7B9C2000A0ECA0 /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
 		2BE3C4FA1FD7EE2E001F6919 /* PaymentConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmation.swift; sourceTree = "<group>"; };
@@ -1922,6 +1926,7 @@
 				9F3FF7FF1EB36122002D0293 /* TSOutgoingMessage+Addtions.m */,
 				9FCF13261E52FB160078FF7F /* TSThread+Additions.h */,
 				9FCF13271E52FC2A0078FF7F /* TSThread+Additions.m */,
+				2BDAA5961FEAAE6100D06645 /* TSThread+Addition.swift */,
 				9FAC46EC1E800C13005F76A9 /* UIColor+Additions.swift */,
 				D197B669EF87D9D6642E12BA /* UINotificationName+Additions.swift */,
 				2BE66A081EF9027B007A7130 /* UIScrollView+Keyboard.swift */,
@@ -3105,6 +3110,7 @@
 				149F9A681E72E29A00FB74AA /* BaseConverter.swift in Sources */,
 				A9CADC281F94B1CC0096D017 /* BrowseAllViewController.swift in Sources */,
 				A9E1DCDD1F1E2768001A4ABE /* MessagesImageCell.swift in Sources */,
+				2BDAA5991FEAAE6200D06645 /* TSThread+Addition.swift in Sources */,
 				A91D72B11F8786A70093420C /* ChatButtonsCollectionViewCell.swift in Sources */,
 				2B4E26051FCCCE78004614D5 /* AvatarTitleSubtitleSwitchCell.swift in Sources */,
 				149F9A6F1E72E29A00FB74AA /* Yap.swift in Sources */,
@@ -3333,6 +3339,7 @@
 				2B20BBDF1F7A595700844315 /* APIKeys.swift in Sources */,
 				9F54A7201E951F0600FEB67B /* RateUserController.swift in Sources */,
 				A91D72A71F8782DC0093420C /* ChatButtonsView.swift in Sources */,
+				2BDAA5971FEAAE6200D06645 /* TSThread+Addition.swift in Sources */,
 				9F48C1571E9CD911008BA637 /* CacheExpiry+Default.swift in Sources */,
 				2B4E26031FCCCE78004614D5 /* AvatarTitleSubtitleSwitchCell.swift in Sources */,
 				A9E1DCDA1F1E1A72001A4ABE /* IconLabelButton.swift in Sources */,
@@ -3561,6 +3568,7 @@
 				A9603DA81F4DABDC00BF57B1 /* MessagesImageCell.swift in Sources */,
 				A91D72B01F8786A70093420C /* ChatButtonsCollectionViewCell.swift in Sources */,
 				A9603DAB1F4DABDC00BF57B1 /* Yap.swift in Sources */,
+				2BDAA5981FEAAE6200D06645 /* TSThread+Addition.swift in Sources */,
 				A9603DAF1F4DABDC00BF57B1 /* UIScrollView+Keyboard.swift in Sources */,
 				2B4E26041FCCCE78004614D5 /* AvatarTitleSubtitleSwitchCell.swift in Sources */,
 				A9603DB01F4DABDC00BF57B1 /* KeyboardAdjustable.swift in Sources */,
