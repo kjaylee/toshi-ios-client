@@ -485,6 +485,9 @@ NSString *const kTSOutgoingMessageSentRecipientAll = @"kTSOutgoingMessageSentRec
                 [groupBuilder setType:OWSSignalServiceProtosGroupContextTypeUpdate];
                 break;
             }
+            case TSGroupMetaMessageRequestInfo:
+                [groupBuilder setType:OWSSignalServiceProtosGroupContextTypeRequestInfo];
+                break;
             default:
                 [groupBuilder setType:OWSSignalServiceProtosGroupContextTypeDeliver];
                 break;
