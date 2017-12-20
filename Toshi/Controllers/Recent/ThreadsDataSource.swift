@@ -19,6 +19,20 @@ extension NSNotification.Name {
     static let ChatDatabaseCreated = NSNotification.Name(rawValue: "ChatDatabaseCreated")
 }
 
+enum ThreadsContentSection: Int {
+    case unacceptedThreads
+    case acceptedThreads
+
+    var title: String? {
+        switch self {
+        case .acceptedThreads:
+            return Localized("recent_messages_section_header_title")
+        default:
+            return nil
+        }
+    }
+}
+
 enum ThreadsDataSourceTarget {
     case recent
     case unacceptedThreadRequests
@@ -33,10 +47,10 @@ enum ThreadsDataSourceTarget {
     }
 
     func title(for section: Int) -> String? {
-        guard self == .recent else { return nil }
+        guard self == .recent, let contentSection = ThreadsContentSection(rawValue: section) else { return nil }
 
-        switch section {
-        case 1:
+        switch contentSection {
+        case .acceptedThreads:
             return Localized("recent_messages_section_header_title")
         default:
             return nil

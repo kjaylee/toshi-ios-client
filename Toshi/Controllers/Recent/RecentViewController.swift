@@ -17,20 +17,6 @@ import UIKit
 import SweetFoundation
 import SweetUIKit
 
-enum RecentContentSection: Int {
-    case unacceptedThreads
-    case acceptedThreads
-
-    var title: String? {
-        switch self {
-        case .acceptedThreads:
-            return Localized("recent_messages_section_header_title")
-        default:
-            return nil
-        }
-    }
-}
-
 final class RecentViewController: SweetTableController, Emptiable {
 
     private lazy var dataSource: ThreadsDataSource = {
@@ -196,7 +182,7 @@ extension RecentViewController: UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         var numberOfRows = 0
-        let contentSection = RecentContentSection(rawValue: section)
+        let contentSection = ThreadsContentSection(rawValue: section)
 
         if contentSection == .unacceptedThreads && dataSource.hasUnacceptedThreads {
             numberOfRows = 1
@@ -210,7 +196,7 @@ extension RecentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell = UITableViewCell(frame: .zero)
 
-        let contentSection = RecentContentSection(rawValue: indexPath.section)
+        let contentSection = ThreadsContentSection(rawValue: indexPath.section)
 
         let isMessagesRequestsRow = dataSource.hasUnacceptedThreads && contentSection == .unacceptedThreads
         if isMessagesRequestsRow {
@@ -270,7 +256,7 @@ extension RecentViewController: UITableViewDelegate {
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        guard let contentSection = RecentContentSection(rawValue: indexPath.section) else { return }
+        guard let contentSection = ThreadsContentSection(rawValue: indexPath.section) else { return }
 
         switch contentSection {
         case .unacceptedThreads:
@@ -290,7 +276,7 @@ extension RecentViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        guard let contentSection = RecentContentSection(rawValue: indexPath.section) else { return false }
+        guard let contentSection = ThreadsContentSection(rawValue: indexPath.section) else { return false }
 
         if contentSection == .unacceptedThreads && dataSource.hasUnacceptedThreads {
             return false
