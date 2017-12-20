@@ -205,6 +205,7 @@ final class ChatViewController: UIViewController, UINavigationControllerDelegate
         tabBarController?.tabBar.isHidden = true
 
         updateChatAvatar()
+        requestGroupInfoIfNeeded()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: avatarImageView)
 
@@ -220,6 +221,16 @@ final class ChatViewController: UIViewController, UINavigationControllerDelegate
         } else if thread.isGroupThread() {
             avatarImageView.image = (thread as? TSGroupThread)?.groupModel.groupImage
         }
+    }
+    
+    private func requestGroupInfoIfNeeded() {
+        guard let groupThread = thread as? TSGroupThread else { /* Not a group thread, doesn't matter. */ return }
+        
+        guard !groupThread.groupModel.isFullyLoaded else { /* group is fully loaded, no action required */ return }
+        
+        ChatInteractor.sendRequestForGroupInfo(for: groupThread, completion: { success in
+            DLog("Did requesting group info succeed? \(success)")
+        })
     }
 
     override func viewDidAppear(_ animated: Bool) {

@@ -47,6 +47,8 @@ final class ChatInteractor: NSObject {
 
     private var messageSender: MessageSender?
 
+    // MARK: - Sending
+    
     func sendMessage(sofaWrapper: SofaWrapper, date: Date = Date(), completion: @escaping ((Bool) -> Void) = { Bool in }) {
         let timestamp = NSDate.ows_millisecondTimeStamp()
 
@@ -189,6 +191,8 @@ final class ChatInteractor: NSObject {
             }
         }
     }
+    
+    // MARK: - Receiving
 
     func handleInvalidKeyError(_: TSInvalidIdentityKeyErrorMessage) {
     }
@@ -198,8 +202,6 @@ final class ChatInteractor: NSObject {
     /// - Parameters:
     ///   - interaction: the interaction to handle. Incoming/outgoing messages, wrapping SOFA structures.
     ///   - shouldProcessCommands: If true, will process a sofa wrapper. This means replying to requests, displaying payment UI etc.
-    ///
-
     func handleSignalMessage(_ signalMessage: TSMessage, shouldProcessCommands: Bool = false) -> Message {
         if let invalidKeyErrorMessage = signalMessage as? TSInvalidIdentityKeySendingErrorMessage {
             DispatchQueue.main.async {
@@ -283,7 +285,7 @@ final class ChatInteractor: NSObject {
             SoundPlayer.playSound(type: .messageReceived)
         }
     }
-
+    
     @discardableResult static func getOrCreateThread(for address: String) -> TSThread {
         var thread: TSThread?
 
@@ -314,6 +316,8 @@ final class ChatInteractor: NSObject {
         return thread!
     }
 
+    // MARK: - Groups
+    
     public static func updateGroup(with groupModel: TSGroupModel, completion: @escaping ((Bool) -> Void)) {
         var thread: TSGroupThread?
         TSStorageManager.shared().dbReadWriteConnection?.readWrite { transaction in
@@ -374,14 +378,8 @@ final class ChatInteractor: NSObject {
         }
     }
 
-    static func deleteThread(_ thread: TSThread) {
-        TSStorageManager.shared().dbReadWriteConnection?.asyncReadWrite { transaction in
-            thread.remove(with: transaction)
-            thread.markAllAsRead(with: transaction)
-        }
-    }
-
     static func sendLeaveGroupMessage(_ thread: TSGroupThread, completion: ((Bool) -> Void)? = nil) {
+
         DispatchQueue.global(qos: .background).async {
             let timestamp = NSDate.ows_millisecondTimeStamp()
             let outgoingMessage = TSOutgoingMessage(timestamp: timestamp, in: thread, groupMetaMessage: TSGroupMetaMessage.quit)
@@ -411,6 +409,29 @@ final class ChatInteractor: NSObject {
             thread.save()
         }
     }
+    
+    static func sendRequestForGroupInfo(for thread: TSGroupThread, completion: @escaping (Bool) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            let timestamp = NSDate.ows_millisecondTimeStamp()
+            let outgoingMessage = TSOutgoingMessage(timestamp: timestamp, in: thread, groupMetaMessage: TSGroupMetaMessage.requestInfo)
+            outgoingMessage.body = "REQUEST_INFO"
+            
+            let interactor = ChatInteractor(output: nil, thread: thread)
+            
+            interactor.send(outgoingMessage, completion: completion)
+        }
+    }
+    
+    // MARK: - Deletion
+    
+    static func deleteThread(_ thread: TSThread) {
+        TSStorageManager.shared().dbReadWriteConnection?.asyncReadWrite { transaction in
+            thread.remove(with: transaction)
+            thread.markAllAsRead(with: transaction)
+        }
+    }
+    
+    // MARK: - Bots
 
     @objc static func triggerBotGreeting() {
         guard let botAddress = Bundle.main.infoDictionary?["InitialGreetingAddress"] as? String else { return }
@@ -422,6 +443,8 @@ final class ChatInteractor: NSObject {
         let initWrapper = SofaInitialResponse(initialRequest: initialRequest)
         interactor.sendMessage(sofaWrapper: initWrapper)
     }
+    
+    // MARK: - Updating Contacts
 
     private static func requestContactsRefresh() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
