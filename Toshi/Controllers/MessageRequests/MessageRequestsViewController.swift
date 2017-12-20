@@ -169,17 +169,4 @@ extension MessagesRequestsViewController: UITableViewDelegate {
         
         navigationController?.pushViewController(chatViewController, animated: true)
     }
-
-    func tableView(_: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let action = UITableViewRowAction(style: .destructive, title: "Delete") { _, indexPath in
-            if let thread = self.dataSource.acceptedThread(at: indexPath.row, in: 0) {
-
-                TSStorageManager.shared().dbReadWriteConnection?.asyncReadWrite { transaction in
-                    thread.remove(with: transaction)
-                }
-            }
-        }
-
-        return [action]
-    }
 }
