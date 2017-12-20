@@ -381,7 +381,7 @@ final class ChatInteractor: NSObject {
         }
     }
 
-    static func sendLeaveGroupMessage(_ thread: TSGroupThread, completion: @escaping ((Bool) -> Void)) {
+    static func sendLeaveGroupMessage(_ thread: TSGroupThread, completion: ((Bool) -> Void)? = nil) {
         DispatchQueue.global(qos: .background).async {
             let timestamp = NSDate.ows_millisecondTimeStamp()
             let outgoingMessage = TSOutgoingMessage(timestamp: timestamp, in: thread, groupMetaMessage: TSGroupMetaMessage.quit)
@@ -397,7 +397,7 @@ final class ChatInteractor: NSObject {
                 }
 
                 DispatchQueue.main.async {
-                    completion(success)
+                    completion?(success)
                 }
             })
 
@@ -426,5 +426,58 @@ final class ChatInteractor: NSObject {
     private static func requestContactsRefresh() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.contactsManager.refreshContacts()
+    }
+
+    func sendImage(_ image: UIImage, in message: TSOutgoingMessage? = nil) {
+
+        let wrapper = SofaMessage(body: "")
+        let timestamp = NSDate.ows_millisecondsSince1970(for: Date())
+
+        guard let data = UIImageJPEGRepresentation(image, 0.7) else {
+            DLog("Cant convert selected image to data")
+            return
+        }
+
+        let outgoingMessage = message ?? TSOutgoingMessage(timestamp: timestamp, in: self.thread, messageBody: wrapper.content)
+
+        guard let datasource = DataSourceValue.dataSource(with: data, fileExtension: "jpeg") else { return }
+
+        self.messageSender?.sendAttachmentData(datasource, contentType: "image/jpeg", sourceFilename: "File.jpeg", in: outgoingMessage, success: {
+            DLog("Success")
+        }, failure: { error in
+            DLog("Failure: \(error)")
+        })
+    }
+
+    static func acceptThread(_ thread: TSThread) {
+        thread.isPendingAccept = false
+        thread.save()
+
+        if let contactIdentifier = thread.contactIdentifier() {
+
+            if Yap.sharedInstance.containsObject(for: contactIdentifier, in: ThreadsDataSource.nonContactsCollectionKey) {
+                Yap.sharedInstance.removeObject(for: contactIdentifier, in: ThreadsDataSource.nonContactsCollectionKey)
+            }
+
+            IDAPIClient.shared.updateContact(with: contactIdentifier)
+        }
+    }
+
+    static func declineThread(_ thread: TSThread, completion: ((Bool) -> Void)? = nil) {
+        if let groupThread = thread as? TSGroupThread {
+            sendLeaveGroupMessage(groupThread, completion: completion)
+        } else if let contactIdentifier = thread.contactIdentifier() {
+
+            if Yap.sharedInstance.containsObject(for: contactIdentifier, in: ThreadsDataSource.nonContactsCollectionKey) {
+                Yap.sharedInstance.removeObject(for: contactIdentifier, in: ThreadsDataSource.nonContactsCollectionKey)
+            }
+
+            thread.isPendingAccept = false
+            thread.save()
+
+            OWSBlockingManager.shared().addBlockedPhoneNumber(contactIdentifier)
+            deleteThread(thread)
+            completion?(true)
+        }
     }
 }

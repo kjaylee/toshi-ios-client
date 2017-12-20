@@ -78,6 +78,7 @@ final class ThreadsDataSource: NSObject {
         if TokenUser.current != nil {
             viewModel.setupForCurrentSession()
             loadMessages()
+            registerNotifications()
         } else {
             NotificationCenter.default.addObserver(self, selector: #selector(chatDBCreated(_:)), name: .ChatDatabaseCreated, object: nil)
         }
@@ -86,6 +87,7 @@ final class ThreadsDataSource: NSObject {
     @objc private func chatDBCreated(_ notification: Notification) {
         viewModel.setupForCurrentSession()
         loadMessages()
+        registerNotifications()
     }
 
     @objc func yapDatabaseDidChange(notification _: NSNotification) {
@@ -120,6 +122,7 @@ final class ThreadsDataSource: NSObject {
             }
         }
 
+        loadMessages()
         output?.threadsDataSourceDidLoad()
     }
     
@@ -175,13 +178,13 @@ final class ThreadsDataSource: NSObject {
         return thread
     }
 
-    func acceptedThread(at indexPath: IndexPath) -> TSThread? {
+    func acceptedThread(at index: Int, in section: Int) -> TSThread? {
         var thread: TSThread?
 
         viewModel.uiDatabaseConnection.read { [weak self] transaction in
             guard let strongSelf = self else { return }
             guard let dbExtension = transaction.extension(RecentViewModel.acceptedThreadsFilteringKey) as? YapDatabaseViewTransaction else { return }
-            let translatedIndexPath = IndexPath(row: indexPath.row, section: 0)
+            let translatedIndexPath = IndexPath(row: index, section: section)
             guard let object = dbExtension.object(at: translatedIndexPath, with: strongSelf.viewModel.acceptedThreadsMappings) as? TSThread else { return }
 
             thread = object
@@ -191,7 +194,7 @@ final class ThreadsDataSource: NSObject {
     }
 
     private func processNewThread(at indexPath: IndexPath) {
-        if let thread = self.acceptedThread(at: indexPath) {
+        if let thread = self.acceptedThread(at: indexPath.row, in: 0) {
 
             if let contactIdentifier = thread.contactIdentifier() {
 
@@ -220,7 +223,7 @@ final class ThreadsDataSource: NSObject {
     }
     
     private func processUpdateThread(at indexPath: IndexPath) {
-        if let thread = self.acceptedThread(at: indexPath) {
+        if let thread = self.acceptedThread(at: indexPath.row, in: 0) {
 
             if let topChatViewController = Navigator.topViewController as? ChatViewController {
                 topChatViewController.updateThread(thread)
@@ -247,7 +250,5 @@ final class ThreadsDataSource: NSObject {
                self?.output?.threadsDataSourceDidLoad()
             }
         }
-
-        registerNotifications()
     }
 }

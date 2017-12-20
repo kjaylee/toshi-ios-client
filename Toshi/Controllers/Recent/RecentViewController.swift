@@ -78,6 +78,8 @@ final class RecentViewController: SweetTableController, Emptiable {
 
         preferLargeTitleIfPossible(true)
         tabBarController?.tabBar.isHidden = false
+
+        tableView.reloadData()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didPressCompose(_:)))
     }
@@ -134,7 +136,7 @@ final class RecentViewController: SweetTableController, Emptiable {
     }
 
     func updateContactIfNeeded(at indexPath: IndexPath) {
-        if let thread = dataSource.acceptedThread(at: indexPath), let address = thread.contactIdentifier() {
+        if let thread = dataSource.acceptedThread(at: indexPath.row, in: 0), let address = thread.contactIdentifier() {
             DLog("Updating contact info for address: \(address).")
 
             idAPIClient.retrieveUser(username: address) { contact in
@@ -197,7 +199,7 @@ extension RecentViewController: UITableViewDataSource {
         let isMessagesRequestsRow = dataSource.unacceptedThreadsCount > 0 && indexPath.section == 0
         if isMessagesRequestsRow {
             cell = messagesRequestsCell(for: indexPath)
-        } else if let thread = dataSource.acceptedThread(at: indexPath) {
+        } else if let thread = dataSource.acceptedThread(at: indexPath.row, in: 0) {
             let threadCellConfigurator = ThreadCellConfigurator(thread: thread)
             let cellData = threadCellConfigurator.cellData
             cell = tableView.dequeueReusableCell(withIdentifier: AvatarTitleSubtitleDetailsBadgeCell.reuseIdentifier, for: indexPath)
@@ -254,10 +256,16 @@ extension RecentViewController: UITableViewDelegate {
 
         switch indexPath.section {
         case 0:
-            let messagesRequestsViewController = MessagesRequestsViewController(style: .grouped)
-            navigationController?.pushViewController(messagesRequestsViewController, animated: true)
+            if dataSource.unacceptedThreadsCount > 0 {
+                let messagesRequestsViewController = MessagesRequestsViewController(style: .grouped)
+                navigationController?.pushViewController(messagesRequestsViewController, animated: true)
+            } else {
+                guard let thread = dataSource.acceptedThread(at: indexPath.row, in: 0) else { return }
+                let chatViewController = ChatViewController(thread: thread)
+                navigationController?.pushViewController(chatViewController, animated: true)
+            }
         case 1:
-            guard let thread = dataSource.acceptedThread(at: indexPath) else { return }
+            guard let thread = dataSource.acceptedThread(at: indexPath.row, in: 0) else { return }
             let chatViewController = ChatViewController(thread: thread)
             navigationController?.pushViewController(chatViewController, animated: true)
         default:
@@ -267,7 +275,7 @@ extension RecentViewController: UITableViewDelegate {
 
     func tableView(_: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let action = UITableViewRowAction(style: .destructive, title: "Delete") { _, indexPath in
-            if let thread = self.dataSource.acceptedThread(at: indexPath) {
+            if let thread = self.dataSource.acceptedThread(at: indexPath.row, in: 0) {
 
                 ChatInteractor.deleteThread(thread)
             }
