@@ -17,6 +17,20 @@ import UIKit
 import SweetFoundation
 import SweetUIKit
 
+enum RecentContentSection: Int {
+    case unacceptedThreads
+    case acceptedThreads
+
+    var title: String? {
+        switch self {
+        case .acceptedThreads:
+            return Localized("recent_messages_section_header_title")
+        default:
+            return nil
+        }
+    }
+}
+
 final class RecentViewController: SweetTableController, Emptiable {
 
     private lazy var dataSource: ThreadsDataSource = {
@@ -183,8 +197,9 @@ extension RecentViewController: UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         var numberOfRows = 0
+        let contentSection = RecentContentSection(rawValue: section)
 
-        if section == 0 && dataSource.unacceptedThreadsCount > 0 {
+        if contentSection == .unacceptedThreads && dataSource.unacceptedThreadsCount > 0 {
             numberOfRows = 1
         } else {
             numberOfRows = dataSource.acceptedThreadsCount
@@ -196,7 +211,9 @@ extension RecentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell = UITableViewCell(frame: .zero)
 
-        let isMessagesRequestsRow = dataSource.unacceptedThreadsCount > 0 && indexPath.section == 0
+        let contentSection = RecentContentSection(rawValue: indexPath.section)
+
+        let isMessagesRequestsRow = dataSource.unacceptedThreadsCount > 0 && contentSection == .unacceptedThreads
         if isMessagesRequestsRow {
             cell = messagesRequestsCell(for: indexPath)
         } else if let thread = dataSource.acceptedThread(at: indexPath.row, in: 0) {
@@ -254,8 +271,10 @@ extension RecentViewController: UITableViewDelegate {
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        switch indexPath.section {
-        case 0:
+        guard let contentSection = RecentContentSection(rawValue: indexPath.section) else { return }
+
+        switch contentSection {
+        case .unacceptedThreads:
             if dataSource.unacceptedThreadsCount > 0 {
                 let messagesRequestsViewController = MessagesRequestsViewController(style: .grouped)
                 navigationController?.pushViewController(messagesRequestsViewController, animated: true)
@@ -264,12 +283,10 @@ extension RecentViewController: UITableViewDelegate {
                 let chatViewController = ChatViewController(thread: thread)
                 navigationController?.pushViewController(chatViewController, animated: true)
             }
-        case 1:
+        case .acceptedThreads:
             guard let thread = dataSource.acceptedThread(at: indexPath.row, in: 0) else { return }
             let chatViewController = ChatViewController(thread: thread)
             navigationController?.pushViewController(chatViewController, animated: true)
-        default:
-            break
         }
     }
 
