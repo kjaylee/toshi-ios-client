@@ -133,6 +133,7 @@ final class ChatViewController: UIViewController, UINavigationControllerDelegate
 
     init(thread: TSThread) {
         self.thread = thread
+        self.previewState = thread.isPendingAccept
 
         super.init(nibName: nil, bundle: nil)
 
