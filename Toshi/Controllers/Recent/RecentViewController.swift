@@ -174,7 +174,7 @@ extension RecentViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         var sectionCount = 0
 
-        if dataSource.unacceptedThreadsCount > 0 {
+        if dataSource.hasUnacceptedThreads {
             sectionCount += 1
         }
 
@@ -186,7 +186,7 @@ extension RecentViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 && dataSource.unacceptedThreadsCount > 0 {
+        if section == 0 && dataSource.hasUnacceptedThreads {
             return nil
         }
 
@@ -198,7 +198,7 @@ extension RecentViewController: UITableViewDataSource {
         var numberOfRows = 0
         let contentSection = RecentContentSection(rawValue: section)
 
-        if contentSection == .unacceptedThreads && dataSource.unacceptedThreadsCount > 0 {
+        if contentSection == .unacceptedThreads && dataSource.hasUnacceptedThreads {
             numberOfRows = 1
         } else {
             numberOfRows = dataSource.acceptedThreadsCount
@@ -212,7 +212,7 @@ extension RecentViewController: UITableViewDataSource {
 
         let contentSection = RecentContentSection(rawValue: indexPath.section)
 
-        let isMessagesRequestsRow = dataSource.unacceptedThreadsCount > 0 && contentSection == .unacceptedThreads
+        let isMessagesRequestsRow = dataSource.hasUnacceptedThreads && contentSection == .unacceptedThreads
         if isMessagesRequestsRow {
             cell = messagesRequestsCell(for: indexPath)
         } else if let thread = dataSource.acceptedThread(at: indexPath.row, in: 0) {
@@ -274,7 +274,7 @@ extension RecentViewController: UITableViewDelegate {
 
         switch contentSection {
         case .unacceptedThreads:
-            if dataSource.unacceptedThreadsCount > 0 {
+            if dataSource.hasUnacceptedThreads {
                 let messagesRequestsViewController = MessagesRequestsViewController(style: .grouped)
                 navigationController?.pushViewController(messagesRequestsViewController, animated: true)
             } else {
@@ -287,6 +287,16 @@ extension RecentViewController: UITableViewDelegate {
             let chatViewController = ChatViewController(thread: thread)
             navigationController?.pushViewController(chatViewController, animated: true)
         }
+    }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        guard let contentSection = RecentContentSection(rawValue: indexPath.section) else { return false }
+
+        if contentSection == .unacceptedThreads && dataSource.hasUnacceptedThreads {
+            return false
+        }
+
+        return true
     }
 
     func tableView(_: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

@@ -55,6 +55,10 @@ final class ThreadsDataSource: NSObject {
     private var viewModel: RecentViewModel
     private var target: ThreadsDataSourceTarget
 
+    var hasUnacceptedThreads: Bool {
+        return unacceptedThreadsCount > 0
+    }
+
     var unacceptedThreadsCount: Int {
         return Int(viewModel.unacceptedThreadsMappings.numberOfItems(inSection: UInt(0)))
     }
