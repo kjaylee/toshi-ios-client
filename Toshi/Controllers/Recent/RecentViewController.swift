@@ -70,7 +70,6 @@ final class RecentViewController: SweetTableController, Emptiable {
         tableView.delegate = self
         tableView.dataSource = self
 
-        tableView.register(ChatCell.self)
         BasicTableViewCell.register(in: tableView)
 
         tableView.tableFooterView = UIView(frame: .zero)

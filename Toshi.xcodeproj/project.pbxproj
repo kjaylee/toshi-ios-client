@@ -20,7 +20,6 @@
 		149F9A761E72E29A00FB74AA /* ContactsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC72A431E252CFA00EF1141 /* ContactsManager.m */; };
 		149F9A7E1E72E29A00FB74AA /* NSData+ows_StripToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEB8C8A1E6832120088D5A6 /* NSData+ows_StripToken.m */; };
 		149F9A801E72E29A00FB74AA /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE398401E2E225600386FAF /* ProfileItemCell.swift */; };
-		149F9A851E72E29A00FB74AA /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9238D31E24F42A004BEEE0 /* ChatCell.swift */; };
 		149F9A861E72E29A00FB74AA /* EthereumConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3CFDE51E5F086200E8D632 /* EthereumConverter.swift */; };
 		149F9A891E72E29A00FB74AA /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA12BF11E65D135003705F6 /* SoundPlayer.swift */; };
 		149F9A8D1E72E29A00FB74AA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCDBAE91E28FD5C00A70E07 /* Theme.swift */; };
@@ -324,7 +323,6 @@
 		9F9238B61E24F1D2004BEEE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9238B51E24F1D2004BEEE0 /* main.m */; };
 		9F9238B91E24F1D2004BEEE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9238B81E24F1D2004BEEE0 /* AppDelegate.m */; };
 		9F9238C41E24F1D2004BEEE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9238C21E24F1D2004BEEE0 /* LaunchScreen.storyboard */; };
-		9F9238D41E24F42A004BEEE0 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9238D31E24F42A004BEEE0 /* ChatCell.swift */; };
 		9F9238FB1E24F9BF004BEEE0 /* Cereal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9238FA1E24F9BF004BEEE0 /* Cereal.swift */; };
 		9F9B25551ECB1BC0007B435A /* ProfileActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9B25541ECB1BC0007B435A /* ProfileActionView.swift */; };
 		9F9B25561ECB1BC0007B435A /* ProfileActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9B25541ECB1BC0007B435A /* ProfileActionView.swift */; };
@@ -526,7 +524,6 @@
 		A9603E4D1F4DABDC00BF57B1 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AC740D1E78051F00365029 /* TitleLabel.swift */; };
 		A9603E511F4DABDC00BF57B1 /* PaymentAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916290C1F3B5828008A7F36 /* PaymentAddressController.swift */; };
 		A9603E571F4DABDC00BF57B1 /* ModalPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78D9CA1EE93E68003A0B95 /* ModalPresentable.swift */; };
-		A9603E581F4DABDC00BF57B1 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9238D31E24F42A004BEEE0 /* ChatCell.swift */; };
 		A9603E5B1F4DABDC00BF57B1 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A95D541E6EF092002762DA /* SettingsController.swift */; };
 		A9603E5C1F4DABDC00BF57B1 /* PassphraseVerifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF33B01E76DF67009A51AA /* PassphraseVerifyController.swift */; };
 		A9603E5D1F4DABDC00BF57B1 /* MessagesTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E1DCD11F1E1989001A4ABE /* MessagesTextCell.swift */; };
@@ -798,11 +795,9 @@
 		D197B1DF02A3FA1A8E60AD65 /* EthereumConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7EC7030BE4C4508AACD /* EthereumConverterTests.swift */; };
 		D197B1E784F2176023D0F635 /* YapDatabaseViewConnection+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B494213B9F6EC5413D88 /* YapDatabaseViewConnection+Additions.swift */; };
 		D197B1E9BB5E12653D8EE2CC /* SofaStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BAEBA12E2D8F04A0F846 /* SofaStatus.swift */; };
-		D197B1E9F8277FEB55771F0E /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = D197BC2A4D26A2F961C2E33E /* SofaWrapper.swift */; };
 		D197B1EB92E75AA88459C940 /* AcceptDeclineButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B18261400D5175ADC6C7 /* AcceptDeclineButtonsView.swift */; };
 		D197B2103355CD8C1BFE1537 /* AcceptDeclineButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B18261400D5175ADC6C7 /* AcceptDeclineButtonsView.swift */; };
 		D197B2196AD7EBEE1F16354C /* DoubleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B52C452CE2763BB4976A /* DoubleImageView.swift */; };
-		D197B21E44FC770D3632265C /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = D197B84A2DC8436AF31CAF6A /* SofaInitialResponse.swift */; };
 		D197B22F0A1803EEBB6819FE /* searchContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = D197B4747DA95DF531E0C300 /* searchContacts.json */; };
 		D197B22FB4CEE1C4761BCEB7 /* SofaInitialResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B84A2DC8436AF31CAF6A /* SofaInitialResponse.swift */; };
 		D197B2859F1B1E4BE895E760 /* transactionSkeleton.json in Resources */ = {isa = PBXBuildFile; fileRef = D197BFC186F1EEBDC8FD45B1 /* transactionSkeleton.json */; };
@@ -825,10 +820,8 @@
 		D197B4425A9FE7A36B983DE1 /* getLatestPublicUsers.json in Resources */ = {isa = PBXBuildFile; fileRef = D197B707B59B3F92F8A4B3EC /* getLatestPublicUsers.json */; };
 		D197B47D98009339295B1A5C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B19EAB3E25CAEDCC5C86 /* ProfileViewController.swift */; };
 		D197B4827BED8F3A5BAB5CB8 /* SofaStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BAEBA12E2D8F04A0F846 /* SofaStatus.swift */; };
-		D197B4C46B755554DA3550F2 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = 2B0EF8281F948931001A76CA /* CrashlyticsClient.swift */; };
 		D197B4C9ACAC2B6A418AB2E2 /* ChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B9998A8A84CC265C1772 /* ChatButton.swift */; };
 		D197B4F1934405EADD429871 /* DoubleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B52C452CE2763BB4976A /* DoubleImageView.swift */; };
-		D197B54E550A80E09BFE6501 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = 9F54A7221E951F1500FEB67B /* RatingsClient.swift */; };
 		D197B54F2788A7DF91A035AE /* ToshiErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B0B3F554858E7196CD70 /* ToshiErrorTests.swift */; };
 		D197B57BA2EA6533D6523DB0 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BFD8FAC1FBE64984D60C /* StatusCell.swift */; };
 		D197B590E4C59A08CB4AD88A /* SofaWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BC2A4D26A2F961C2E33E /* SofaWrapper.swift */; };
@@ -1118,7 +1111,6 @@
 		9F9238C31E24F1D2004BEEE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F9238C51E24F1D2004BEEE0 /* Development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Development.plist; sourceTree = "<group>"; };
 		9F9238D01E24F402004BEEE0 /* Toshi-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Toshi-Bridging-Header.h"; sourceTree = "<group>"; };
-		9F9238D31E24F42A004BEEE0 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		9F9238FA1E24F9BF004BEEE0 /* Cereal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cereal.swift; sourceTree = "<group>"; };
 		9F9B25541ECB1BC0007B435A /* ProfileActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileActionView.swift; sourceTree = "<group>"; };
 		9FA12BE71E65A116003705F6 /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RevealServer.framework; sourceTree = "<group>"; };
@@ -1836,7 +1828,6 @@
 				D197B6E47F5F979A8C154E9A /* ActiveNetworkView.swift */,
 				9FF6AF9E1E83DE04001B5907 /* AvatarImageView.swift */,
 				D197BB4FC8D408B73FE253E5 /* BlurView.swift */,
-				9F9238D31E24F42A004BEEE0 /* ChatCell.swift */,
 				A9F8D1C71E72B4AA003F5749 /* Checkbox.swift */,
 				A9BF33B61E76F918009A51AA /* CheckboxControl.swift */,
 				A94BDE141E800EF800B2F0CF /* ConfirmationButton.swift */,
@@ -3173,7 +3164,6 @@
 				A91629141F3C6614008A7F36 /* PaymentAddressController.swift in Sources */,
 				A9E691D11F7A49B100317DB1 /* SignInLayout.swift in Sources */,
 				9F78D9CE1EE93E68003A0B95 /* ModalPresentable.swift in Sources */,
-				149F9A851E72E29A00FB74AA /* ChatCell.swift in Sources */,
 				9F88EA051EE0411A00267573 /* SettingsController.swift in Sources */,
 				A9BF33B51E76F8D0009A51AA /* PassphraseVerifyController.swift in Sources */,
 				A9E1DCDF1F1E276E001A4ABE /* MessagesTextCell.swift in Sources */,
@@ -3391,7 +3381,6 @@
 				2BC85F7F1F0F946600BCB171 /* InputCell.swift in Sources */,
 				2BD0A4DB1FDFE3CD00D745BF /* MessageRequestsViewController.swift in Sources */,
 				A9E1DCD41F1E1989001A4ABE /* MessagesPaymentCell.swift in Sources */,
-				9F9238D41E24F42A004BEEE0 /* ChatCell.swift in Sources */,
 				A963D5301F288E5D00297FDF /* MessagesCornerView.swift in Sources */,
 				2BD135AE1EE1A1E000B9F454 /* SplashNavigationController.swift in Sources */,
 				2BB842791EDD91F70044BDAB /* SplashViewController.swift in Sources */,
@@ -3629,7 +3618,6 @@
 				A9603E511F4DABDC00BF57B1 /* PaymentAddressController.swift in Sources */,
 				A9E691D01F7A49B100317DB1 /* SignInLayout.swift in Sources */,
 				A9603E571F4DABDC00BF57B1 /* ModalPresentable.swift in Sources */,
-				A9603E581F4DABDC00BF57B1 /* ChatCell.swift in Sources */,
 				A9603E5B1F4DABDC00BF57B1 /* SettingsController.swift in Sources */,
 				A9603E5C1F4DABDC00BF57B1 /* PassphraseVerifyController.swift in Sources */,
 				A9603E5D1F4DABDC00BF57B1 /* MessagesTextCell.swift in Sources */,
