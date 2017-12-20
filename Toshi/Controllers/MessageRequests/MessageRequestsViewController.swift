@@ -65,7 +65,7 @@ final class MessagesRequestsViewController: SweetTableController {
 
     func dismissIfNeeded(animated: Bool = true) {
 
-        if dataSource.unacceptedThreadsCount == 0 {
+        if Navigator.topNonModalViewController == self && dataSource.unacceptedThreadsCount == 0 {
             navigationController?.popViewController(animated: animated)
         }
     }
