@@ -784,6 +784,7 @@
 		A9F8D1C81E72B4AA003F5749 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F8D1C71E72B4AA003F5749 /* Checkbox.swift */; };
 		ADA43FF3BB04BEDF54DF5CCC /* libPods-CocoaPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AC0CEAA51D7F8A19F246E9 /* libPods-CocoaPods-Tests.a */; };
 		C1128E2CDD482DB9BE1BF5A3 /* libPods-CocoaPods-Distribution.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E67E3F2BFB7B0171BF61B30 /* libPods-CocoaPods-Distribution.a */; };
+		D197B006BD046DC2E6B46351 /* String+nsRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B695935159A20363BBF9 /* String+nsRange.swift */; };
 		D197B06FE122DE9A80081DAC /* SofaInitialResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B84A2DC8436AF31CAF6A /* SofaInitialResponse.swift */; };
 		D197B0896EF91C2CCF4C5D78 /* SofaIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BCEB0A1FF98FE303EDBD /* SofaIdentifierTests.swift */; };
 		D197B0C5E61A152AFA61B5DF /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D197B3AC0E3346D86F7A4559 /* testImage.png */; };
@@ -792,9 +793,16 @@
 		D197B0EE47ED98F7705E95B1 /* PersonalProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBCB2066BD96A45C417B /* PersonalProfileViewController.swift */; };
 		D197B11DD70DB5696FFC4FD2 /* UINotificationName+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B669EF87D9D6642E12BA /* UINotificationName+Additions.swift */; };
 		D197B133E8FE4FD69F1AA511 /* IDAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B0B8C43D9AEF28A5170A /* IDAPIClientTests.swift */; };
+		D197B14BC2EF3AC740372100 /* AcceptDeclineButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B18261400D5175ADC6C7 /* AcceptDeclineButtonsView.swift */; };
+		D197B1573E01CAB1B093EBB9 /* ChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B9998A8A84CC265C1772 /* ChatButton.swift */; };
 		D197B1DF02A3FA1A8E60AD65 /* EthereumConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7EC7030BE4C4508AACD /* EthereumConverterTests.swift */; };
 		D197B1E784F2176023D0F635 /* YapDatabaseViewConnection+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B494213B9F6EC5413D88 /* YapDatabaseViewConnection+Additions.swift */; };
+		D197B1E9BB5E12653D8EE2CC /* SofaStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BAEBA12E2D8F04A0F846 /* SofaStatus.swift */; };
+		D197B1E9F8277FEB55771F0E /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = D197BC2A4D26A2F961C2E33E /* SofaWrapper.swift */; };
+		D197B1EB92E75AA88459C940 /* AcceptDeclineButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B18261400D5175ADC6C7 /* AcceptDeclineButtonsView.swift */; };
+		D197B2103355CD8C1BFE1537 /* AcceptDeclineButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B18261400D5175ADC6C7 /* AcceptDeclineButtonsView.swift */; };
 		D197B2196AD7EBEE1F16354C /* DoubleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B52C452CE2763BB4976A /* DoubleImageView.swift */; };
+		D197B21E44FC770D3632265C /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = D197B84A2DC8436AF31CAF6A /* SofaInitialResponse.swift */; };
 		D197B22F0A1803EEBB6819FE /* searchContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = D197B4747DA95DF531E0C300 /* searchContacts.json */; };
 		D197B22FB4CEE1C4761BCEB7 /* SofaInitialResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B84A2DC8436AF31CAF6A /* SofaInitialResponse.swift */; };
 		D197B2859F1B1E4BE895E760 /* transactionSkeleton.json in Resources */ = {isa = PBXBuildFile; fileRef = D197BFC186F1EEBDC8FD45B1 /* transactionSkeleton.json */; };
@@ -805,17 +813,24 @@
 		D197B341D7AC04907550BFA3 /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D197BD2C5E7FC428D7ADB559 /* TestAppDelegate.m */; };
 		D197B35BF9744D2F37972747 /* EthereumAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B33D03FC3E507BE3B3C1 /* EthereumAPIClientTests.swift */; };
 		D197B3781644ABF575195A69 /* SofaCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B5AD370809E7D2EB3631 /* SofaCommand.swift */; };
+		D197B38DAA052C5A2FC57DA0 /* String+nsRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B695935159A20363BBF9 /* String+nsRange.swift */; };
 		D197B3CD97B238550A27A173 /* SofaCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B5AD370809E7D2EB3631 /* SofaCommand.swift */; };
 		D197B3CEF63EDE26D11F3F32 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB02C1FCC52F69B81E12 /* ReachabilityManager.swift */; };
 		D197B3DE723A39F67001ACC7 /* SofaWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BC2A4D26A2F961C2E33E /* SofaWrapper.swift */; };
 		D197B3F6858BB66E21F4D171 /* SofaPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BCAEADF108A249EC0D89 /* SofaPaymentRequest.swift */; };
 		D197B401E977724E946A55BE /* ActiveNetworkDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BAEA583CAF9862D17B38 /* ActiveNetworkDisplaying.swift */; };
+		D197B404D7DAE06ADBAA992D /* SofaStatusTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BAAFB2F184D062E0B675 /* SofaStatusTest.swift */; };
 		D197B4267BE0D9E6F9357723 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7A2C3032B73635553CD /* ProfileView.swift */; };
 		D197B42A7E9E693AC60C9299 /* SofaPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BCAEADF108A249EC0D89 /* SofaPaymentRequest.swift */; };
 		D197B4425A9FE7A36B983DE1 /* getLatestPublicUsers.json in Resources */ = {isa = PBXBuildFile; fileRef = D197B707B59B3F92F8A4B3EC /* getLatestPublicUsers.json */; };
 		D197B47D98009339295B1A5C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B19EAB3E25CAEDCC5C86 /* ProfileViewController.swift */; };
+		D197B4827BED8F3A5BAB5CB8 /* SofaStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BAEBA12E2D8F04A0F846 /* SofaStatus.swift */; };
+		D197B4C46B755554DA3550F2 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = 2B0EF8281F948931001A76CA /* CrashlyticsClient.swift */; };
+		D197B4C9ACAC2B6A418AB2E2 /* ChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B9998A8A84CC265C1772 /* ChatButton.swift */; };
 		D197B4F1934405EADD429871 /* DoubleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B52C452CE2763BB4976A /* DoubleImageView.swift */; };
+		D197B54E550A80E09BFE6501 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = 9F54A7221E951F1500FEB67B /* RatingsClient.swift */; };
 		D197B54F2788A7DF91A035AE /* ToshiErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B0B3F554858E7196CD70 /* ToshiErrorTests.swift */; };
+		D197B57BA2EA6533D6523DB0 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BFD8FAC1FBE64984D60C /* StatusCell.swift */; };
 		D197B590E4C59A08CB4AD88A /* SofaWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BC2A4D26A2F961C2E33E /* SofaWrapper.swift */; };
 		D197B5E0F04D0A7529EC6342 /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D197BD2C5E7FC428D7ADB559 /* TestAppDelegate.m */; };
 		D197B6174378B26EDA051439 /* SofaCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B5AD370809E7D2EB3631 /* SofaCommand.swift */; };
@@ -830,12 +845,15 @@
 		D197B6D91E419A23890C7E8B /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB4FC8D408B73FE253E5 /* BlurView.swift */; };
 		D197B6DFB8BD6A1EBEEF4BA5 /* DoubleAvatarTitleSubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B79A895911F06FFC781C /* DoubleAvatarTitleSubtitleCell.swift */; };
 		D197B6EB6C3157476638ABE6 /* SofaMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B3F77566E161C5CAB467 /* SofaMessage.swift */; };
+		D197B6F01E52F247B8982310 /* String+nsRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBE7ED942198265AED9B /* String+nsRangeTests.swift */; };
 		D197B74275EBC3A229F0D4D9 /* timestamp.json in Resources */ = {isa = PBXBuildFile; fileRef = D197B5835BCEB0D7A2DA6967 /* timestamp.json */; };
 		D197B76039E4B9C45F980CCF /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB02C1FCC52F69B81E12 /* ReachabilityManager.swift */; };
+		D197B76575751DB2103547AB /* ChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B9998A8A84CC265C1772 /* ChatButton.swift */; };
 		D197B77259031691F95DA6AA /* PersonalProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBCB2066BD96A45C417B /* PersonalProfileViewController.swift */; };
 		D197B7826883306A72319E51 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B19EAB3E25CAEDCC5C86 /* ProfileViewController.swift */; };
 		D197B80A67FA2271BE1C9621 /* YapDatabaseViewConnection+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B494213B9F6EC5413D88 /* YapDatabaseViewConnection+Additions.swift */; };
 		D197B83F0A9396CF2E7628D5 /* ActiveNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B6E47F5F979A8C154E9A /* ActiveNetworkView.swift */; };
+		D197B844B1C67758B2A0E9F2 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BFD8FAC1FBE64984D60C /* StatusCell.swift */; };
 		D197B8B87F4A0DCA761DE9D6 /* retrieveUser.json in Resources */ = {isa = PBXBuildFile; fileRef = D197B8E798FCD39B97824BBA /* retrieveUser.json */; };
 		D197B93806978360C8100D50 /* score.json in Resources */ = {isa = PBXBuildFile; fileRef = D197BB0710786F9F642F4318 /* score.json */; };
 		D197B93C624C3E8D1F43B232 /* getCurrencies.json in Resources */ = {isa = PBXBuildFile; fileRef = D197B175422C9602CE00CF65 /* getCurrencies.json */; };
@@ -852,12 +870,16 @@
 		D197BA6E5DC09E84D524D1A2 /* getBalance.json in Resources */ = {isa = PBXBuildFile; fileRef = D197B003D276C7AD76B6A223 /* getBalance.json */; };
 		D197BA94CB5436F7605925FD /* SofaPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BC4FF536D4350C725251 /* SofaPayment.swift */; };
 		D197BADA32392E95EA354C18 /* ProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BDBBB0DE754639B7005B /* ProfileEditController.swift */; };
+		D197BADE7B88BF0539D8646B /* SofaStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BAEBA12E2D8F04A0F846 /* SofaStatus.swift */; };
 		D197BB5265BB1DA3032B68AA /* ExchangeRateAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BDA113837D7DCFE1A66F /* ExchangeRateAPIClientTests.swift */; };
 		D197BBA31772C24F264C2D3B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7A2C3032B73635553CD /* ProfileView.swift */; };
 		D197BBAFEA21AFA96FF5EB30 /* DoubleAvatarTitleSubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B79A895911F06FFC781C /* DoubleAvatarTitleSubtitleCell.swift */; };
+		D197BBDB018E3C6EE3CA3B1B /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BFD8FAC1FBE64984D60C /* StatusCell.swift */; };
 		D197BBDFE322BAFD2D036076 /* OfflineAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD136059B5C238CB3425 /* OfflineAlertView.swift */; };
+		D197BBE91E49D7B9DCD1B17D /* String+nsRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B695935159A20363BBF9 /* String+nsRange.swift */; };
 		D197BC32BA4D952C0E815F18 /* ActiveNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B6E47F5F979A8C154E9A /* ActiveNetworkView.swift */; };
 		D197BC3B60A96D12312C48B7 /* SofaInitialRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BC051BEE35DB98BD053F /* SofaInitialRequest.swift */; };
+		D197BC5E2A33FB5B00A55942 /* String+nsRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B695935159A20363BBF9 /* String+nsRange.swift */; };
 		D197BD08F09124F7B83238F9 /* ToshiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B54B1A4AD5DB747C55BF /* ToshiError.swift */; };
 		D197BD532AA776C66EDCCDEB /* SofaPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BC4FF536D4350C725251 /* SofaPayment.swift */; };
 		D197BD8E4D43B3EFF276694E /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D197BD2C5E7FC428D7ADB559 /* TestAppDelegate.m */; };
@@ -1240,6 +1262,7 @@
 		D197B12C40488CB1523BB212 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
 		D197B1451DB719E76A084950 /* timestamp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timestamp.json; sourceTree = "<group>"; };
 		D197B175422C9602CE00CF65 /* getCurrencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getCurrencies.json; sourceTree = "<group>"; };
+		D197B18261400D5175ADC6C7 /* AcceptDeclineButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptDeclineButtonsView.swift; sourceTree = "<group>"; };
 		D197B19EAB3E25CAEDCC5C86 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D197B29F0030A48233E69AD9 /* nonExistingUser.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nonExistingUser.json; sourceTree = "<group>"; };
 		D197B33D03FC3E507BE3B3C1 /* EthereumAPIClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EthereumAPIClientTests.swift; sourceTree = "<group>"; };
@@ -1253,6 +1276,7 @@
 		D197B5AD370809E7D2EB3631 /* SofaCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SofaCommand.swift; sourceTree = "<group>"; };
 		D197B654F730E653B7C6F444 /* sendSignedTransaction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sendSignedTransaction.json; sourceTree = "<group>"; };
 		D197B669EF87D9D6642E12BA /* UINotificationName+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINotificationName+Additions.swift"; sourceTree = "<group>"; };
+		D197B695935159A20363BBF9 /* String+nsRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+nsRange.swift"; sourceTree = "<group>"; };
 		D197B6AD4DEFD836C0ECA908 /* SofaWrapperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SofaWrapperTests.swift; sourceTree = "<group>"; };
 		D197B6D88C3CCC7B7A890925 /* RatingsClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingsClientTests.swift; sourceTree = "<group>"; };
 		D197B6E47F5F979A8C154E9A /* ActiveNetworkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveNetworkView.swift; sourceTree = "<group>"; };
@@ -1264,13 +1288,17 @@
 		D197B84A2DC8436AF31CAF6A /* SofaInitialResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SofaInitialResponse.swift; sourceTree = "<group>"; };
 		D197B86A198E11D1255A9721 /* getFeaturedApps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getFeaturedApps.json; sourceTree = "<group>"; };
 		D197B8E798FCD39B97824BBA /* retrieveUser.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = retrieveUser.json; sourceTree = "<group>"; };
+		D197B9998A8A84CC265C1772 /* ChatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatButton.swift; sourceTree = "<group>"; };
 		D197BA847282226E502C8CEE /* getTopRatedPublicUsers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getTopRatedPublicUsers.json; sourceTree = "<group>"; };
+		D197BAAFB2F184D062E0B675 /* SofaStatusTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SofaStatusTest.swift; sourceTree = "<group>"; };
 		D197BAEA583CAF9862D17B38 /* ActiveNetworkDisplaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveNetworkDisplaying.swift; sourceTree = "<group>"; };
+		D197BAEBA12E2D8F04A0F846 /* SofaStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SofaStatus.swift; sourceTree = "<group>"; };
 		D197BB02C1FCC52F69B81E12 /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		D197BB03F2BFF88371C66F25 /* createUnsignedTransaction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createUnsignedTransaction.json; sourceTree = "<group>"; };
 		D197BB0710786F9F642F4318 /* score.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = score.json; sourceTree = "<group>"; };
 		D197BB4FC8D408B73FE253E5 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		D197BBCB2066BD96A45C417B /* PersonalProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalProfileViewController.swift; sourceTree = "<group>"; };
+		D197BBE7ED942198265AED9B /* String+nsRangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+nsRangeTests.swift"; sourceTree = "<group>"; };
 		D197BC051BEE35DB98BD053F /* SofaInitialRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SofaInitialRequest.swift; sourceTree = "<group>"; };
 		D197BC29CA8C5D37D1FA122F /* TestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppDelegate.h; sourceTree = "<group>"; };
 		D197BC2A4D26A2F961C2E33E /* SofaWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SofaWrapper.swift; sourceTree = "<group>"; };
@@ -1282,6 +1310,7 @@
 		D197BDA113837D7DCFE1A66F /* ExchangeRateAPIClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRateAPIClientTests.swift; sourceTree = "<group>"; };
 		D197BDBBB0DE754639B7005B /* ProfileEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditController.swift; sourceTree = "<group>"; };
 		D197BFC186F1EEBDC8FD45B1 /* transactionSkeleton.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transactionSkeleton.json; sourceTree = "<group>"; };
+		D197BFD8FAC1FBE64984D60C /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		E1A95D541E6EF092002762DA /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		E2C0C38CD39DA83E3AE9415C /* Pods-CocoaPods-Debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaPods-Debug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaPods-Debug/Pods-CocoaPods-Debug.debug.xcconfig"; sourceTree = "<group>"; };
 		E67683551F4464980014B2D4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
@@ -1447,6 +1476,8 @@
 				D197B6AD4DEFD836C0ECA908 /* SofaWrapperTests.swift */,
 				D197B0B3F554858E7196CD70 /* ToshiErrorTests.swift */,
 				33F1B9A61FCC3E3900D186AB /* TokenUserTests.swift */,
+				D197BAAFB2F184D062E0B675 /* SofaStatusTest.swift */,
+				D197BBE7ED942198265AED9B /* String+nsRangeTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1821,6 +1852,7 @@
 				A9AC740D1E78051F00365029 /* TitleLabel.swift */,
 				D197BD136059B5C238CB3425 /* OfflineAlertView.swift */,
 				D197B52C452CE2763BB4976A /* DoubleImageView.swift */,
+				D197B18261400D5175ADC6C7 /* AcceptDeclineButtonsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1907,6 +1939,7 @@
 				D197B494213B9F6EC5413D88 /* YapDatabaseViewConnection+Additions.swift */,
 				2BF634501F7D568C00235C67 /* UIImage+Utils.h */,
 				2BF634511F7D568C00235C67 /* UIImage+Utils.m */,
+				D197B695935159A20363BBF9 /* String+nsRange.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2052,6 +2085,7 @@
 				A976002B1F8F711C00D1C79E /* ChatMenuTableViewController.swift */,
 				A91D729E1F877FFA0093420C /* ChatViewController.swift */,
 				A91D729F1F877FFA0093420C /* ChatViewModel.swift */,
+				D197B9998A8A84CC265C1772 /* ChatButton.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2169,6 +2203,7 @@
 				A9E1DCCF1F1E1989001A4ABE /* MessagesPaymentCell.swift */,
 				A9E1DCE41F1E5C64001A4ABE /* MessagesStatusCell.swift */,
 				A9E1DCD11F1E1989001A4ABE /* MessagesTextCell.swift */,
+				D197BFD8FAC1FBE64984D60C /* StatusCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2246,6 +2281,7 @@
 				D197B84A2DC8436AF31CAF6A /* SofaInitialResponse.swift */,
 				D197BC051BEE35DB98BD053F /* SofaInitialRequest.swift */,
 				D197B5AD370809E7D2EB3631 /* SofaCommand.swift */,
+				D197BAEBA12E2D8F04A0F846 /* SofaStatus.swift */,
 			);
 			path = SofaWrappers;
 			sourceTree = "<group>";
@@ -3029,6 +3065,9 @@
 				D197B0896EF91C2CCF4C5D78 /* SofaIdentifierTests.swift in Sources */,
 				D197B329C25288ECA41EC3C8 /* SofaWrapperTests.swift in Sources */,
 				33643DC51FD6D32800229BE2 /* PasswordValidatorTests.swift in Sources */,
+				D197B404D7DAE06ADBAA992D /* SofaStatusTest.swift in Sources */,
+				D197BC5E2A33FB5B00A55942 /* String+nsRange.swift in Sources */,
+				D197B6F01E52F247B8982310 /* String+nsRangeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3251,8 +3290,13 @@
 				D197B329D1F28B5F7868DE4D /* ProfileEditController.swift in Sources */,
 				D197B99E1E1E4A6020699D14 /* ProfileViewController.swift in Sources */,
 				D197BFF1B944A12C9733439F /* ProfileView.swift in Sources */,
+				D197B1E9BB5E12653D8EE2CC /* SofaStatus.swift in Sources */,
+				D197B844B1C67758B2A0E9F2 /* StatusCell.swift in Sources */,
+				D197B38DAA052C5A2FC57DA0 /* String+nsRange.swift in Sources */,
 				D197B6DFB8BD6A1EBEEF4BA5 /* DoubleAvatarTitleSubtitleCell.swift in Sources */,
 				D197B4F1934405EADD429871 /* DoubleImageView.swift in Sources */,
+				D197B1EB92E75AA88459C940 /* AcceptDeclineButtonsView.swift in Sources */,
+				D197B4C9ACAC2B6A418AB2E2 /* ChatButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3475,8 +3519,13 @@
 				D197BE83E68416D3FA0AE9BF /* ProfileEditController.swift in Sources */,
 				D197B7826883306A72319E51 /* ProfileViewController.swift in Sources */,
 				D197B4267BE0D9E6F9357723 /* ProfileView.swift in Sources */,
+				D197BADE7B88BF0539D8646B /* SofaStatus.swift in Sources */,
+				D197B57BA2EA6533D6523DB0 /* StatusCell.swift in Sources */,
+				D197BBE91E49D7B9DCD1B17D /* String+nsRange.swift in Sources */,
 				D197BEE006020E4B5FB967B1 /* DoubleAvatarTitleSubtitleCell.swift in Sources */,
 				D197B2196AD7EBEE1F16354C /* DoubleImageView.swift in Sources */,
+				D197B14BC2EF3AC740372100 /* AcceptDeclineButtonsView.swift in Sources */,
+				D197B1573E01CAB1B093EBB9 /* ChatButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3699,8 +3748,13 @@
 				D197BADA32392E95EA354C18 /* ProfileEditController.swift in Sources */,
 				D197B47D98009339295B1A5C /* ProfileViewController.swift in Sources */,
 				D197BBA31772C24F264C2D3B /* ProfileView.swift in Sources */,
+				D197B4827BED8F3A5BAB5CB8 /* SofaStatus.swift in Sources */,
+				D197BBDB018E3C6EE3CA3B1B /* StatusCell.swift in Sources */,
+				D197B006BD046DC2E6B46351 /* String+nsRange.swift in Sources */,
 				D197BBAFEA21AFA96FF5EB30 /* DoubleAvatarTitleSubtitleCell.swift in Sources */,
 				D197BDCFFA301DDA7C290BBB /* DoubleImageView.swift in Sources */,
+				D197B2103355CD8C1BFE1537 /* AcceptDeclineButtonsView.swift in Sources */,
+				D197B76575751DB2103547AB /* ChatButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

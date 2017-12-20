@@ -21,6 +21,7 @@ enum GroupItemType: Int {
     case isPublic
     case participant
     case addParticipant
+    case exitGroup
 }
 
 struct GroupInfo {
@@ -35,6 +36,8 @@ struct GroupInfo {
 protocol GroupViewModelCompleteActionDelegate: class {
 
     func groupViewModelDidFinishCreateOrUpdate()
+    func groupViewModelDidStartCreateOrUpdate()
+    func groupViewModelDidRequireReload(_ viewModel: GroupViewModelProtocol)
 }
 
 protocol GroupViewModelProtocol: class {
@@ -46,6 +49,8 @@ protocol GroupViewModelProtocol: class {
     var imagePickerCameraActionTitle: String { get }
     var imagePickerLibraryActionTitle: String { get }
     var imagePickerCancelActionTitle: String { get }
+
+    var groupThread: TSGroupThread? { get }
 
     var errorAlertTitle: String { get }
     var errorAlertMessage: String { get }

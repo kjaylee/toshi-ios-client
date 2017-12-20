@@ -2,7 +2,7 @@
 
 ## Running the project
 
-- Open `Token.xcworkspace` and run
+- Open `Toshi.xcworkspace` and run
 
 ### Code formatting
 

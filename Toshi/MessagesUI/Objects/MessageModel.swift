@@ -16,6 +16,7 @@ struct MessageModel {
     var title: String?
     var subtitle: String?
     let text: String?
+    let attributedText: NSAttributedString?
     let isOutgoing: Bool
 
     var identifier: String {
@@ -53,6 +54,7 @@ struct MessageModel {
 
         subtitle = message.subtitle
         text = message.text
+        attributedText = message.attributedText
 
         signalMessage = message.signalMessage
         sofaWrapper = message.sofaWrapper
@@ -81,6 +83,9 @@ struct MessageModel {
             }
             subtitle = message.ethereumValueString
 
+        } else if message.sofaWrapper?.type == .status {
+            type = .status
+            isActionable = true
         } else if message.image != nil {
             type = .image
             isActionable = false

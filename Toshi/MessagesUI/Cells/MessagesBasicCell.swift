@@ -261,6 +261,7 @@ class MessagesBasicCell: UITableViewCell {
         avatarImageView.image = nil
         messagesCornerView.image = nil
         sentState = .undefined
+        isUserInteractionEnabled = true
     }
 
     @objc private func didTapAvatarImageView(_ gesture: UITapGestureRecognizer) {

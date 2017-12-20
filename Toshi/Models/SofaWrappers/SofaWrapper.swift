@@ -23,6 +23,7 @@ import Foundation
     @objc static let initialResponse = SofaType.initialResponse.rawValue
     @objc static let paymentRequest = SofaType.paymentRequest.rawValue
     @objc static let payment = SofaType.payment.rawValue
+    @objc static let status = SofaType.status.rawValue
 }
 
 enum SofaType: String {
@@ -33,6 +34,7 @@ enum SofaType: String {
     case initialResponse = "SOFA::Init:"
     case paymentRequest = "SOFA::PaymentRequest:"
     case payment = "SOFA::Payment:"
+    case status = "SOFA::Status:"
 
     init(sofa: String?) {
         guard let sofa = sofa else {
@@ -53,6 +55,8 @@ enum SofaType: String {
             self = .paymentRequest
         } else if sofa.hasPrefix(SofaType.payment.rawValue) {
             self = .payment
+        } else if sofa.hasPrefix(SofaType.payment.rawValue) {
+            self = .status
         } else {
             self = .none
         }
@@ -88,6 +92,8 @@ class SofaWrapper: SofaWrapperProtocol {
             return SofaPaymentRequest(content: content)
         case .payment:
             return SofaPayment(content: content)
+        case .status:
+            return SofaStatus(content: content)
         case .none:
             return SofaWrapper(content: "") // should probably crash instead
         }

@@ -42,6 +42,9 @@ final class GroupInfoConfigurator: CellConfigurator {
         case .avatarTitle:
             cell.titleTextField.isUserInteractionEnabled = true
             cell.titleTextField.returnKeyType = .done
+        case .exitGroup:
+            cell.titleTextField.textAlignment = .center
+            cell.titleTextField.textColor = Theme.errorColor
         default:
             break
         }

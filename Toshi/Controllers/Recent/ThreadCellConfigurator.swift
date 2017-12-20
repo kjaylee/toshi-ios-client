@@ -49,7 +49,7 @@ final class ThreadCellConfigurator: CellConfigurator {
             title = thread.name()
         } else if let recipient = self.recipient(for: thread) {
             avatar = AvatarManager.shared.cachedAvatar(for: recipient.avatarPath) ?? UIImage(named: "avatar-placeholder")
-            title = recipient.nameOrDisplayUsername
+            title = recipient.nameOrDisplayName
         }
 
         if let message = thread.messages.last, let messageBody = message.body {

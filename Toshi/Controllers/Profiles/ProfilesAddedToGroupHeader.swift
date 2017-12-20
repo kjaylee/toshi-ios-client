@@ -19,7 +19,7 @@ import UIKit
 
 class ProfilesAddedToGroupHeader: UIView {
     
-    lazy var profilesAddedLabel: UILabel = {
+    private lazy var profilesAddedLabel: UILabel = {
         let label = UILabel(withAutoLayout: true)
         label.numberOfLines = 0
         return label
@@ -32,15 +32,21 @@ class ProfilesAddedToGroupHeader: UIView {
         return view
     }()
     
+    private var margin: CGFloat = 0
+    
     convenience init(margin: CGFloat) {
         self.init(withAutoLayout: true)
+        self.margin = margin
         addSubview(profilesAddedLabel)
         addSubview(separatorView)
         
         separatorView.height(.lineHeight)
         separatorView.edgesToSuperview(excluding: .top)
         
-        profilesAddedLabel.edgesToSuperview(insets: UIEdgeInsets(top: margin, left: margin, bottom: margin, right: -margin))
+        profilesAddedLabel.edgesToSuperview(insets: UIEdgeInsets(top: margin,
+                                                                 left: margin,
+                                                                 bottom: margin,
+                                                                 right: -margin))
         updateDisplay(with: [])
     }
     
@@ -56,7 +62,7 @@ class ProfilesAddedToGroupHeader: UIView {
         
         let toAttributedString = NSMutableAttributedString(string: Localized("profiles_add_to_group_prefix"), attributes: nonNameAttributes)
         
-        let nameStrings = sortedProfiles.map { NSAttributedString(string: $0.name, attributes: [ .foregroundColor: Theme.tintColor ]) }
+        let nameStrings = sortedProfiles.map { NSAttributedString(string: $0.nameOrDisplayName, attributes: [ .foregroundColor: Theme.tintColor ]) }
         
         // `join(with:)` doesn't work on attributed strings, so:
         let singleNamesString = nameStrings.reduce(NSMutableAttributedString(), { accumulated, next in

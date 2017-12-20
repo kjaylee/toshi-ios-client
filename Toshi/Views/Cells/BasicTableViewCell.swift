@@ -18,6 +18,7 @@ import UIKit
 import TinyConstraints
 
 protocol BasicCellActionDelegate: class {
+
     func didChangeSwitchState(_ cell: BasicTableViewCell, _ state: Bool)
     func didTapLeftImage(_ cell: BasicTableViewCell)
     func didFinishTitleInput(_ cell: BasicTableViewCell, text: String?)

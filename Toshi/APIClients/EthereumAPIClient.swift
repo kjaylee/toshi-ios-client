@@ -62,7 +62,7 @@ class EthereumAPIClient: NSObject {
         super.init()
     }
 
-    public func createUnsignedTransaction(parameters: [String: Any], completion: @escaping ((_ unsignedTransaction: String?, _ error: ToshiError?) -> Void)) {
+    func createUnsignedTransaction(parameters: [String: Any], completion: @escaping ((_ unsignedTransaction: String?, _ error: ToshiError?) -> Void)) {
 
         transactionSkeleton(for: parameters) { skeleton, error in
             let transaction = skeleton.transaction
@@ -73,7 +73,7 @@ class EthereumAPIClient: NSObject {
         }
     }
 
-    public func transactionSkeleton(for parameters: [String: Any], completion: @escaping ((_ skeleton: TransactionSkeleton, _ error: ToshiError?) -> Void)) {
+    func transactionSkeleton(for parameters: [String: Any], completion: @escaping ((_ skeleton: TransactionSkeleton, _ error: ToshiError?) -> Void)) {
 
         let json = RequestParameter(parameters)
 

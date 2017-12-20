@@ -143,6 +143,12 @@ class Message: NSObject {
         }
     }
 
+    var attributedText: NSAttributedString? {
+        guard let sofaWrapper = self.sofaWrapper, sofaWrapper.type == .status else { return nil }
+
+        return (sofaWrapper as? SofaStatus)?.attributedText
+    }
+
     func uniqueIdentifier() -> String {
         return self.messageId
     }

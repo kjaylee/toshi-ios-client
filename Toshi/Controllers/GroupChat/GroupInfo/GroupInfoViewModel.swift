@@ -20,15 +20,23 @@ final class GroupInfoViewModel {
 
     let filteredDatabaseViewName = "filteredDatabaseViewName"
 
-    private var groupModel: TSGroupModel
+    private var thread: TSGroupThread
+
     private var groupInfo: GroupInfo {
         didSet {
             setup()
+
+            let oldGroupInfo = oldValue
+            if oldGroupInfo.participantsIDs.count != groupInfo.participantsIDs.count {
+                completeActionDelegate?.groupViewModelDidRequireReload(self)
+            }
         }
     }
 
-    init(_ groupModel: TSGroupModel) {
-        self.groupModel = groupModel
+    init(_ groupThread: TSGroupThread) {
+        self.thread = groupThread
+        let groupModel = groupThread.groupModel
+
         groupInfo = GroupInfo()
         groupInfo.title = groupModel.groupName
         groupInfo.participantsIDs = groupModel.groupMemberIds
@@ -51,11 +59,26 @@ final class GroupInfoViewModel {
         notificationsData.tag = GroupItemType.notifications.rawValue
         let settingsSectionData = TableSectionData(cellsData: [notificationsData], headerTitle: Localized("new_group_settings_header_title"))
 
+        let participantsSectionData = setupParticipantsSection()
+
+        let leaveGroupCellData = TableCellData(title: Localized("group_info_leave_group_title"))
+        leaveGroupCellData.tag = GroupItemType.exitGroup.rawValue
+
+        let exitGroupSectionData = TableSectionData(cellsData: [leaveGroupCellData])
+
+        models = [avatarTitleSectionData, settingsSectionData, participantsSectionData, exitGroupSectionData]
+    }
+
+    private func setupParticipantsSection() -> TableSectionData {
         let addParticipantsData = TableCellData(title: Localized("new_group_add_participants_action_title"))
         addParticipantsData.tag = GroupItemType.addParticipant.rawValue
 
         var participantsCellData: [TableCellData] = [addParticipantsData]
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            CrashlyticsLogger.log("Failed to access app delegate")
+            fatalError("Can't access app delegate")
+        }
+
         let members = appDelegate.contactsManager.tokenContacts.filter { groupInfo.participantsIDs.contains($0.address) }
         let sortedMembers = members.sorted { $0.username < $1.username }
 
@@ -65,18 +88,25 @@ final class GroupInfoViewModel {
             participantsCellData.append(cellData)
         }
 
-        let headerTitle = String(format: Localized("group_participants_header_title"), members.count)
-        let addParticipantsSectionData = TableSectionData(cellsData: participantsCellData, headerTitle: headerTitle)
+        if groupInfo.participantsIDs.contains(Cereal.shared.address), let user = TokenUser.current {
+            let cellData = TableCellData(title: user.name, subtitle: user.displayUsername, leftImage: AvatarManager.shared.cachedAvatar(for: user.avatarPath))
+            cellData.tag = GroupItemType.participant.rawValue
+            participantsCellData.append(cellData)
+        }
 
-        models = [avatarTitleSectionData, settingsSectionData, addParticipantsSectionData]
+        let headerTitle = String(format: Localized("group_participants_header_title"), groupInfo.participantsIDs.count)
+
+        return TableSectionData(cellsData: participantsCellData, headerTitle: headerTitle)
     }
 
     @objc private func updateGroup() {
-        guard let updatedGroupModel = TSGroupModel(title: groupInfo.title, memberIds: NSMutableArray(array: groupInfo.participantsIDs), image: groupInfo.avatar, groupId: groupModel.groupId) else { return }
+        guard let updatedGroupModel = TSGroupModel(title: groupInfo.title, memberIds: NSMutableArray(array: groupInfo.participantsIDs), image: groupInfo.avatar, groupId: thread.groupModel.groupId) else { return }
 
-        ChatInteractor.updateGroup(with: updatedGroupModel)
+        completeActionDelegate?.groupViewModelDidStartCreateOrUpdate()
 
-        completionDelegate?.groupViewModelDidFinishCreateOrUpdate()
+        ChatInteractor.updateGroup(with: updatedGroupModel, completion: { [weak self] _ in
+            self?.completeActionDelegate?.groupViewModelDidFinishCreateOrUpdate()
+        })
     }
 }
 
@@ -114,6 +144,8 @@ extension GroupInfoViewModel: GroupViewModelProtocol {
     func updateNotificationsState(to notificationsOn: Bool) {
         groupInfo.notificationsOn = notificationsOn
     }
+
+    var groupThread: TSGroupThread? { return thread }
 
     var rightBarButtonSelector: Selector { return #selector(updateGroup) }
 

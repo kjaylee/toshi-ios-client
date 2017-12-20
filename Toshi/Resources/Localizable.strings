@@ -270,11 +270,28 @@
 "new_group_public_settings_title" = "Public";
 "new_group_notifications_settings_title" = "Notifications";
 
+"group_info_leave_group_title" = "Leave Group";
+"group_info_leave_confirmation_message" = "Do you want to leave this group?";
+"group_info_leave_action_title" = "Leave";
+"group_info_leave_group_failure_message" = "Failed to leave the group.\nPlease try again.";
+
 "sign_action_title" = "Sign";
 "sign_alert_title" = "This webpage is requesting your signature";
 
+/* Status messages */
+"status_type_leave" = "%@ left the group.";
+"status_type_added" = "%@ added %@ to the group.";
+"status_type_change_photo" = "%@ changed the group cover photo.";
+"status_type_rename" = "%@ renamed the group to %@.";
+"status_type_make_public" = "%@ set the group as public.";
+"status_type_make_private" = "%@ set the group as private.";
+
 /* Group Chat */
 "profiles_new_group" = "New Group";
+"accept_button_title" = "Accept";
+"decline_button_title" = "Decline";
 
 /* Sharing */
 "sharing_action_item" = "Get Toshi, available for iOS and Android! (https://www.toshi.org)";
+
+

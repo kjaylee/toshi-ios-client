@@ -23,6 +23,11 @@ final class NewGroupViewModel {
     private var groupInfo: GroupInfo {
         didSet {
             setup()
+
+            let oldGroupInfo = oldValue
+            if oldGroupInfo.participantsIDs.count != groupInfo.participantsIDs.count {
+                completeActionDelegate?.groupViewModelDidRequireReload(self)
+            }
         }
     }
 
@@ -65,9 +70,12 @@ final class NewGroupViewModel {
     @objc private func createGroup() {
         groupInfo.participantsIDs.append(Cereal.shared.address)
 
-        ChatInteractor.createGroup(with: NSMutableArray(array: groupInfo.participantsIDs), name: groupInfo.title, avatar: groupInfo.avatar)
+        completeActionDelegate?.groupViewModelDidStartCreateOrUpdate()
 
-        completeActionDelegate?.groupViewModelDidFinishCreateOrUpdate()
+        ChatInteractor.createGroup(with: NSMutableArray(array: groupInfo.participantsIDs), name: groupInfo.title, avatar: groupInfo.avatar, completion: { [weak self] _ in
+
+            self?.completeActionDelegate?.groupViewModelDidFinishCreateOrUpdate()
+        })
     }
 }
 
@@ -105,6 +113,8 @@ extension NewGroupViewModel: GroupViewModelProtocol {
     func updateParticipantsIds(to participantsIds: [String]) {
         groupInfo.participantsIDs = participantsIDs
     }
+
+    var groupThread: TSGroupThread? { return nil }
 
     var rightBarButtonSelector: Selector {
         return #selector(createGroup)

@@ -107,11 +107,11 @@ class Cereal: NSObject {
             mnemonic = BTCMnemonic(entropy: entropy, password: nil, wordListType: BTCMnemonicWordListType.english)!
         }
 
-        let idKeychain = Cereal.idKeychain(from: mnemonic)
+        let idKeychain: BTCKeychain = Cereal.idKeychain(from: mnemonic)
         let idPrivateKey = idKeychain.key.privateKey.hexadecimalString()
         idCereal = EtherealCereal(privateKey: idPrivateKey)
 
-        let walletKeychain = Cereal.walletKeychain(from: mnemonic)
+        let walletKeychain: BTCKeychain = Cereal.walletKeychain(from: mnemonic)
         let walletPrivateKey = walletKeychain.key.privateKey.hexadecimalString()
         walletCereal = EtherealCereal(privateKey: walletPrivateKey)
 

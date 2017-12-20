@@ -117,6 +117,8 @@ final class ProfilesViewController: UITableViewController, Emptiable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(ProfileCell.self)
 
         setupTableHeader()
         setupNavigationBarButtons()
@@ -127,8 +129,6 @@ final class ProfilesViewController: UITableViewController, Emptiable {
         tableView.backgroundColor = Theme.viewBackgroundColor
         tableView.separatorStyle = .none
 
-        tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.reuseIdentifier)
-        
         let appearance = UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self])
         appearance.setTitleColor(Theme.greyTextColor, for: .normal)
         
@@ -143,8 +143,13 @@ final class ProfilesViewController: UITableViewController, Emptiable {
         
         preferLargeTitleIfPossible(true)
 
-        guard dataSource.type != .updateGroupChat else { return }
-        dataSource.excludedProfilesIds = []
+        showOrHideEmptyState()
+
+        dataSource.searchText = ""
+        
+        if dataSource.type != .updateGroupChat {
+            dataSource.excludedProfilesIds = []
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -185,11 +190,8 @@ final class ProfilesViewController: UITableViewController, Emptiable {
     }
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.reuseIdentifier, for: indexPath) as? ProfileCell else {
-            assertionFailure("This is not a profile cell!")
-            return UITableViewCell()
-        }
-
+        let cell = tableView.dequeue(ProfileCell.self, for: indexPath)
+        
         guard let profile = dataSource.profile(at: indexPath) else {
             assertionFailure("Could not get profile at indexPath: \(indexPath)")
             return cell
@@ -244,15 +246,17 @@ final class ProfilesViewController: UITableViewController, Emptiable {
             tableView.tableHeaderView = ProfilesHeaderView(type: type, delegate: self)
         } else {
             tableView.tableHeaderView = ProfilesHeaderView(with: searchController.searchBar, type: type, delegate: self)
-            tableView.layoutIfNeeded()
+
+            if Navigator.topViewController == self {
+                tableView.layoutIfNeeded()
+            }
         }
     }
     
     private func setupEmptyView() {
         view.addSubview(emptyView)
         emptyView.actionButton.addTarget(self, action: #selector(emptyViewButtonPressed(_:)), for: .touchUpInside)
-        emptyView.edges(to: layoutGuide(), insets: UIEdgeInsets(top: tableView.tableHeaderView?.frame.height ?? 0, left: 0, bottom: 0, right: 0))
-        showOrHideEmptyState()
+        emptyView.edges(to: layoutGuide())
     }
     
     private func setupNavigationBarButtons() {
@@ -280,7 +284,9 @@ final class ProfilesViewController: UITableViewController, Emptiable {
     }
     
     private func showOrHideEmptyState() {
-        emptyView.isHidden = (searchController.isActive || !dataSource.isEmpty)
+        let emptyViewHidden = (searchController.isActive || !dataSource.isEmpty)
+        emptyView.isHidden = emptyViewHidden
+        tableView.tableHeaderView?.isHidden = !emptyViewHidden
     }
     
     @objc private func didTapCancel(_ button: UIBarButtonItem) {
@@ -365,7 +371,7 @@ extension ProfilesViewController: UISearchResultsUpdating {
     
     public func updateSearchResults(for searchController: UISearchController) {
 
-        self.dataSource.searchText = searchController.searchBar.text ?? ""
+        dataSource.searchText = searchController.searchBar.text ?? ""
     }
 }
 
@@ -410,5 +416,7 @@ extension ProfilesViewController: ProfilesDatasourceChangesOutput {
         } else {
             tableView.reloadData()
         }
+
+        showOrHideEmptyState()
     }
 }

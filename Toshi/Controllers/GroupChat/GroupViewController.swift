@@ -22,6 +22,8 @@ final class GroupViewController: UIViewController {
     private var configurator: CellConfigurator
     private var viewModel: GroupViewModelProtocol
 
+    private lazy var activityView = self.defaultActivityIndicator()
+
     var scrollViewBottomInset: CGFloat = 0.0
 
     var keyboardWillShowSelector: Selector {
@@ -87,6 +89,7 @@ final class GroupViewController: UIViewController {
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([.font: Theme.bold(size: 17.0), .foregroundColor: Theme.tintColor], for: .normal)
 
         addSubviewsAndConstraints()
+        setupActivityIndicator()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -172,25 +175,55 @@ final class GroupViewController: UIViewController {
         }
     }
 
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        // need to initialize with large style which is available only white, thus need to set color later
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityIndicator.color = Theme.lightGreyTextColor
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-
-        return activityIndicator
-    }()
-
     private func adjustDoneButton() {
         navigationItem.rightBarButtonItem?.isEnabled = viewModel.isDoneButtonEnabled
     }
 
     private func showUserInfo(with userId: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let users = appDelegate.contactsManager.tokenContacts.filter { $0.address == userId }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate, let currentUser = TokenUser.current else { return }
+        var users = appDelegate.contactsManager.tokenContacts.filter { $0.address == userId }
+        users.append(currentUser)
+
         guard let user = users.first else { return }
         let profileController = ProfileViewController(profile: user)
         navigationController?.pushViewController(profileController, animated: true)
+    }
+
+    private func presentExitGroupAlert() {
+        let alertController = UIAlertController(title: nil, message: Localized("group_info_leave_confirmation_message"), preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: Localized("cancel_action_title"), style: .cancel, handler: nil))
+
+        let exitAction = UIAlertAction(title: Localized("group_info_leave_action_title"), style: .destructive) { _ in
+            self.exitGroup()
+        }
+
+        alertController.addAction(exitAction)
+
+        present(alertController, animated: true, completion: nil)
+    }
+
+    private func exitGroup() {
+        guard let group = viewModel.groupThread else { return }
+
+        showActivityIndicator()
+        
+        ChatInteractor.sendLeaveGroupMessage(group, completion: { [weak self] success in
+
+            self?.hideActivityIndicator()
+
+            if success {
+                self?.navigationController?.popToRootViewController(animated: true)
+            } else {
+                let alertController = UIAlertController.dismissableAlert(title: Localized("error_title"), message: Localized("group_info_leave_group_failure_message"))
+                self?.present(alertController, animated: true, completion: nil)
+            }
+        })
+    }
+}
+
+extension GroupViewController: ActivityIndicating {
+    var activityIndicator: UIActivityIndicatorView {
+        return activityView
     }
 }
 
@@ -203,7 +236,15 @@ extension GroupViewController: KeyboardAdjustable {
 
 extension GroupViewController: GroupViewModelCompleteActionDelegate {
 
+    func groupViewModelDidStartCreateOrUpdate() {
+        view.endEditing(true)
+
+        showActivityIndicator()
+    }
+
     func groupViewModelDidFinishCreateOrUpdate() {
+
+        hideActivityIndicator()
 
         guard viewModel is NewGroupViewModel else {
             self.navigationController?.popViewController(animated: true)
@@ -213,6 +254,10 @@ extension GroupViewController: GroupViewModelCompleteActionDelegate {
         navigationController?.popToRootViewController(animated: true)
 
         Navigator.topViewController?.dismiss(animated: false, completion: nil)
+    }
+
+    func groupViewModelDidRequireReload(_ viewModel: GroupViewModelProtocol) {
+        tableView.reloadData()
     }
 }
 
@@ -258,6 +303,8 @@ extension GroupViewController: UITableViewDelegate {
             let profilesViewController = ProfilesViewController(datasource: datasource, output: self)
 
             navigationController?.pushViewController(profilesViewController, animated: true)
+        case .exitGroup:
+            presentExitGroupAlert()
         default:
             break
         }

@@ -154,6 +154,10 @@ extension Theme {
     static var offlineAlertBackgroundColor: UIColor {
         return UIColor(hex: "5B5B5B")
     }
+
+    static var inactiveButtonColor: UIColor {
+        return UIColor(hex: "B6BCBF")
+    }
 }
 
 extension Theme {
@@ -180,7 +184,11 @@ extension Theme {
     static func preferredFootnote(range: ClosedRange<CGFloat> = 13...30) -> UIFont {
         return dynamicType(for: regular(size: 13), withStyle: .footnote, inSizeRange: range)
     }
-    
+     
+    static func preferredFootnoteBold(range: ClosedRange<CGFloat> = 13...30) -> UIFont {
+        return dynamicType(for: bold(size: 13), withStyle: .footnote, inSizeRange: range)
+    }
+
     static func preferredTitle1(range: ClosedRange<CGFloat> = 34...40) -> UIFont {
         return dynamicType(for: bold(size: 34), withStyle: .title1, inSizeRange: range)
     }

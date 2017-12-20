@@ -35,7 +35,7 @@ class ProfilesDataSource: NSObject {
     
     var isEmpty: Bool {
         let currentItemCount = mappings.numberOfItems(inSection: 0)
-        return currentItemCount == 0
+        return (currentItemCount == 0)
     }
 
     var searchText: String = "" {
@@ -291,7 +291,7 @@ class ProfilesDataSource: NSObject {
         let isDatabaseChanged = yapDatabaseChanges.rowChanges.count != 0 || yapDatabaseChanges.sectionChanges.count != 0
         
         guard isDatabaseChanged else { return }
-
+        
         self.changesOutput?.datasourceDidChange(self, yapDatabaseChanges: yapDatabaseChanges.rowChanges)
     }
 }

@@ -43,11 +43,11 @@ final class RecentViewController: SweetTableController, Emptiable {
 
         loadViewIfNeeded()
     }
-
+    
     required init?(coder _: NSCoder) {
-        fatalError()
+        fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -269,9 +269,7 @@ extension RecentViewController: UITableViewDelegate {
         let action = UITableViewRowAction(style: .destructive, title: "Delete") { _, indexPath in
             if let thread = self.dataSource.acceptedThread(at: indexPath) {
 
-                TSStorageManager.shared().dbReadWriteConnection?.asyncReadWrite { transaction in
-                    thread.remove(with: transaction)
-                }
+                ChatInteractor.deleteThread(thread)
             }
         }
 

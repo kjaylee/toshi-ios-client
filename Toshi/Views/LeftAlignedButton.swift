@@ -6,7 +6,7 @@ class LeftAlignedButton: UIControl {
     
     var icon: UIImage? {
         didSet {
-            iconImageView.image = icon
+            iconImageView.image = icon?.withRenderingMode(.alwaysTemplate)
         }
     }
     
@@ -18,11 +18,16 @@ class LeftAlignedButton: UIControl {
     
     var titleColor: UIColor? {
         didSet {
+            iconImageView.tintColor = titleColor
             titleLabel.textColor = titleColor
         }
     }
     
-    private lazy var iconImageView = UIImageView()
+    private lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .center
+        return imageView
+    }()
     
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
