@@ -61,7 +61,7 @@ final class NewGroupViewModel {
             participantsCellData.append(TableCellData(title: member.name, subtitle: member.displayUsername, leftImage: AvatarManager.shared.cachedAvatar(for: member.avatarPath)))
         }
 
-        let participantsHeaderTitle  = LocalizedPlural("group_participants_header_title", for: groupInfo.participantsIDs.count)
+        let participantsHeaderTitle = LocalizedPlural("group_participants_header_title", for: groupInfo.participantsIDs.count)
         let participantsSectionData = TableSectionData(cellsData: participantsCellData, headerTitle: participantsHeaderTitle)
 
         models = [avatarTitleSectionData, settingsSectionData, participantsSectionData]
