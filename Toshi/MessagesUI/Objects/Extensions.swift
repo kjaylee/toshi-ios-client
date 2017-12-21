@@ -142,3 +142,9 @@ extension UIBarButtonItem {
 func Localized(_ key: String, tableName: String? = nil, bundle: Bundle = Bundle.main, value: String? = nil, comment: String? = nil) -> String {
     return NSLocalizedString(key, tableName: tableName, bundle: bundle, value: value ?? "", comment: comment ?? "")
 }
+
+func LocalizedPlural(_ key: String, for count: Int, tableName: String? = nil, bundle: Bundle = Bundle.main, value: String? = nil, comment: String? = nil) -> String {
+    let format = NSLocalizedString(key, comment: comment ?? "")
+    
+    return String.localizedStringWithFormat(format, count)
+}
