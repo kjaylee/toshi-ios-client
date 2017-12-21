@@ -240,9 +240,12 @@
 		33EED15C1FE92E2600C51EAC /* TSGroupModel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EED15A1FE92C8B00C51EAC /* TSGroupModel+Additions.swift */; };
 		33EED15D1FE92E2600C51EAC /* TSGroupModel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EED15A1FE92C8B00C51EAC /* TSGroupModel+Additions.swift */; };
 		33F1B9A71FCC3E3900D186AB /* TokenUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F1B9A61FCC3E3900D186AB /* TokenUserTests.swift */; };
+		33F743F51FEBBFAB0070A848 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 33F743F31FEBBFAB0070A848 /* Localizable.stringsdict */; };
 		33F743F81FEBBFC50070A848 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F743F61FEBBFC40070A848 /* Localizable.strings */; };
 		33F743F91FEBBFD60070A848 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F743F61FEBBFC40070A848 /* Localizable.strings */; };
 		33F743FA1FEBBFD70070A848 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F743F61FEBBFC40070A848 /* Localizable.strings */; };
+		33F743FB1FEBBFDB0070A848 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 33F743F31FEBBFAB0070A848 /* Localizable.stringsdict */; };
+		33F743FC1FEBBFDC0070A848 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 33F743F31FEBBFAB0070A848 /* Localizable.stringsdict */; };
 		33FD936B1FE953480082B9D8 /* Dapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD936A1FE953480082B9D8 /* Dapp.swift */; };
 		33FD936D1FE95F4E0082B9D8 /* dapps.json in Resources */ = {isa = PBXBuildFile; fileRef = 33FD936C1FE95F4E0082B9D8 /* dapps.json */; };
 		33FD936E1FE960F00082B9D8 /* Dapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD936A1FE953480082B9D8 /* Dapp.swift */; };
@@ -1074,6 +1077,7 @@
 		33CF51401FD56EA000293FD1 /* ProfilesAddedToGroupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesAddedToGroupHeader.swift; sourceTree = "<group>"; };
 		33EED15A1FE92C8B00C51EAC /* TSGroupModel+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TSGroupModel+Additions.swift"; sourceTree = "<group>"; };
 		33F1B9A61FCC3E3900D186AB /* TokenUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUserTests.swift; sourceTree = "<group>"; };
+		33F743F41FEBBFAB0070A848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		33F743F71FEBBFC40070A848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33FD936A1FE953480082B9D8 /* Dapp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dapp.swift; sourceTree = "<group>"; };
 		33FD936C1FE95F4E0082B9D8 /* dapps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dapps.json; sourceTree = "<group>"; };
@@ -1822,6 +1826,7 @@
 				9F9238C21E24F1D2004BEEE0 /* LaunchScreen.storyboard */,
 				A9207AF51F6A8088003B79BF /* Libraries */,
 				33F743F61FEBBFC40070A848 /* Localizable.strings */,
+				33F743F31FEBBFAB0070A848 /* Localizable.stringsdict */,
 				9FAACCE21E31120600FB871D /* SF-UI-Text */,
 				9FA12BEA1E65CF59003705F6 /* Sounds */,
 				9F9238D01E24F402004BEEE0 /* Toshi-Bridging-Header.h */,
@@ -2605,6 +2610,7 @@
 				149F9AD81E72E29A00FB74AA /* SF-UI-Text-Regular.otf in Resources */,
 				84B2E4021EF3F6C3009927B2 /* LaunchScreen.storyboard in Resources */,
 				2BC85F7D1F0F939C00BCB171 /* InputCell.xib in Resources */,
+				33F743FC1FEBBFDC0070A848 /* Localizable.stringsdict in Resources */,
 				A9EE1F361F98CBCF00FB3889 /* SF-Pro-Display-Medium.otf in Resources */,
 				9FB36EAA1E7C27A300DB6F86 /* addContactApp.m4a in Resources */,
 				A9EE1F371F98CBCF00FB3889 /* SF-Pro-Display-Regular.otf in Resources */,
@@ -2637,6 +2643,7 @@
 				2B4BCD5B1F599BEA00F9E609 /* token.cer in Resources */,
 				9F78D9DE1EE93F61003A0B95 /* PaymentRequestInfoView.xib in Resources */,
 				2BC85F7C1F0F939C00BCB171 /* InputCell.xib in Resources */,
+				33F743F51FEBBFAB0070A848 /* Localizable.stringsdict in Resources */,
 				9FA12BF41E66CA42003705F6 /* messageReceived.m4a in Resources */,
 				9FEFEF641E66CE0000948277 /* scan.m4a in Resources */,
 				9FA12BF01E65D043003705F6 /* messageSent.m4a in Resources */,
@@ -2669,6 +2676,7 @@
 				A9603F7F1F4DABDC00BF57B1 /* SF-UI-Text-Regular.otf in Resources */,
 				A9603F801F4DABDC00BF57B1 /* LaunchScreen.storyboard in Resources */,
 				A9603F841F4DABDC00BF57B1 /* InputCell.xib in Resources */,
+				33F743FB1FEBBFDB0070A848 /* Localizable.stringsdict in Resources */,
 				A9EE1F311F98CBCF00FB3889 /* SF-Pro-Display-Medium.otf in Resources */,
 				A9603F891F4DABDC00BF57B1 /* addContactApp.m4a in Resources */,
 				A9EE1F321F98CBCF00FB3889 /* SF-Pro-Display-Regular.otf in Resources */,
@@ -3813,6 +3821,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		33F743F31FEBBFAB0070A848 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33F743F41FEBBFAB0070A848 /* Base */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		33F743F61FEBBFC40070A848 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
