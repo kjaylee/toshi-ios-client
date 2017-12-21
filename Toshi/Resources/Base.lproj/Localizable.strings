@@ -265,7 +265,6 @@
 "update_group_button_title" = "Update";
 "new_group_settings_header_title" = "Group settings";
 "new_group_add_participants_action_title" = "Add Participants";
-"group_participants_header_title" = "%d Participants";
 "new_group_public_settings_title" = "Public";
 "new_group_notifications_settings_title" = "Notifications";
 

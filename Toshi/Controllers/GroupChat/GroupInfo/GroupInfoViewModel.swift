@@ -94,8 +94,8 @@ final class GroupInfoViewModel {
             participantsCellData.append(cellData)
         }
 
-        let headerTitle = String(format: Localized("group_participants_header_title"), groupInfo.participantsIDs.count)
-
+        let headerTitle = LocalizedPlural("group_participants_header_title", for: groupInfo.participantsIDs.count)
+        
         return TableSectionData(cellsData: participantsCellData, headerTitle: headerTitle)
     }
 
