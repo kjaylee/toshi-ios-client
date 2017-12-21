@@ -1,6 +1,6 @@
 # Ethereum
 
-github "bakkenbaeck/EtherealCereal" ~> 0.1
+github "bakkenbaeck/EtherealCereal" ~> 0.2
 github "toshiapp/HDWallet" "9dc214e2cf6fe5702cff11c09db156e8aee523c9"
 
 # General

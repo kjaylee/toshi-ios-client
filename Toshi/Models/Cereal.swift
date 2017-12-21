@@ -147,6 +147,10 @@ class Cereal: NSObject {
         return walletCereal.sign(hex: hex)
     }
 
+    func signWithWallet(hash: String) -> String {
+        return walletCereal.sign(hash: hash)
+    }
+
     func signEthereumTransactionWithWallet(hex: String) -> String? {
         do {
             guard var rlp = try RLP.decode(from: hex) as? [Data] else {

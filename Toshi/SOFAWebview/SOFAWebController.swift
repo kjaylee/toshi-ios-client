@@ -22,6 +22,7 @@ final class SOFAWebController: UIViewController {
     enum Method: String {
         case getAccounts
         case signTransaction
+        case signMessage
         case signPersonalMessage
         case publishTransaction
         case approveTransaction
@@ -53,6 +54,7 @@ final class SOFAWebController: UIViewController {
         
         configuration.userContentController.add(self, name: Method.getAccounts.rawValue)
         configuration.userContentController.add(self, name: Method.signPersonalMessage.rawValue)
+        configuration.userContentController.add(self, name: Method.signMessage.rawValue)
         configuration.userContentController.add(self, name: Method.signTransaction.rawValue)
         configuration.userContentController.add(self, name: Method.publishTransaction.rawValue)
         configuration.userContentController.add(self, name: Method.approveTransaction.rawValue)
@@ -214,6 +216,30 @@ extension SOFAWebController: WKScriptMessageHandler {
                 }
             } else {
                 jsCallback(callbackId: callbackId, payload: "{\\\"error\\\": \\\"Invalid Message Body\\\"}")
+            }
+
+        case .signMessage:
+            guard let messageBody = message.body as? [String: Any], let msgParams = messageBody["msgParams"] as? [String: Any], let messageEncodedString = msgParams["data"] as? String, messageEncodedString.isValidSha3Hash else {
+                jsCallback(callbackId: callbackId, payload: "{\\\"error\\\": \\\"Invalid Message Body\\\"}")
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.presentPersonalMessageSignAlert("\(Localized("eth_sign_warning"))\n\n\(messageEncodedString)", callbackId: callbackId, signHandler: { [weak self] returnedCallbackId in
+
+                    var signature = "0x\(Cereal.shared.signWithWallet(hash: messageEncodedString))"
+
+                    let index = signature.index(signature.startIndex, offsetBy: 130)
+                    if let suffix = Int(signature.suffix(from: index)) {
+                        let resultSuffix = suffix + 27
+
+                        let truncated = signature.dropLast(2)
+                        let suffixHex = String(format: "%2X", resultSuffix)
+
+                        signature = truncated + suffixHex
+                        self?.jsCallback(callbackId: returnedCallbackId, payload: "{\\\"result\\\":\\\"\(signature)\\\"}")
+                    }
+                })
             }
 
         case .signTransaction:
