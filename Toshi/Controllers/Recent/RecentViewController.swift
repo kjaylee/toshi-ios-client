@@ -111,11 +111,11 @@ final class RecentViewController: SweetTableController, Emptiable {
         var cell = UITableViewCell(frame: .zero)
 
         if let firstUnacceptedThread = dataSource.unacceptedThread(at: IndexPath(row: 0, section: 0)) {
-            let firstImage = threadImage(for: firstUnacceptedThread) ?? UIImage(named: "avatar-placeholder")!
+            let firstImage = firstUnacceptedThread.avatar() ?? UIImage(named: "avatar-placeholder")!
 
             if let secondUnacceptedThread = dataSource.unacceptedThread(at: IndexPath(row: 1, section: 0)) {
 
-                let secondImage = threadImage(for: secondUnacceptedThread) ?? UIImage(named: "avatar-placeholder")!
+                let secondImage = secondUnacceptedThread.avatar() ?? UIImage(named: "avatar-placeholder")!
 
                 cellData = TableCellData(title: Localized("messages_requests_title"), subtitle: Localized("message_requests_description"), doubleImage: (firstImage: firstImage, secondImage: secondImage))
 
@@ -212,14 +212,6 @@ extension RecentViewController: UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         
         return cell
-    }
-
-    func threadImage(for thread: TSThread) -> UIImage? {
-        if thread.isGroupThread() {
-            return (thread as? TSGroupThread)?.groupModel.groupImage
-        } else {
-            return thread.image()
-        }
     }
 }
 

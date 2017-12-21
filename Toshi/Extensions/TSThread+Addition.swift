@@ -30,4 +30,12 @@ extension TSThread {
 
         return recipient
     }
+
+    func avatar() -> UIImage? {
+        if isGroupThread() {
+            return (self as? TSGroupThread)?.groupModel.groupImage
+        } else {
+            return image()
+        }
+    }
 }
