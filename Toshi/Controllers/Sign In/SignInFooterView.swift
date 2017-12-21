@@ -36,16 +36,12 @@ final class SignInFooterView: UIView {
     }()
     
     private var signInButtonTitle: String {
-        
         let remaining = SignInViewController.maxItemCount - numberOfMatches
         
-        switch remaining {
-        case 0:
+        if remaining == 0 {
             return Localized("passphrase_sign_in_button")
-        case 1:
-            return String(format: Localized("passphrase_sign_in_button_placeholder_singular"), remaining)
-        default:
-            return String(format: Localized("passphrase_sign_in_button_placeholder"), remaining)
+        } else {
+            return LocalizedPlural("passphrase_sign_in_button_placeholder", for: remaining)
         }
     }
     
@@ -59,20 +55,15 @@ final class SignInFooterView: UIView {
     var numberOfErrors: Int = 0 {
         didSet {
             guard numberOfErrors != oldValue else { return  }
-            let errorMessage: String
             
-            switch numberOfErrors {
-            case 0:
-                errorMessage = ""
+            guard numberOfErrors > 0 else {
                 errorLabel.isHidden = true
                 errorLabelTopConstraint?.isActive = false
                 signInButtonTopConstraint?.isActive = true
                 return
-            case 1:
-                errorMessage = Localized("passphrase_sign_in_error_singular")
-            default:
-                errorMessage = Localized("passphrase_sign_in_error")
             }
+            
+            let errorMessage = LocalizedPlural("passphrase_sign_in_error", for: numberOfErrors)
             
             errorLabel.isHidden = false
             signInButtonTopConstraint?.isActive = false
@@ -88,7 +79,7 @@ final class SignInFooterView: UIView {
                 .paragraphStyle: paragraphStyle
             ]
             
-            errorLabel.attributedText = NSMutableAttributedString(string: String(format: errorMessage, numberOfErrors), attributes: attributes)
+            errorLabel.attributedText = NSMutableAttributedString(string: errorMessage, attributes: attributes)
         }
     }
     

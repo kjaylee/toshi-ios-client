@@ -26,5 +26,37 @@
 			<string></string>
 		</dict>
 	</dict>
+	<key>passphrase_sign_in_button_placeholder</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@value@</string>
+		<key>value</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%i more word</string>
+			<key>other</key>
+			<string>%i more words</string>
+		</dict>
+	</dict>
+	<key>passphrase_sign_in_error</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@value@</string>
+		<key>value</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%i word you typed does not exist in passphrases.</string>
+			<key>other</key>
+			<string>%d of the words you typed do not exist in passphrases.</string>
+		</dict>
+	</dict>
 </dict>
 </plist>
