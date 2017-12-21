@@ -39,7 +39,6 @@
 		149F9AAC1E72E29A00FB74AA /* AppsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143186B81E49C4EA0025E9B7 /* AppsAPIClient.swift */; };
 		149F9AAD1E72E29A00FB74AA /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F04A7221E38D1400043534A /* QRCodeController.swift */; };
 		149F9AAE1E72E29A00FB74AA /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F21E0621E546A03000E90C6 /* PaymentController.swift */; };
-		149F9AD41E72E29A00FB74AA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FAACCB41E30F24100FB871D /* Localizable.strings */; };
 		149F9AD81E72E29A00FB74AA /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9FAACCEB1E31120600FB871D /* SF-UI-Text-Regular.otf */; };
 		14A769E11E72EC70007B4C1A /* DistributionTokenURLPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E4D8D11E72CB7500389DF9 /* DistributionTokenURLPaths.swift */; };
 		14E4D8D01E72CB6E00389DF9 /* DevelopmentTokenURLPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E4D8CF1E72CB6E00389DF9 /* DevelopmentTokenURLPaths.swift */; };
@@ -241,6 +240,9 @@
 		33EED15C1FE92E2600C51EAC /* TSGroupModel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EED15A1FE92C8B00C51EAC /* TSGroupModel+Additions.swift */; };
 		33EED15D1FE92E2600C51EAC /* TSGroupModel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EED15A1FE92C8B00C51EAC /* TSGroupModel+Additions.swift */; };
 		33F1B9A71FCC3E3900D186AB /* TokenUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F1B9A61FCC3E3900D186AB /* TokenUserTests.swift */; };
+		33F743F81FEBBFC50070A848 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F743F61FEBBFC40070A848 /* Localizable.strings */; };
+		33F743F91FEBBFD60070A848 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F743F61FEBBFC40070A848 /* Localizable.strings */; };
+		33F743FA1FEBBFD70070A848 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F743F61FEBBFC40070A848 /* Localizable.strings */; };
 		33FD936B1FE953480082B9D8 /* Dapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD936A1FE953480082B9D8 /* Dapp.swift */; };
 		33FD936D1FE95F4E0082B9D8 /* dapps.json in Resources */ = {isa = PBXBuildFile; fileRef = 33FD936C1FE95F4E0082B9D8 /* dapps.json */; };
 		33FD936E1FE960F00082B9D8 /* Dapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD936A1FE953480082B9D8 /* Dapp.swift */; };
@@ -353,7 +355,6 @@
 		9FA12BF01E65D043003705F6 /* messageSent.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9FA12BEF1E65D043003705F6 /* messageSent.m4a */; };
 		9FA12BF21E65D135003705F6 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA12BF11E65D135003705F6 /* SoundPlayer.swift */; };
 		9FA12BF41E66CA42003705F6 /* messageReceived.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9FA12BF31E66CA42003705F6 /* messageReceived.m4a */; };
-		9FAACCB51E30F24100FB871D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FAACCB41E30F24100FB871D /* Localizable.strings */; };
 		9FAACCD71E310C1100FB871D /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAACCD61E310C1100FB871D /* SettingsNavigationController.swift */; };
 		9FAACD021E31120600FB871D /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9FAACCEB1E31120600FB871D /* SF-UI-Text-Regular.otf */; };
 		9FAC46ED1E800C13005F76A9 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAC46EC1E800C13005F76A9 /* UIColor+Additions.swift */; };
@@ -637,7 +638,6 @@
 		A9603F711F4DABDC00BF57B1 /* requestPayment.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9FEFEF611E66CD6C00948277 /* requestPayment.m4a */; };
 		A9603F731F4DABDC00BF57B1 /* scan.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9FEFEF631E66CE0000948277 /* scan.m4a */; };
 		A9603F741F4DABDC00BF57B1 /* menuButton.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9F8C340E1E715C7A005178F9 /* menuButton.m4a */; };
-		A9603F771F4DABDC00BF57B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FAACCB41E30F24100FB871D /* Localizable.strings */; };
 		A9603F7A1F4DABDC00BF57B1 /* PN.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9FA12BEB1E65CF61003705F6 /* PN.m4a */; };
 		A9603F7B1F4DABDC00BF57B1 /* paymentSend.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9F8C340C1E71530A005178F9 /* paymentSend.m4a */; };
 		A9603F7D1F4DABDC00BF57B1 /* PaymentRequestInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F78D9DB1EE93F61003A0B95 /* PaymentRequestInfoView.xib */; };
@@ -1074,6 +1074,7 @@
 		33CF51401FD56EA000293FD1 /* ProfilesAddedToGroupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesAddedToGroupHeader.swift; sourceTree = "<group>"; };
 		33EED15A1FE92C8B00C51EAC /* TSGroupModel+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TSGroupModel+Additions.swift"; sourceTree = "<group>"; };
 		33F1B9A61FCC3E3900D186AB /* TokenUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUserTests.swift; sourceTree = "<group>"; };
+		33F743F71FEBBFC40070A848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33FD936A1FE953480082B9D8 /* Dapp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dapp.swift; sourceTree = "<group>"; };
 		33FD936C1FE95F4E0082B9D8 /* dapps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dapps.json; sourceTree = "<group>"; };
 		3F0DBA781E2F9F3F471A6BAD /* Pods-CocoaPods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaPods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaPods-Tests/Pods-CocoaPods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1146,7 +1147,6 @@
 		9FA12BEF1E65D043003705F6 /* messageSent.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = messageSent.m4a; sourceTree = "<group>"; };
 		9FA12BF11E65D135003705F6 /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		9FA12BF31E66CA42003705F6 /* messageReceived.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = messageReceived.m4a; sourceTree = "<group>"; };
-		9FAACCB41E30F24100FB871D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		9FAACCD61E310C1100FB871D /* SettingsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsNavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9FAACCEB1E31120600FB871D /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		9FAC46EC1E800C13005F76A9 /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
@@ -1821,7 +1821,7 @@
 				14E4D8D11E72CB7500389DF9 /* DistributionTokenURLPaths.swift */,
 				9F9238C21E24F1D2004BEEE0 /* LaunchScreen.storyboard */,
 				A9207AF51F6A8088003B79BF /* Libraries */,
-				9FAACCB41E30F24100FB871D /* Localizable.strings */,
+				33F743F61FEBBFC40070A848 /* Localizable.strings */,
 				9FAACCE21E31120600FB871D /* SF-UI-Text */,
 				9FA12BEA1E65CF59003705F6 /* Sounds */,
 				9F9238D01E24F402004BEEE0 /* Toshi-Bridging-Header.h */,
@@ -2594,9 +2594,9 @@
 				2B3DF35F1F4721D000A869A3 /* SettingsProfileCell.xib in Resources */,
 				9FB36EAC1E7C27A300DB6F86 /* requestPayment.m4a in Resources */,
 				A9603F991F4DB10100BF57B1 /* Assets.xcassets in Resources */,
+				33F743FA1FEBBFD70070A848 /* Localizable.strings in Resources */,
 				9FB36EAB1E7C27A300DB6F86 /* scan.m4a in Resources */,
 				9FB36EA81E7C27A300DB6F86 /* menuButton.m4a in Resources */,
-				149F9AD41E72E29A00FB74AA /* Localizable.strings in Resources */,
 				9FB36EAF1E7C27A300DB6F86 /* PN.m4a in Resources */,
 				9FB36EA91E7C27A300DB6F86 /* paymentSend.m4a in Resources */,
 				9F78D9DF1EE93F61003A0B95 /* PaymentRequestInfoView.xib in Resources */,
@@ -2620,6 +2620,7 @@
 				2BDBB5791F7B832700A0ECA0 /* APIKeys in Resources */,
 				A93432CC1F94E48500A52F11 /* SF-Pro-Display-Light.otf in Resources */,
 				9FA12BEC1E65CF73003705F6 /* PN.m4a in Resources */,
+				33F743F81FEBBFC50070A848 /* Localizable.strings in Resources */,
 				A9207AF71F6A8088003B79BF /* passwords-library.txt in Resources */,
 				A9191DC91F2203DD00498A4F /* AdvancedSettings.storyboard in Resources */,
 				2B3DF35E1F4721D000A869A3 /* SettingsProfileCell.xib in Resources */,
@@ -2629,7 +2630,6 @@
 				9F8C340F1E715C7A005178F9 /* menuButton.m4a in Resources */,
 				A9603F9A1F4DB10600BF57B1 /* Assets.xcassets in Resources */,
 				9F9238C41E24F1D2004BEEE0 /* LaunchScreen.storyboard in Resources */,
-				9FAACCB51E30F24100FB871D /* Localizable.strings in Resources */,
 				9FAACD021E31120600FB871D /* SF-UI-Text-Regular.otf in Resources */,
 				A93432CD1F94E48500A52F11 /* SF-Pro-Display-Bold.otf in Resources */,
 				2B282E7A1FD8171A00B52272 /* sofa-web3.js in Resources */,
@@ -2658,9 +2658,9 @@
 				A9603F6F1F4DABDC00BF57B1 /* SettingsProfileCell.xib in Resources */,
 				A9603F711F4DABDC00BF57B1 /* requestPayment.m4a in Resources */,
 				A9603F9B1F4DB10600BF57B1 /* Assets.xcassets in Resources */,
+				33F743F91FEBBFD60070A848 /* Localizable.strings in Resources */,
 				A9603F731F4DABDC00BF57B1 /* scan.m4a in Resources */,
 				A9603F741F4DABDC00BF57B1 /* menuButton.m4a in Resources */,
-				A9603F771F4DABDC00BF57B1 /* Localizable.strings in Resources */,
 				A9603F7A1F4DABDC00BF57B1 /* PN.m4a in Resources */,
 				A9603F7B1F4DABDC00BF57B1 /* paymentSend.m4a in Resources */,
 				A9603F7D1F4DABDC00BF57B1 /* PaymentRequestInfoView.xib in Resources */,
@@ -3813,6 +3813,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		33F743F61FEBBFC40070A848 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33F743F71FEBBFC40070A848 /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		9F9238C21E24F1D2004BEEE0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
