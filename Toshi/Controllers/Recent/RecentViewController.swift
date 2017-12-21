@@ -133,6 +133,12 @@ final class RecentViewController: SweetTableController, Emptiable {
         return cell
     }
 
+    private func showThread(at indexPath: IndexPath) {
+        guard let thread = dataSource.acceptedThread(at: indexPath.row, in: 0) else { return }
+        let chatViewController = ChatViewController(thread: thread)
+        navigationController?.pushViewController(chatViewController, animated: true)
+    }
+
     func updateContactIfNeeded(at indexPath: IndexPath) {
         if let thread = dataSource.acceptedThread(at: indexPath.row, in: 0), let address = thread.contactIdentifier() {
             DLog("Updating contact info for address: \(address).")
@@ -255,14 +261,10 @@ extension RecentViewController: UITableViewDelegate {
                 let messagesRequestsViewController = MessagesRequestsViewController(style: .grouped)
                 navigationController?.pushViewController(messagesRequestsViewController, animated: true)
             } else {
-                guard let thread = dataSource.acceptedThread(at: indexPath.row, in: 0) else { return }
-                let chatViewController = ChatViewController(thread: thread)
-                navigationController?.pushViewController(chatViewController, animated: true)
+                showThread(at: indexPath)
             }
         case .acceptedThreads:
-            guard let thread = dataSource.acceptedThread(at: indexPath.row, in: 0) else { return }
-            let chatViewController = ChatViewController(thread: thread)
-            navigationController?.pushViewController(chatViewController, animated: true)
+           showThread(at: indexPath)
         }
     }
 
