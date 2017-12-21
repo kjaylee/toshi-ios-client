@@ -104,31 +104,31 @@ final class RecentViewController: SweetTableController, Emptiable {
     }
 
     private func messagesRequestsCell(for indexPath: IndexPath) -> UITableViewCell {
+        guard let firstUnacceptedThread = dataSource.unacceptedThread(at: IndexPath(row: 0, section: 0)) else {
+            return UITableViewCell(frame: .zero)
+        }
+        
         let cellConfigurator = CellConfigurator()
         var cellData: TableCellData
-        var cell = UITableViewCell(frame: .zero)
+        var accessoryType: UITableViewCellAccessoryType
+        
+        let requestsTitle = Localized("messages_requests_title")
+        let requestsSubtitle = LocalizedPlural("message_requests_description", for: dataSource.unacceptedThreadsCount)
+        let firstImage = firstUnacceptedThread.avatar() ?? placeholderImage
+        let placeholderImage =  UIImage(named: "avatar-placeholder")!
 
-        if let firstUnacceptedThread = dataSource.unacceptedThread(at: IndexPath(row: 0, section: 0)) {
-            let firstImage = firstUnacceptedThread.avatar() ?? UIImage(named: "avatar-placeholder")!
-
-            if let secondUnacceptedThread = dataSource.unacceptedThread(at: IndexPath(row: 1, section: 0)) {
-
-                let secondImage = secondUnacceptedThread.avatar() ?? UIImage(named: "avatar-placeholder")!
-
-                let subtitle = String(format: Localized("message_requests_description"), dataSource.unacceptedThreadsCount)
-                cellData = TableCellData(title: Localized("messages_requests_title"), subtitle: subtitle, doubleImage: (firstImage: firstImage, secondImage: secondImage))
-
-                cell = tableView.dequeueReusableCell(withIdentifier: cellConfigurator.cellIdentifier(for: cellData.components), for: indexPath)
-                cellConfigurator.configureCell(cell, with: cellData)
-                cell.accessoryType = .disclosureIndicator
-
-                return cell
-            }
-
-            cellData = TableCellData(title: Localized("messages_requests_title"), subtitle: Localized("message_requests_description"), leftImage: firstImage)
-            cell = tableView.dequeueReusableCell(withIdentifier: cellConfigurator.cellIdentifier(for: cellData.components), for: indexPath)
-            cellConfigurator.configureCell(cell, with: cellData)
+        if let secondUnacceptedThread = dataSource.unacceptedThread(at: IndexPath(row: 1, section: 0)) {
+            let secondImage = secondUnacceptedThread.avatar() ?? placeholderImage
+            cellData = TableCellData(title: requestsTitle, subtitle: requestsSubtitle, doubleImage: (firstImage: firstImage, secondImage: secondImage))
+            accessoryType = .disclosureIndicator
+        } else {
+            cellData = TableCellData(title: requestsTitle, subtitle: requestsSubtitle, leftImage: firstImage)
+            accessoryType = .none
         }
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellConfigurator.cellIdentifier(for: cellData.components), for: indexPath)
+        cellConfigurator.configureCell(cell, with: cellData)
+        cell.accessoryType = accessoryType
 
         return cell
     }

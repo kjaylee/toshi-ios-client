@@ -7,23 +7,20 @@
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@VARIABLE@</string>
 		<key>Variable</key>
+	<key>message_requests_description</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@value@</string>
+		<key>value</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
-			<string></string>
-			<key>zero</key>
-			<string></string>
+			<string>d</string>
 			<key>one</key>
-			<string></string>
-			<key>two</key>
-			<string></string>
-			<key>few</key>
-			<string></string>
-			<key>many</key>
-			<string></string>
+			<string>%d person wants to start a chat</string>
 			<key>other</key>
-			<string></string>
+			<string>%d people want to start a chat</string>
 		</dict>
 	</dict>
 	<key>passphrase_sign_in_button_placeholder</key>
