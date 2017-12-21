@@ -117,7 +117,8 @@ final class RecentViewController: SweetTableController, Emptiable {
 
                 let secondImage = secondUnacceptedThread.avatar() ?? UIImage(named: "avatar-placeholder")!
 
-                cellData = TableCellData(title: Localized("messages_requests_title"), subtitle: Localized("message_requests_description"), doubleImage: (firstImage: firstImage, secondImage: secondImage))
+                let subtitle = String(format: Localized("message_requests_description"), dataSource.unacceptedThreadsCount)
+                cellData = TableCellData(title: Localized("messages_requests_title"), subtitle: subtitle, doubleImage: (firstImage: firstImage, secondImage: secondImage))
 
                 cell = tableView.dequeueReusableCell(withIdentifier: cellConfigurator.cellIdentifier(for: cellData.components), for: indexPath)
                 cellConfigurator.configureCell(cell, with: cellData)
