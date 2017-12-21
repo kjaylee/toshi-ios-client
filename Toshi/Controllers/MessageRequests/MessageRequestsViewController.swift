@@ -26,9 +26,7 @@ final class MessagesRequestsViewController: SweetTableController {
         return dataSource
     }()
 
-    private var idAPIClient: IDAPIClient {
-        return IDAPIClient.shared
-    }
+    let idAPIClient = IDAPIClient.shared
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
@@ -77,7 +75,8 @@ extension MessagesRequestsViewController: UITableViewDataSource {
         return dataSource.unacceptedThreadsCount
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func
+        tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cellConfigurator = CellConfigurator()
 

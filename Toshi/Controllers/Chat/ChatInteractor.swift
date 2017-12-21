@@ -393,9 +393,10 @@ final class ChatInteractor: NSObject {
                 } else {
                     DLog("Failed to leave a group")
                 }
-
+                
+                guard let completion = completion else { return }
                 DispatchQueue.main.async {
-                    completion?(success)
+                    completion(success)
                 }
             })
 

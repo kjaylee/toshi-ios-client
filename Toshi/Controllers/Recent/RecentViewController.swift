@@ -32,9 +32,7 @@ final class RecentViewController: SweetTableController, Emptiable {
         return ChatAPIClient.shared
     }
 
-    private var idAPIClient: IDAPIClient {
-        return IDAPIClient.shared
-    }
+    let idAPIClient = IDAPIClient.shared
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
