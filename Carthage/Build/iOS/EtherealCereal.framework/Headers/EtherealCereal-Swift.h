@@ -220,6 +220,7 @@ SWIFT_CLASS("_TtC14EtherealCereal14EtherealCereal")
 - (NSString * _Nonnull)sha3WithData:(NSData * _Nonnull)data SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_OBJC("Swift method 'EtherealCereal.sha3(data:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
 - (NSString * _Nonnull)signWithMessage:(NSString * _Nonnull)message SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_OBJC("Swift method 'EtherealCereal.sign(message:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
 - (NSString * _Nonnull)signWithHex:(NSString * _Nonnull)hex SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_OBJC("Swift method 'EtherealCereal.sign(hex:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+- (NSString * _Nonnull)signWithHash:(NSString * _Nonnull)hash SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_OBJC("Swift method 'EtherealCereal.sign(hash:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
 - (nonnull instancetype)initWithPrivateKey:(NSString * _Nonnull)privateKey SWIFT_DEPRECATED_OBJC("Swift initializer 'EtherealCereal.init(privateKey:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
