@@ -17,6 +17,14 @@ import UIKit
 
 final class DoubleAvatarTitleSubtitleCell: BasicTableViewCell {
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        doubleImageView.setImages(nil)
+        titleTextField.text = nil
+        subtitleLabel.text = nil
+    }
+
     override func addSubviewsAndConstraints() {
         accessoryType = .disclosureIndicator
 
@@ -34,8 +42,8 @@ final class DoubleAvatarTitleSubtitleCell: BasicTableViewCell {
         doubleImageView.size(CGSize(width: BasicTableViewCell.doubleImageSize, height: BasicTableViewCell.doubleImageSize))
         doubleImageView.centerY(to: contentView)
         doubleImageView.left(to: contentView, offset: BasicTableViewCell.horizontalMargin)
-        doubleImageView.top(to: contentView, offset: BasicTableViewCell.doubleImageMargin, relation: .equalOrGreater, priority: .defaultLow)
-        doubleImageView.bottom(to: contentView, offset: -BasicTableViewCell.doubleImageMargin, relation: .equalOrGreater, priority: .defaultLow)
+        doubleImageView.top(to: contentView, offset: BasicTableViewCell.largeVerticalMargin, relation: .equalOrGreater, priority: .defaultLow)
+        doubleImageView.bottom(to: contentView, offset: -BasicTableViewCell.largeVerticalMargin, relation: .equalOrGreater, priority: .defaultLow)
     }
 
     private func setupTitleTextField() {
@@ -45,7 +53,7 @@ final class DoubleAvatarTitleSubtitleCell: BasicTableViewCell {
     }
 
     private func setupSubtitleLabel() {
-        subtitleLabel.topToBottom(of: titleTextField)
+        subtitleLabel.topToBottom(of: titleTextField, offset: BasicTableViewCell.smallVerticalMargin)
         subtitleLabel.leftToRight(of: doubleImageView, offset: BasicTableViewCell.interItemMargin)
         subtitleLabel.right(to: contentView)
         subtitleLabel.bottom(to: contentView, offset: -BasicTableViewCell.largeVerticalMargin)

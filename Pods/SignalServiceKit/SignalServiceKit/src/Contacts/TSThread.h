@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TSThread : TSYapDatabaseObject
 
+@property (nonatomic, assign) BOOL isPendingAccept;
+
 // YES IFF this thread has ever had a message.
 @property (nonatomic) BOOL hasEverHadMessage;
 

@@ -142,6 +142,7 @@ final class ProfilesViewController: UITableViewController, Emptiable {
         super.viewWillAppear(animated)
         
         preferLargeTitleIfPossible(true)
+
         showOrHideEmptyState()
 
         dataSource.searchText = ""
@@ -329,7 +330,7 @@ final class ProfilesViewController: UITableViewController, Emptiable {
             navigationController?.popViewController(animated: true)
             output?.didFinish(self, selectedProfilesIds: membersIdsArray)
         } else if type == .newGroupChat {
-            guard let groupModel = TSGroupModel(title: "", memberIds: NSMutableArray(array: membersIdsArray), image: UIImage(named: "avatar-edit"), groupId: nil) else { return }
+            guard let groupModel = TSGroupModel(title: "", memberIds: NSMutableArray(array: membersIdsArray), image: UIImage(named: "avatar-edit-placeholder"), groupId: nil) else { return }
 
             let viewModel = NewGroupViewModel(groupModel)
             let groupViewController = GroupViewController(viewModel, configurator: NewGroupConfigurator())

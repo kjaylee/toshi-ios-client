@@ -15,7 +15,7 @@
 
 import UIKit
 
-final class AvatarTitleSubtitleDetailsCell: BasicTableViewCell {
+final class AvatarTitleSubtitleDoubleActionCell: BasicTableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -24,6 +24,8 @@ final class AvatarTitleSubtitleDetailsCell: BasicTableViewCell {
         titleTextField.text = nil
         subtitleLabel.text = nil
         detailsLabel.text = nil
+        secondActionButton.setImage(nil, for: .normal)
+        firstActionButton.setImage(nil, for: .normal)
     }
 
     override func addSubviewsAndConstraints() {
@@ -31,11 +33,13 @@ final class AvatarTitleSubtitleDetailsCell: BasicTableViewCell {
         contentView.addSubview(titleTextField)
         contentView.addSubview(subtitleLabel)
         contentView.addSubview(detailsLabel)
+        contentView.addSubview(secondActionButton)
+        contentView.addSubview(firstActionButton)
 
         setupLeftImageView()
+        setupActionsButtons()
         setupTitleTextField()
         setupSubtitleLabel()
-        setupDetailsLabel()
     }
 
     private func setupLeftImageView() {
@@ -49,28 +53,33 @@ final class AvatarTitleSubtitleDetailsCell: BasicTableViewCell {
     private func setupTitleTextField() {
         titleTextField.top(to: contentView, offset: BasicTableViewCell.horizontalMargin)
         titleTextField.leftToRight(of: leftImageView, offset: BasicTableViewCell.interItemMargin)
-        titleTextField.rightToLeft(of: detailsLabel, offset: -BasicTableViewCell.interItemMargin)
+        titleTextField.rightToLeft(of: firstActionButton, offset: -BasicTableViewCell.interItemMargin)
         titleTextField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
 
     private func setupSubtitleLabel() {
         subtitleLabel.topToBottom(of: titleTextField, offset: BasicTableViewCell.smallVerticalMargin)
         subtitleLabel.leftToRight(of: leftImageView, offset: BasicTableViewCell.interItemMargin)
-        subtitleLabel.rightToLeft(of: detailsLabel, offset: -BasicTableViewCell.horizontalMargin)
+        subtitleLabel.rightToLeft(of: firstActionButton, offset: -BasicTableViewCell.interItemMargin)
         subtitleLabel.bottom(to: contentView, offset: -BasicTableViewCell.verticalMargin)
         subtitleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
 
-    private func setupDetailsLabel() {
-        detailsLabel.centerY(to: contentView)
-        detailsLabel.right(to: contentView, offset: -BasicTableViewCell.horizontalMargin)
+    private func setupActionsButtons() {
+        secondActionButton.right(to: self, offset: -BasicTableViewCell.horizontalMargin)
+        secondActionButton.centerY(to: self)
+        secondActionButton.addTarget(self, action: #selector(didTapSecondButton(_:)), for: .touchUpInside)
+
+        firstActionButton.rightToLeft(of: secondActionButton)
+        firstActionButton.centerY(to: self)
+        firstActionButton.addTarget(self, action: #selector(didTapFirstButton(_:)), for: .touchUpInside)
     }
 
-    override open func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
+    @objc private func didTapSecondButton(_ button: UIButton) {
+        actionDelegate?.didTapSecondActionButton(self)
+    }
 
-        titleTextField.font = Theme.preferredRegular()
-        subtitleLabel.font = Theme.preferredRegularSmall()
-        detailsLabel.font = Theme.preferredFootnote()
+    @objc private func didTapFirstButton(_ button: UIButton) {
+        actionDelegate?.didTapFirstActionButton(self)
     }
 }

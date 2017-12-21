@@ -15,7 +15,7 @@
 
 import UIKit
 
-final class AvatarTitleSubtitleDetailsCell: BasicTableViewCell {
+final class AvatarTitleSubtitleDetailsBadgeCell: BasicTableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -24,6 +24,7 @@ final class AvatarTitleSubtitleDetailsCell: BasicTableViewCell {
         titleTextField.text = nil
         subtitleLabel.text = nil
         detailsLabel.text = nil
+        badgeLabel.text = nil
     }
 
     override func addSubviewsAndConstraints() {
@@ -31,11 +32,13 @@ final class AvatarTitleSubtitleDetailsCell: BasicTableViewCell {
         contentView.addSubview(titleTextField)
         contentView.addSubview(subtitleLabel)
         contentView.addSubview(detailsLabel)
+        contentView.addSubview(badgeView)
 
         setupLeftImageView()
         setupTitleTextField()
         setupSubtitleLabel()
         setupDetailsLabel()
+        setupBadgeView()
     }
 
     private func setupLeftImageView() {
@@ -62,8 +65,15 @@ final class AvatarTitleSubtitleDetailsCell: BasicTableViewCell {
     }
 
     private func setupDetailsLabel() {
-        detailsLabel.centerY(to: contentView)
+        detailsLabel.top(to: contentView, offset: BasicTableViewCell.horizontalMargin)
         detailsLabel.right(to: contentView, offset: -BasicTableViewCell.horizontalMargin)
+    }
+
+    private func setupBadgeView() {
+        badgeView.bottom(to: contentView, offset: -BasicTableViewCell.horizontalMargin)
+        badgeView.right(to: contentView, offset: -BasicTableViewCell.horizontalMargin)
+        badgeView.size(CGSize(width: BasicTableViewCell.badgeViewSize, height: BasicTableViewCell.badgeViewSize))
+        badgeView.top(to: detailsLabel, offset: -BasicTableViewCell.smallVerticalMargin, relation: .equalOrGreater)
     }
 
     override open func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

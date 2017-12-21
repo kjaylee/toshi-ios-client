@@ -93,7 +93,7 @@ class TokenUser: NSObject, NSCoding {
         
         return name
     }
-    
+
     @objc private(set) var username = ""
     private(set) var about = ""
     private(set) var location = ""

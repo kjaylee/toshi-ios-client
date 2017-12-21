@@ -17,80 +17,52 @@ import UIKit
 import SweetFoundation
 import SweetUIKit
 
-extension NSNotification.Name {
-    static let ChatDatabaseCreated = NSNotification.Name(rawValue: "ChatDatabaseCreated")
-}
+final class RecentViewController: SweetTableController, Emptiable {
 
-class RecentViewController: SweetTableController, Emptiable {
+    private lazy var dataSource: ThreadsDataSource = {
+        let dataSource = ThreadsDataSource(target: .recent)
+        dataSource.output = self
+
+        return dataSource
+    }()
 
     let emptyView = EmptyView(title: Localized("chats_empty_title"), description: Localized("chats_empty_description"), buttonTitle: Localized("invite_friends_action_title"))
-
-    lazy var mappings: YapDatabaseViewMappings = {
-        let mappings = YapDatabaseViewMappings(groups: [TSInboxGroup], view: TSThreadDatabaseViewExtensionName)
-        mappings.setIsReversed(true, forGroup: TSInboxGroup)
-
-        return mappings
-    }()
-
-    lazy var uiDatabaseConnection: YapDatabaseConnection = {
-        let database = TSStorageManager.shared().database()!
-        let dbConnection = database.newConnection()
-        dbConnection.beginLongLivedReadTransaction()
-
-        return dbConnection
-    }()
 
     private var chatAPIClient: ChatAPIClient {
         return ChatAPIClient.shared
     }
 
-    private var idAPIClient: IDAPIClient {
-        return IDAPIClient.shared
-    }
+    let idAPIClient = IDAPIClient.shared
 
-    init() {
-        super.init()
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
 
-        title = "Recent"
+        title = dataSource.title
 
         loadViewIfNeeded()
-
-        if TokenUser.current != nil {
-            self.loadMessages()
-        } else {
-            NotificationCenter.default.addObserver(self, selector: #selector(chatDBCreated(_:)), name: .ChatDatabaseCreated, object: nil)
-        }
     }
-
+    
     required init?(coder _: NSCoder) {
-        fatalError()
+        fatalError("init(coder:) has not been implemented")
     }
-
-    private func loadMessages() {
-        uiDatabaseConnection.asyncRead { [weak self] transaction in
-            self?.mappings.update(with: transaction)
-
-            DispatchQueue.main.async {
-                self?.showEmptyStateIfNeeded()
-            }
-        }
-
-        registerNotifications()
-    }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         addSubviewsAndConstraints()
 
-        tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(ChatCell.self)
+        tableView.dataSource = self
+
+        BasicTableViewCell.register(in: tableView)
+
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.showsVerticalScrollIndicator = true
         tableView.alwaysBounceVertical = true
 
         emptyView.isHidden = true
+
+        dataSource.output = self
     }
 
     @objc func emptyViewButtonPressed(_ button: ActionButton) {
@@ -98,15 +70,13 @@ class RecentViewController: SweetTableController, Emptiable {
         Navigator.presentModally(shareController)
     }
 
-    @objc private func chatDBCreated(_ notification: Notification) {
-        loadMessages()
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         preferLargeTitleIfPossible(true)
         tabBarController?.tabBar.isHidden = false
+
+        tableView.reloadData()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didPressCompose(_:)))
     }
@@ -125,124 +95,52 @@ class RecentViewController: SweetTableController, Emptiable {
         emptyView.edges(to: layoutGuide(), insets: UIEdgeInsets(top: tableHeaderHeight, left: 0, bottom: 0, right: 0))
     }
 
-    func registerNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(yapDatabaseDidChange(notification:)), name: .YapDatabaseModified, object: nil)
-    }
-
-    @objc func yapDatabaseDidChange(notification _: NSNotification) {
-        let notifications = uiDatabaseConnection.beginLongLivedReadTransaction()
-
-        // If changes do not affect current view, update and return without updating collection view
-        // swiftlint:disable:next force_cast
-        let threadViewConnection = uiDatabaseConnection.ext(TSThreadDatabaseViewExtensionName) as! YapDatabaseViewConnection
-
-        let hasChangesForCurrentView = threadViewConnection.hasChanges(for: notifications)
-        guard hasChangesForCurrentView else {
-            uiDatabaseConnection.read { transaction in
-                self.mappings.update(with: transaction)
-            }
-
-            return
-        }
-
-        let yapDatabaseChanges = threadViewConnection.getChangesFor(notifications: notifications, with: mappings)
-        let isDatabaseChanged = yapDatabaseChanges.rowChanges.count != 0 || yapDatabaseChanges.sectionChanges.count != 0
-
-        guard isDatabaseChanged else { return }
-
-        if let insertedRow = yapDatabaseChanges.rowChanges.first(where: { $0.type == .insert }) {
-            if let newIndexPath = insertedRow.newIndexPath {
-                processNewThread(at: newIndexPath)
-            }
-        } else if let updatedRow = yapDatabaseChanges.rowChanges.first(where: { $0.type == .update }) {
-            if let indexPath = updatedRow.indexPath {
-                processUpdateThread(at: indexPath)
-            }
-        }
-
-        // No need to animate the tableview if not being presented.
-        // Avoids an issue where tableview will actually cause a crash on update
-        // during a chat update.
-        if navigationController?.topViewController == self && tabBarController?.selectedViewController == navigationController {
-            tableView.beginUpdates()
-
-            for rowChange in yapDatabaseChanges.rowChanges {
-
-                switch rowChange.type {
-                case .delete:
-                    guard let indexPath = rowChange.indexPath else { continue }
-                    tableView.deleteRows(at: [indexPath], with: .left)
-                case .insert:
-                    guard let newIndexPath = rowChange.newIndexPath else { continue }
-
-                    updateContactIfNeeded(at: newIndexPath)
-                    tableView.insertRows(at: [newIndexPath], with: .right)
-                case .move:
-                    guard let indexPath = rowChange.indexPath, let newIndexPath = rowChange.newIndexPath else { continue }
-
-                    tableView.deleteRows(at: [indexPath], with: .left)
-                    tableView.insertRows(at: [newIndexPath], with: .right)
-                case .update:
-                    guard let indexPath = rowChange.indexPath else { continue }
-
-                    tableView.reloadRows(at: [indexPath], with: .automatic)
-                }
-            }
-
-            tableView.endUpdates()
-        } else {
-            tableView.reloadData()
-        }
-
-        showEmptyStateIfNeeded()
-    }
-
-    private func processNewThread(at indexPath: IndexPath) {
-        if let thread = self.thread(at: indexPath) {
-
-            if let contactIdentifier = thread.contactIdentifier() {
-                IDAPIClient.shared.updateContact(with: contactIdentifier)
-            }
-
-            if thread.isGroupThread() && ProfileManager.shared().isThread(inProfileWhitelist: thread) == false {
-                ProfileManager.shared().addThread(toProfileWhitelist: thread)
-
-                (thread as? TSGroupThread)?.groupModel.groupMemberIds.forEach { memberId in
-
-                    idAPIClient.updateContact(with: memberId)
-                    AvatarManager.shared.downloadAvatar(for: memberId)
-                }
-            }
-        }
-    }
-
-    private func processUpdateThread(at indexPath: IndexPath) {
-        if let thread = self.thread(at: indexPath) {
-
-            if let topChatViewController = Navigator.topViewController as? ChatViewController {
-                topChatViewController.updateThread(thread)
-            }
-
-            if thread.isGroupThread() && ProfileManager.shared().isThread(inProfileWhitelist: thread) == false {
-                ProfileManager.shared().addThread(toProfileWhitelist: thread)
-
-                (thread as? TSGroupThread)?.groupModel.groupMemberIds.forEach { memberId in
-
-                    idAPIClient.updateContact(with: memberId)
-                    AvatarManager.shared.downloadAvatar(for: memberId)
-                }
-            }
-        }
-    }
-
     private func showEmptyStateIfNeeded() {
-        let shouldHideEmptyState = mappings.numberOfItems(inSection: 0) > 0
+        let numberOfUnacceptedThreads = dataSource.unacceptedThreadsCount
+        let numberOfAcceptedThreads = dataSource.acceptedThreadsCount
+        let shouldHideEmptyState = (numberOfUnacceptedThreads + numberOfAcceptedThreads) > 0
 
         emptyView.isHidden = shouldHideEmptyState
     }
 
+    private func messagesRequestsCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cellConfigurator = CellConfigurator()
+        var cellData: TableCellData
+        var cell = UITableViewCell(frame: .zero)
+
+        if let firstUnacceptedThread = dataSource.unacceptedThread(at: IndexPath(row: 0, section: 0)) {
+            let firstImage = firstUnacceptedThread.avatar() ?? UIImage(named: "avatar-placeholder")!
+
+            if let secondUnacceptedThread = dataSource.unacceptedThread(at: IndexPath(row: 1, section: 0)) {
+
+                let secondImage = secondUnacceptedThread.avatar() ?? UIImage(named: "avatar-placeholder")!
+
+                let subtitle = String(format: Localized("message_requests_description"), dataSource.unacceptedThreadsCount)
+                cellData = TableCellData(title: Localized("messages_requests_title"), subtitle: subtitle, doubleImage: (firstImage: firstImage, secondImage: secondImage))
+
+                cell = tableView.dequeueReusableCell(withIdentifier: cellConfigurator.cellIdentifier(for: cellData.components), for: indexPath)
+                cellConfigurator.configureCell(cell, with: cellData)
+                cell.accessoryType = .disclosureIndicator
+
+                return cell
+            }
+
+            cellData = TableCellData(title: Localized("messages_requests_title"), subtitle: Localized("message_requests_description"), leftImage: firstImage)
+            cell = tableView.dequeueReusableCell(withIdentifier: cellConfigurator.cellIdentifier(for: cellData.components), for: indexPath)
+            cellConfigurator.configureCell(cell, with: cellData)
+        }
+
+        return cell
+    }
+
+    private func showThread(at indexPath: IndexPath) {
+        guard let thread = dataSource.acceptedThread(at: indexPath.row, in: 0) else { return }
+        let chatViewController = ChatViewController(thread: thread)
+        navigationController?.pushViewController(chatViewController, animated: true)
+    }
+
     func updateContactIfNeeded(at indexPath: IndexPath) {
-        if let thread = self.thread(at: indexPath), let address = thread.contactIdentifier() {
+        if let thread = dataSource.acceptedThread(at: indexPath.row, in: 0), let address = thread.contactIdentifier() {
             DLog("Updating contact info for address: \(address).")
 
             idAPIClient.retrieveUser(username: address) { contact in
@@ -253,51 +151,74 @@ class RecentViewController: SweetTableController, Emptiable {
         }
     }
 
-    func thread(at indexPath: IndexPath) -> TSThread? {
-        var thread: TSThread?
-
-        uiDatabaseConnection.read { transaction in
-            guard let dbExtension = transaction.extension(TSThreadDatabaseViewExtensionName) as? YapDatabaseViewTransaction else { return }
-            guard let object = dbExtension.object(at: indexPath, with: self.mappings) as? TSThread else { return }
-
-            thread = object
-        }
-
-        return thread
-    }
-
     func thread(withAddress address: String) -> TSThread? {
-        var thread: TSThread?
-
-        uiDatabaseConnection.read { transaction in
-            transaction.enumerateRows(inCollection: TSThread.collection()) { _, object, _, stop in
-                if let possibleThread = object as? TSThread {
-                    if possibleThread.contactIdentifier() == address {
-                        thread = possibleThread
-                        stop.pointee = true
-                    }
-                }
-            }
-        }
-
-        return thread
+        return dataSource.thread(withAddress: address)
     }
 
     func thread(withIdentifier identifier: String) -> TSThread? {
-        var thread: TSThread?
+        return dataSource.thread(withIdentifier: identifier)
+    }
+}
 
-        uiDatabaseConnection.read { transaction in
-            transaction.enumerateRows(inCollection: TSThread.collection()) { _, object, _, stop in
-                if let possibleThread = object as? TSThread {
-                    if possibleThread.uniqueId == identifier {
-                        thread = possibleThread
-                        stop.pointee = true
-                    }
-                }
-            }
+extension RecentViewController: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if dataSource.hasUnacceptedThreads {
+            return 2
+        }
+        
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 && dataSource.hasUnacceptedThreads {
+            return nil
         }
 
-        return thread
+        return Localized("recent_messages_section_header_title")
+    }
+
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        var numberOfRows = 0
+        let contentSection = ThreadsContentSection(rawValue: section)
+
+        if contentSection == .unacceptedThreads && dataSource.hasUnacceptedThreads {
+            numberOfRows = 1
+        } else {
+            numberOfRows = dataSource.acceptedThreadsCount
+        }
+
+        return numberOfRows
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell = UITableViewCell(frame: .zero)
+
+        let contentSection = ThreadsContentSection(rawValue: indexPath.section)
+
+        let isMessagesRequestsRow = dataSource.hasUnacceptedThreads && contentSection == .unacceptedThreads
+        if isMessagesRequestsRow {
+            cell = messagesRequestsCell(for: indexPath)
+        } else if let thread = dataSource.acceptedThread(at: indexPath.row, in: 0) {
+            let threadCellConfigurator = ThreadCellConfigurator(thread: thread)
+            let cellData = threadCellConfigurator.cellData
+            cell = tableView.dequeueReusableCell(withIdentifier: AvatarTitleSubtitleDetailsBadgeCell.reuseIdentifier, for: indexPath)
+
+            threadCellConfigurator.configureCell(cell, with: cellData)
+        }
+
+        cell.accessoryType = .disclosureIndicator
+        
+        return cell
+    }
+}
+
+extension RecentViewController: ThreadsDataSourceOutput {
+
+    func threadsDataSourceDidLoad() {
+        tableView.reloadData()
+        showEmptyStateIfNeeded()
     }
 }
 
@@ -324,36 +245,41 @@ extension RecentViewController: UITableViewDelegate {
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let thread = self.thread(at: indexPath) {
-            let chatViewController = ChatViewController(thread: thread)
-            navigationController?.pushViewController(chatViewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        guard let contentSection = ThreadsContentSection(rawValue: indexPath.section) else { return }
+
+        switch contentSection {
+        case .unacceptedThreads:
+            if dataSource.hasUnacceptedThreads {
+                let messagesRequestsViewController = MessagesRequestsViewController(style: .grouped)
+                navigationController?.pushViewController(messagesRequestsViewController, animated: true)
+            } else {
+                showThread(at: indexPath)
+            }
+        case .acceptedThreads:
+           showThread(at: indexPath)
         }
+    }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        guard let contentSection = ThreadsContentSection(rawValue: indexPath.section) else { return false }
+
+        if contentSection == .unacceptedThreads && dataSource.hasUnacceptedThreads {
+            return false
+        }
+
+        return true
     }
 
     func tableView(_: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let action = UITableViewRowAction(style: .destructive, title: "Delete") { _, indexPath in
-            if let thread = self.thread(at: indexPath) {
+            if let thread = self.dataSource.acceptedThread(at: indexPath.row, in: 0) {
+
                 ChatInteractor.deleteThread(thread)
             }
         }
 
         return [action]
-    }
-}
-
-extension RecentViewController: UITableViewDataSource {
-
-    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Int(mappings.numberOfItems(inSection: UInt(section)))
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(ChatCell.self, for: indexPath)
-        let thread = self.thread(at: indexPath)
-
-        // TODO: deal with last message from thread. It should be last visible message.
-        cell.thread = thread
-
-        return cell
     }
 }

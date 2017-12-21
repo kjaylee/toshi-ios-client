@@ -23,6 +23,8 @@ protocol BasicCellActionDelegate: class {
     func didTapLeftImage(_ cell: BasicTableViewCell)
     func didFinishTitleInput(_ cell: BasicTableViewCell, text: String?)
     func titleShouldChangeCharactersInRange(_ cell: BasicTableViewCell, text: String?, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    func didTapFirstActionButton(_ cell: BasicTableViewCell)
+    func didTapSecondActionButton(_ cell: BasicTableViewCell)
 }
 
 //extension with default implementation which is alternative for optional functions in protocols
@@ -30,6 +32,9 @@ extension BasicCellActionDelegate {
     func didTapLeftImage(_ cell: BasicTableViewCell) {}
     func didChangeSwitchState(_ cell: BasicTableViewCell, _ state: Bool) {}
     func didFinishTitleInput(_ cell: BasicTableViewCell, text: String?) {}
+    func titleShouldChangeCharactersInRange(_ cell: BasicTableViewCell, text: String?, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool { return true }
+    func didTapFirstActionButton(_ cell: BasicTableViewCell) {}
+    func didTapSecondActionButton(_ cell: BasicTableViewCell) {}
 }
 
 class BasicTableViewCell: UITableViewCell {
@@ -37,11 +42,14 @@ class BasicTableViewCell: UITableViewCell {
     static let horizontalMargin: CGFloat = 16.0
     static let verticalMargin: CGFloat = 15.0
     static let interItemMargin: CGFloat = 10.0
-    static let imageSize: CGFloat = 38.0
+    static let imageSize: CGFloat = 48.0
     static let doubleImageSize: CGFloat = 48.0
     static let imageMargin: CGFloat = 10.0
+    static let smallVerticalMargin: CGFloat = 5.0
     static let doubleImageMargin: CGFloat = 16.0
     static let largeVerticalMargin: CGFloat = 22.0
+    static let actionButtonSize: CGFloat = 44.0
+    static let badgeViewSize: CGFloat = 24.0
 
     weak var actionDelegate: BasicCellActionDelegate?
 
@@ -80,7 +88,8 @@ class BasicTableViewCell: UITableViewCell {
         let leftImageView = UIImageView()
 
         leftImageView.contentMode = .scaleAspectFill
-        leftImageView.isUserInteractionEnabled = true
+        leftImageView.layer.cornerRadius = BasicTableViewCell.imageSize / 2
+        leftImageView.layer.masksToBounds = true
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLeftImage(_:)))
         leftImageView.addGestureRecognizer(tapGesture)
@@ -106,6 +115,45 @@ class BasicTableViewCell: UITableViewCell {
         switchControl.addTarget(self, action: #selector(didChangeSwitchState(_:)), for: .valueChanged)
 
         return switchControl
+    }()
+
+    lazy var firstActionButton: UIButton = {
+        let button = UIButton()
+        button.size(CGSize(width: BasicTableViewCell.actionButtonSize, height: BasicTableViewCell.actionButtonSize))
+
+        return button
+    }()
+
+    lazy var secondActionButton: UIButton = {
+        let button = UIButton()
+        button.size(CGSize(width: BasicTableViewCell.actionButtonSize, height: BasicTableViewCell.actionButtonSize))
+
+        return button
+    }()
+
+    lazy var badgeView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Theme.tintColor
+        view.layer.cornerRadius = 12
+        view.clipsToBounds = true
+
+        self.badgeLabel.font = Theme.preferredRegularSmall()
+        self.badgeLabel.textColor = Theme.lightTextColor
+        self.badgeLabel.textAlignment = .center
+        view.addSubview(self.badgeLabel)
+
+        self.badgeLabel.edges(to: view, insets: UIEdgeInsets(top: 0, left: 5, bottom: 0, right: -5))
+
+        return view
+    }()
+
+    lazy var badgeLabel: UILabel = {
+        let view = UILabel()
+        view.font = Theme.semibold(size: 15)
+        view.textColor = Theme.lightTextColor
+        view.textAlignment = .center
+
+        return view
     }()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -142,6 +190,8 @@ class BasicTableViewCell: UITableViewCell {
         tableView.register(AvatarTitleSubtitleDetailsCell.self)
         tableView.register(AvatarTitleSubtitleSwitchCell.self)
         tableView.register(DoubleAvatarTitleSubtitleCell.self)
+        tableView.register(AvatarTitleSubtitleDoubleActionCell.self)
+        tableView.register(AvatarTitleSubtitleDetailsBadgeCell.self)
     }
 }
 

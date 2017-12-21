@@ -43,6 +43,8 @@ public struct TableCellDataComponents: OptionSet {
     static let leftImage = TableCellDataComponents(rawValue: 1 << 3)
     static let switchControl = TableCellDataComponents(rawValue: 1 << 4)
     static let doubleImage = TableCellDataComponents(rawValue: 1 << 5)
+    static let doubleAction = TableCellDataComponents(rawValue: 1 << 6)
+    static let badge = TableCellDataComponents(rawValue: 1 << 7)
 
     static let titleSubtitle: TableCellDataComponents = [.title, .subtitle]
     static let titleLeftImage: TableCellDataComponents = [.title, .leftImage]
@@ -53,6 +55,8 @@ public struct TableCellDataComponents: OptionSet {
     static let titleSubtitleSwitchControlLeftImage: TableCellDataComponents = [.titleLeftImage, .subtitle, .switchControl]
     static let titleSubtitleDoubleImage: TableCellDataComponents = [.titleSubtitle, .doubleImage]
     static let titleSubtitleDoubleImageImage: TableCellDataComponents = [.titleSubtitle, .doubleImage]
+    static let leftImageTitleSubtitleDoubleAction: TableCellDataComponents = [.titleSubtitleLeftImage, .doubleAction]
+    static let titleSubtitleDetailsLeftImageBadge: TableCellDataComponents = [.titleSubtitleDetailsLeftImage, .badge]
 }
 
 public final class TableCellData {
@@ -64,12 +68,14 @@ public final class TableCellData {
     var details: String?
     var switchState: Bool?
     var doubleImage: (firstImage: UIImage, secondImage: UIImage)?
+    var doubleActionImages: (firstImage: UIImage, secondImage: UIImage)?
+    var badgeText: String?
 
     var isPlaceholder = false
 
     private(set) var components: TableCellDataComponents = []
 
-    init(title: String? = nil, isPlaceholder: Bool = false, subtitle: String? = nil, leftImage: UIImage? = nil, details: String? = nil, switchState: Bool? = nil, doubleImage: (firstImage: UIImage, secondImage: UIImage)? = nil) {
+    init(title: String? = nil, isPlaceholder: Bool = false, subtitle: String? = nil, leftImage: UIImage? = nil, details: String? = nil, switchState: Bool? = nil, doubleImage: (firstImage: UIImage, secondImage: UIImage)? = nil, doubleActionImages: (firstImage: UIImage, secondImage: UIImage)? = nil, badgeText: String? = nil) {
         self.title = title
         self.subtitle = subtitle
         self.leftImage = leftImage
@@ -77,6 +83,8 @@ public final class TableCellData {
         self.switchState = switchState
         self.isPlaceholder = isPlaceholder
         self.doubleImage = doubleImage
+        self.doubleActionImages = doubleActionImages
+        self.badgeText = badgeText
 
         setupComponents()
     }
@@ -104,6 +112,14 @@ public final class TableCellData {
 
         if doubleImage != nil {
             components.insert(.doubleImage)
+        }
+
+        if doubleActionImages != nil {
+            components.insert(.doubleAction)
+        }
+
+        if badgeText != nil {
+            components.insert(.badge)
         }
     }
 }
