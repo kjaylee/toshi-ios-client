@@ -63,9 +63,10 @@ final class ChatInteractor: NSObject {
             self.messageSender?.send(signalMessage, success: {
                 completion(true)
                 DLog("message sent")
-            }, failure: { error in
+            }, failure: { [weak self] error in
                 completion(false)
                 DLog("\(error)")
+                self?.logSendErrorIfRecipientUnregistered(error: error)
             })
         }
     }
@@ -84,9 +85,9 @@ final class ChatInteractor: NSObject {
             DispatchQueue.main.async {
                 completion?(true)
             }
-        }, failure: { error in
+        }, failure: { [weak self] error in
             DLog("Failure: \(error)")
-
+            self?.logSendErrorIfRecipientUnregistered(error: error)
             DispatchQueue.main.async {
                 completion?(false)
             }
@@ -102,12 +103,13 @@ final class ChatInteractor: NSObject {
 
         guard let datasource = DataSourceValue.dataSource(with: videoData, fileExtension: "mov") else { return }
 
-        messageSender?.sendAttachmentData(datasource, contentType: "video/mp4", sourceFilename: "video.mp4", in: outgoingMessage, success: {
-            self.output?.didFinishRequest()
+        messageSender?.sendAttachmentData(datasource, contentType: "video/mp4", sourceFilename: "video.mp4", in: outgoingMessage, success: { [weak self] in
+            self?.output?.didFinishRequest()
             DLog("Success")
-        }, failure: { error in
-            self.output?.didFinishRequest()
+        }, failure: { [weak self] error in
+            self?.output?.didFinishRequest()
             DLog("Failure: \(error)")
+            self?.logSendErrorIfRecipientUnregistered(error: error)
         })
     }
 
@@ -170,10 +172,10 @@ final class ChatInteractor: NSObject {
             self?.output?.didFinishRequest()
 
             guard success, let json = json?.dictionary else {
-                DispatchQueue.main.async {
-                    self?.output?.didCatchError(error?.description ?? ToshiError.genericError.description)
-                    completion?(false)
-                }
+                self?.logSendErrorIfRecipientUnregistered(error: error)
+                self?.output?.didCatchError(error?.description ?? ToshiError.genericError.description)
+                completion?(false)
+
                 return
             }
 
@@ -189,6 +191,14 @@ final class ChatInteractor: NSObject {
             DispatchQueue.main.async {
                 completion?(true)
             }
+        }
+    }
+    
+    private func logSendErrorIfRecipientUnregistered(error: Error?) {
+        guard let error = error else { return }
+
+        if error.localizedDescription == "ERROR_DESCRIPTION_UNREGISTERED_RECIPIENT" {
+            CrashlyticsLogger.nonFatal("Could not send message because recipient was unregistered", error: (error as NSError), attributes: nil)
         }
     }
     

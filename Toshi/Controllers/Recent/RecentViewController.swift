@@ -212,7 +212,6 @@ extension RecentViewController: UITableViewDataSource {
         
         return cell
     }
-
 }
 
 extension RecentViewController: ThreadsDataSourceOutput {

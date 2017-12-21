@@ -28,12 +28,10 @@ final class PaymentConfirmation {
             var messageText = message
 
             guard error == nil else {
-                DispatchQueue.main.async {
-                    presentCompletionHandler?()
+                presentCompletionHandler?()
 
-                    self?.presentTransactionSkeletonError {
-                        approveHandler?(nil, error)
-                    }
+                self?.presentTransactionSkeletonError {
+                    approveHandler?(nil, error)
                 }
 
                 return
@@ -51,22 +49,18 @@ final class PaymentConfirmation {
 
                 messageText.append("\n\n\(estimatedFeesString)")
 
-                DispatchQueue.main.async {
-                    presentCompletionHandler?()
+                presentCompletionHandler?()
 
-                    self?.showPaymentConfirmation(title: confirmationTitle, message: messageText, approveHandler: {
-                        approveHandler?(skeleton.transaction, error)
-                    }, cancelHandler: cancelHandler)
-                }
+                self?.showPaymentConfirmation(title: confirmationTitle, message: messageText, approveHandler: {
+                    approveHandler?(skeleton.transaction, error)
+                }, cancelHandler: cancelHandler)
 
             } else {
-                DispatchQueue.main.async {
-                    presentCompletionHandler?()
+                presentCompletionHandler?()
 
-                    self?.showPaymentConfirmation(title: confirmationTitle, message: messageText, approveHandler: {
-                        approveHandler?(skeleton.transaction, error)
-                    }, cancelHandler: cancelHandler)
-                }
+                self?.showPaymentConfirmation(title: confirmationTitle, message: messageText, approveHandler: {
+                    approveHandler?(skeleton.transaction, error)
+                }, cancelHandler: cancelHandler)
             }
         }
     }

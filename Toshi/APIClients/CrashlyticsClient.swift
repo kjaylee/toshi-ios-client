@@ -21,6 +21,10 @@ extension KeyTitle {
     static var error = "error"
     static var occurred = "occurred"
     static var resultString = "result string"
+    
+    fileprivate static var userId = "user_id"
+    fileprivate static var errorAttributres = "attributes"
+    fileprivate static var developerDescription = "dev_description"
 }
 
 @objc final class CrashlyticsClient: NSObject {
@@ -36,13 +40,44 @@ extension KeyTitle {
 }
 
 @objc final class CrashlyticsLogger: NSObject {
-
+    
+    private static func attributesWithUserID(from attributes: [KeyTitle: Any]?) -> [String: Any] {
+        var resultAttributes: [String: Any] = [KeyTitle.userId: Cereal.shared.address]
+        attributes?.forEach { key, value in resultAttributes[key] = value }
+        
+        return resultAttributes
+    }
+    
+    /// Logs the given string to Crashlytics + Answers with the given attributes
+    /// Useful for diagnosing problems and/or creating a breadcrumb trail of what the user was looking at.
+    ///
+    /// - Parameters:
+    ///   - string: The string to log.
+    ///   - attributes: (optional) any additional attributes to log with the string
     @objc static func log(_ string: String, attributes: [KeyTitle: Any]? = nil) {
         CLSLogv("%@", getVaList([string]))
+        let attributesToSend = attributesWithUserID(from: attributes)
 
-        var resultAttributes: [String: Any] = ["user_id": Cereal.shared.address]
-        attributes?.forEach { key, value in resultAttributes[key] = value }
-
-        Answers.logCustomEvent(withName: string, customAttributes: resultAttributes)
+        Answers.logCustomEvent(withName: string, customAttributes: attributesToSend)
+    }
+    
+    /// Creates a non-fatal error, which shows up in Crashlytics similar to a crash but is filtered differently..
+    ///
+    /// - Parameters:
+    ///   - description: The description of what happened to be logged in Crashlytics.
+    ///   - error: (optional) Any associated NSError where you want to log domain, code, and LocalizedDescription.
+    ///   - attributes: (optional) any additional attributes to log
+    @objc static func nonFatal(_ description: String, error: NSError? = nil, attributes: [KeyTitle: Any]? = nil) {
+        let attributes = attributesWithUserID(from: attributes)
+        
+        let error = NSError(domain: error?.domain ?? "com.toshi.customnonfatal",
+                            code: error?.code ?? 0,
+                            userInfo: [
+                                KeyTitle.errorAttributres: attributes,
+                                NSLocalizedDescriptionKey: error?.localizedDescription ?? "(none)",
+                                KeyTitle.developerDescription: description
+                            ])
+        
+        Crashlytics.sharedInstance().recordError(error)
     }
 }

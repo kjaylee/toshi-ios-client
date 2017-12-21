@@ -86,14 +86,20 @@ final class ExchangeRateAPIClient {
             switch result {
             case .success(let json, _):
                 guard let json = json?.dictionary, let usd = json["rate"] as? String, let doubleValue = Double(usd) else {
-                    completion(nil)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
                     return
                 }
 
-                completion(Decimal(doubleValue))
+                DispatchQueue.main.async {
+                    completion(Decimal(doubleValue))
+                }
             case .failure(_, _, let error):
                 DLog(error.localizedDescription)
-                completion(nil)
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
             }
         }
     }
@@ -110,7 +116,10 @@ final class ExchangeRateAPIClient {
             switch result {
             case .success(let json, _):
                 guard let strongSelf = self, let json = json?.dictionary, let currencies = json["currencies"] as? [[String: String]] else {
-                    completion([])
+                    DispatchQueue.main.async {
+                        completion([])
+                    }
+                    
                     return
                 }
 

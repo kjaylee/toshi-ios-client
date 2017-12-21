@@ -35,14 +35,12 @@ class PaymentManager {
 
         EthereumAPIClient.shared.sendSignedTransaction(originalTransaction: transaction, transactionSignature: signedTransaction) { [weak self] success, _, error in
 
-            DispatchQueue.main.async {
-                guard success else {
-                    self?.showPaymentFailedMessage(for: error?.description ?? ToshiError.genericError.description)
-                    return
-                }
-
-                self?.showPaymentSucceededMessage(completion)
+            guard success else {
+                self?.showPaymentFailedMessage(for: error?.description ?? ToshiError.genericError.description)
+                return
             }
+
+            self?.showPaymentSucceededMessage(completion)
         }
     }
     

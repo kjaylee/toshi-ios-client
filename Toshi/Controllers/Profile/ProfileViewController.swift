@@ -300,8 +300,12 @@ extension ProfileViewController: PaymentControllerDelegate {
                 strongSelf.messageSender?.send(outgoingMessage, success: {
                     DLog("message sent")
                 }, failure: { error in
-                    CrashlyticsLogger.log("Can not send message", attributes: [.error: error.localizedDescription])
                     DLog("\(error)")
+                    if error.localizedDescription == "ERROR_DESCRIPTION_UNREGISTERED_RECIPIENT" {
+                        CrashlyticsLogger.nonFatal("Could not send payment because recipient was unregistered", error: (error as NSError), attributes: nil)
+                    } else {
+                        CrashlyticsLogger.log("Can not send message", attributes: [.error: error.localizedDescription])
+                    }
                 })
             }
         }

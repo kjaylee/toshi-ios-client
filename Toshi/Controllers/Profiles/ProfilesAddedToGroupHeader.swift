@@ -51,17 +51,23 @@ class ProfilesAddedToGroupHeader: UIView {
     }
     
     func updateDisplay(with profiles: Set<TokenUser>) {
-        let nonNameAttributes = [ NSAttributedStringKey.foregroundColor: Theme.lightGreyTextColor ]
+        let nonNameAttributes = [ NSAttributedStringKey.foregroundColor: Theme.mediumTextColor.withAlphaComponent(0.4),
+                                    NSAttributedStringKey.font: Theme.preferredRegular()]
+
+        let toAttributes = [ NSAttributedStringKey.foregroundColor: Theme.mediumTextColor,
+                                 NSAttributedStringKey.font: Theme.preferredRegular()]
+        let toAttributedString = NSMutableAttributedString(string: Localized("profiles_add_to_group_prefix"), attributes: toAttributes)
 
         guard profiles.count > 0 else {
-            profilesAddedLabel.attributedText = NSAttributedString(string: Localized("profiles_empty_group_placeholder"), attributes: nonNameAttributes)
+            let placeholderString = NSAttributedString(string: Localized("profiles_empty_group_placeholder"), attributes: nonNameAttributes)
+            toAttributedString.append(placeholderString)
+            profilesAddedLabel.attributedText = toAttributedString
+            
             return
         }
-        
+
         let sortedProfiles = profiles.sorted(by: { $0.name < $1.name })
-        
-        let toAttributedString = NSMutableAttributedString(string: Localized("profiles_add_to_group_prefix"), attributes: nonNameAttributes)
-        
+
         let nameStrings = sortedProfiles.map { NSAttributedString(string: $0.nameOrDisplayName, attributes: [ .foregroundColor: Theme.tintColor ]) }
         
         // `join(with:)` doesn't work on attributed strings, so:

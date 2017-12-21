@@ -234,7 +234,7 @@
 "profiles_navigation_title_new_group_chat" = "New Group Chat";
 "profiles_navigation_title_update_group_chat" = "Update group";
 "profiles_add_to_group_prefix" = "To: ";
-"profiles_empty_group_placeholder" = "(Add Contacts)";
+"profiles_empty_group_placeholder" = "No recipients yet";
 
 /* Tab Bar */
 "tab_bar_title_browse" = "Search";

@@ -63,7 +63,9 @@ class AppsAPIClient: NSObject, CacheExpiryDefault {
             switch result {
             case .success(let json, _):
                 guard let strongSelf = self, let json = json?.dictionary, let appsJSON = json["results"] as? [[String: Any]] else {
-                    completion(nil, .invalidResponseJSON)
+                    DispatchQueue.main.async {
+                        completion(nil, .invalidResponseJSON)
+                    }
                     return
                 }
 
@@ -100,7 +102,9 @@ class AppsAPIClient: NSObject, CacheExpiryDefault {
             switch result {
             case .success(let json, _):
                 guard let strongSelf = self, let json = json?.dictionary, let appsJSON = json["results"] as? [[String: Any]] else {
-                    completion(nil, .invalidResponseJSON)
+                    DispatchQueue.main.async {
+                        completion(nil, .invalidResponseJSON)
+                    }
                     return
                 }
 

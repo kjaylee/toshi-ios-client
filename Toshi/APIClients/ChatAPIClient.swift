@@ -62,7 +62,9 @@ class ChatAPIClient: NSObject {
             let payload = parameters.payload
 
             guard let data = try? JSONSerialization.data(withJSONObject: payload, options: []), let payloadString = String(data: data, encoding: .utf8) else {
-                completion(false)
+                DispatchQueue.main.async {
+                    completion(false)
+                }
                 return
             }
             
@@ -80,7 +82,9 @@ class ChatAPIClient: NSObject {
                 case .success(_, let response):
                     guard response.statusCode == 204 else {
                         DLog("Could not register user. Status code \(response.statusCode)")
-                        completion(false)
+                        DispatchQueue.main.async {
+                            completion(false)
+                        }
                         return
                     }
 

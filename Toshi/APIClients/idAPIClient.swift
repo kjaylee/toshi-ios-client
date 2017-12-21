@@ -224,7 +224,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
     func updateAvatar(_ avatar: UIImage, completion: @escaping ((_ success: Bool, _ error: ToshiError?) -> Void)) {
         fetchTimestamp { timestamp, error in
             guard let timestamp = timestamp else {
-                completion(false, error)
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
                 return
             }
 
@@ -245,7 +247,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
                 switch result {
                 case .success(let json, _):
                     guard let userDict = json?.dictionary else {
-                        completion(false, .invalidResponseJSON)
+                        DispatchQueue.main.async {
+                            completion(false, .invalidResponseJSON)
+                        }
                         return
                     }
 
@@ -271,7 +275,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
     func updateUser(_ userDict: [String: Any], completion: @escaping ((_ success: Bool, _ error: ToshiError?) -> Void)) {
         fetchTimestamp { timestamp, error in
             guard let timestamp = timestamp else {
-                completion(false, error)
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
                 return
             }
 
@@ -279,7 +285,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
             let path = "/v1/user"
 
             guard let payload = try? JSONSerialization.data(withJSONObject: userDict, options: []), let payloadString = String(data: payload, encoding: .utf8) else {
-                completion(false, .invalidPayload)
+                DispatchQueue.main.async {
+                    completion(false, .invalidPayload)
+                }
                 return
             }
 
@@ -297,7 +305,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
                 case .success(let json, let response):
                     guard response.statusCode == 200, let json = json?.dictionary else {
                         DLog("Invalid response - Update user")
-                        completion(false, ToshiError(withType: .invalidResponseStatus, description: "User could not be updated", responseStatus: response.statusCode))
+                        DispatchQueue.main.async {
+                            completion(false, ToshiError(withType: .invalidResponseStatus, description: "User could not be updated", responseStatus: response.statusCode))
+                        }
                         return
                     }
 
@@ -333,7 +343,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
             switch result {
             case .success(let json, _):
                 guard let json = json?.dictionary else {
-                    completion(nil)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
                     return
                 }
 
@@ -352,7 +364,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
 
         self.teapot.get("/v1/user/\(name)") { [weak self] (result: NetworkResult) in
             guard let strongSelf = self else {
-                completion(nil)
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
                 return
             }
 
@@ -361,7 +375,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
             switch result {
             case .success(let json, _):
                 guard let json = json?.dictionary else {
-                    completion(nil)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
                     return
                 }
 
@@ -388,7 +404,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
             switch result {
             case .success(let json, _):
                 guard let dictionary = json?.dictionary, var json = dictionary["results"] as? [[String: Any]] else {
-                    completion([])
+                    DispatchQueue.main.async {
+                        completion([])
+                    }
                     return
                 }
 
@@ -426,7 +444,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
             switch result {
             case .success(let json, _):
                 guard let strongSelf = self, let dictionary = json?.dictionary, let json = dictionary["results"] as? [[String: Any]] else {
-                    completion([], nil)
+                    DispatchQueue.main.async {
+                        completion([], nil)
+                    }
                     return
                 }
 
@@ -464,7 +484,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
             switch result {
             case .success(let json, _):
                 guard let strongSelf = self, let dictionary = json?.dictionary, let json = dictionary["results"] as? [[String: Any]] else {
-                    completion([], nil)
+                    DispatchQueue.main.async {
+                        completion([], nil)
+                    }
                     return
                 }
 
@@ -492,7 +514,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
     func reportUser(address: String, reason: String = "", completion: @escaping ((_ success: Bool, _ error: ToshiError?) -> Void) = { (Bool, String) in }) {
         fetchTimestamp { timestamp, error in
             guard let timestamp = timestamp else {
-                completion(false, error)
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
                 return
             }
 
@@ -505,7 +529,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
             ]
 
             guard let payloadData = try? JSONSerialization.data(withJSONObject: payload, options: []), let payloadString = String(data: payloadData, encoding: .utf8) else {
-                completion(false, .invalidPayload)
+                DispatchQueue.main.async {
+                    completion(false, .invalidPayload)
+                }
                 return
             }
 
@@ -523,7 +549,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
                 case .success(_, let response):
                     guard response.statusCode == 204 else {
                         DLog("Invalid response - Report user")
-                        completion(false, ToshiError(withType: .invalidResponseStatus, description: "Request to report user could not be completed", responseStatus: response.statusCode))
+                        DispatchQueue.main.async {
+                            completion(false, ToshiError(withType: .invalidResponseStatus, description: "Request to report user could not be completed", responseStatus: response.statusCode))
+                        }
                         return
                     }
 
@@ -546,7 +574,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
     func adminLogin(loginToken: String, completion: @escaping ((_ success: Bool, _ error: ToshiError?) -> Void) = { (Bool, String) in }) {
         fetchTimestamp { timestamp, error in
             guard let timestamp = timestamp else {
-                completion(false, error)
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
                 return
             }
 
@@ -565,7 +595,9 @@ typealias DappCompletion = (_ dapps: [Dapp]?, _ error: ToshiError?) -> Void
                 case .success(_, let response):
                     guard response.statusCode == 204 else {
                         DLog("Invalid response - Login")
-                        completion(false, ToshiError(withType: .invalidResponseStatus, description: "Request to login as admin could not be completed", responseStatus: response.statusCode))
+                        DispatchQueue.main.async {
+                            completion(false, ToshiError(withType: .invalidResponseStatus, description: "Request to login as admin could not be completed", responseStatus: response.statusCode))
+                        }
                         return
                     }
 

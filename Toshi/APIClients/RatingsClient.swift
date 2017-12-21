@@ -118,7 +118,9 @@ class RatingsClient: NSObject {
         fetchTimestamp { timestamp, error in
 
             guard let timestamp = timestamp else {
-                completion(false, error)
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
                 return
             }
             let cereal = Cereal.shared
@@ -130,7 +132,9 @@ class RatingsClient: NSObject {
             ]
 
             guard let data = try? JSONSerialization.data(withJSONObject: payload, options: []), let payloadString = String(data: data, encoding: .utf8) else {
-                completion(false, .invalidPayload)
+                DispatchQueue.main.async {
+                    completion(false, .invalidPayload)
+                }
 
                 return
             }
@@ -164,8 +168,15 @@ class RatingsClient: NSObject {
         self.teapot.get("/v1/user/\(userId)") { result in
             switch result {
             case .success(let json, _):
-                guard let json = json?.dictionary else { return }
-                guard let ratingScore = RatingScore(json: json) else { return }
+                guard
+                    let json = json?.dictionary,
+                    let ratingScore = RatingScore(json: json) else {
+                        DispatchQueue.main.async {
+                            completion(RatingScore.zero)
+                        }
+                        
+                        return
+                }
 
                 DispatchQueue.main.async {
                     completion(ratingScore)
@@ -176,6 +187,5 @@ class RatingsClient: NSObject {
                 }
             }
         }
-        
     }
 }

@@ -90,7 +90,6 @@ class EthereumAPIClient: NSObject {
             }
 
             DispatchQueue.main.async {
-
                 let skeleton = (gas: resultJson?["gas"] as? String, gasPrice: resultJson?["gas_price"] as? String, transaction: resultJson?["tx"] as? String)
                 completion(skeleton, resultError)
             }
@@ -116,7 +115,9 @@ class EthereumAPIClient: NSObject {
 
         timestamp(activeTeapot) { timestamp, error in
             guard let timestamp = timestamp else {
-                completion(false, nil, error)
+                DispatchQueue.main.async {
+                    completion(false, nil, error)
+                }
                 return
             }
 
@@ -125,7 +126,9 @@ class EthereumAPIClient: NSObject {
 
             guard let data = try? JSONSerialization.data(withJSONObject: params, options: []), let payloadString = String(data: data, encoding: .utf8) else {
                 DLog("Invalid payload, request could not be executed")
-                completion(false, nil, .invalidPayload)
+                DispatchQueue.main.async {
+                    completion(false, nil, .invalidPayload)
+                }
                 return
             }
 
@@ -169,8 +172,20 @@ class EthereumAPIClient: NSObject {
 
             switch result {
             case .success(let json, let response):
-                guard response.statusCode == 200 else { fetchedBalanceCompletion(0, .invalidResponseStatus(response.statusCode)); return }
-                guard let json = json?.dictionary else { fetchedBalanceCompletion(0, .invalidResponseJSON); return }
+                guard response.statusCode == 200 else {
+                    DispatchQueue.main.async {
+                        fetchedBalanceCompletion(0, .invalidResponseStatus(response.statusCode))
+                    }
+                    
+                    return
+                }
+                guard let json = json?.dictionary else {
+                    DispatchQueue.main.async {
+                        fetchedBalanceCompletion(0, .invalidResponseJSON)
+                    }
+                    
+                    return
+                }
 
                 let unconfirmedBalanceString = json["unconfirmed_balance"] as? String ?? "0"
                 let unconfirmedBalance = NSDecimalNumber(hexadecimalString: unconfirmedBalanceString)
@@ -269,10 +284,14 @@ class EthereumAPIClient: NSObject {
             switch result {
             case .success(let json, let response):
                 DLog("\n +++ Registered for :\(teapot.baseURL)")
-                completion?(true, "json: \(json?.dictionary ?? [String: Any]()) response: \(response)")
+                DispatchQueue.main.async {
+                    completion?(true, "json: \(json?.dictionary ?? [String: Any]()) response: \(response)")
+                }
             case .failure(let json, let response, let error):
                 DLog("\(error)")
-                completion?(false, "json: \(json?.dictionary ?? [String: Any]()) response: \(response), error: \(error)")
+                DispatchQueue.main.async {
+                    completion?(false, "json: \(json?.dictionary ?? [String: Any]()) response: \(response), error: \(error)")
+                }
             }
         }
     }
@@ -307,10 +326,14 @@ class EthereumAPIClient: NSObject {
                 switch result {
                 case .success(let json, let response):
                     DLog("\n --- DE-registered from :\(teapot.baseURL)")
-                    completion(true, "json:\(json?.dictionary ?? [String: Any]()), response: \(response)")
+                    DispatchQueue.main.async {
+                        completion(true, "json:\(json?.dictionary ?? [String: Any]()), response: \(response)")
+                    }
                 case .failure(let json, let response, let error):
                     DLog("\(error)")
-                    completion(false, "json:\(json?.dictionary ?? [String: Any]()), response: \(response), error: \(error)")
+                    DispatchQueue.main.async {
+                        completion(false, "json:\(json?.dictionary ?? [String: Any]()), response: \(response), error: \(error)")
+                    }
                 }
             }
     }

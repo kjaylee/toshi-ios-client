@@ -75,8 +75,7 @@ extension MessagesRequestsViewController: UITableViewDataSource {
         return dataSource.unacceptedThreadsCount
     }
 
-    func
-        tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cellConfigurator = CellConfigurator()
 
