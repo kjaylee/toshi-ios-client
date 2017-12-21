@@ -343,7 +343,7 @@ final class ChatInteractor: NSObject {
 
     public static func createGroup(with recipientsIds: NSMutableArray, name: String, avatar: UIImage, completion: @escaping ((Bool) -> Void)) {
 
-        let groupId = Randomness.generateRandomBytes(32)
+        let groupId = Randomness.generateRandomBytes(16)
 
         guard let groupModel = TSGroupModel(title: name, memberIds: recipientsIds, image: avatar, groupId: groupId) else { return }
 
