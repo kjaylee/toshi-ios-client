@@ -90,6 +90,7 @@ class BasicTableViewCell: UITableViewCell {
         leftImageView.contentMode = .scaleAspectFill
         leftImageView.layer.cornerRadius = BasicTableViewCell.imageSize / 2
         leftImageView.layer.masksToBounds = true
+        leftImageView.isUserInteractionEnabled = true
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLeftImage(_:)))
         leftImageView.addGestureRecognizer(tapGesture)
